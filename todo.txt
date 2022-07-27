@@ -1,0 +1,3 @@
+make a function that checks if a function exists to be able to execute it 
+need the access command in order to do this job
+next step is initializing the pipes 
