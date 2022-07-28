@@ -11,3 +11,4 @@ typedef struct s_envlst
 
 void	lst_add(t_envlst **lst, t_envlst *new);
 char	**ft_split(char const *s, char c);
+int		ft_strcmp(char *s1, char *s2);

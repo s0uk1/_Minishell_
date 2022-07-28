@@ -7,6 +7,7 @@ SOURCES_DIRECTORY = ./sources/
 SOURCES_LIST = main.c\
 			   list_tools.c\
 			   ft_split.c\
+			   ft_strcmp.c\
 
 GREEN			=	"\033[1;32m"
 PURPLE			=	"\x1b[35m"
