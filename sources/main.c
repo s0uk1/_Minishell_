@@ -20,11 +20,16 @@ t_envlst *env_lst(t_envlst **lst, char **env)
 	return (*lst);
 }
 //a function to check if a command exists in path using access 
+//current workung directory to be stored in a struct ig
+
 void	execute_com(t_envlst *lst, char *command)
 {
+	char cwd[256];
 	char **paths;
 	int		fd;
 	//travel through the list until i find the path variable 
+	if (getcwd(cwd), sizeof(cwd) == NULL)
+		perror("getcwd() error");
 	while (lst)
 	{
 		if (ft_strcmp(lst->val_name, "PATH") == 0)
@@ -33,7 +38,7 @@ void	execute_com(t_envlst *lst, char *command)
 	}
 	while (paths)
 	{
-		fd = access(*paths, F_OK);
+		fd = access(, F_OK);
 		if (fd == -1)
 			printf("found error\n");
 		else 
