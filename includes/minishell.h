@@ -9,6 +9,14 @@ typedef struct s_envlst
 	struct s_envlst *next;
 }	t_envlst;
 
+typedef struct	s_cmdex
+{
+	char	cwd[256];
+	char	*cmd;
+	char	**paths;
+}	t_cmdex;
+
+
 void	lst_add(t_envlst **lst, t_envlst *new);
 char	**ft_split(char const *s, char c);
 int		ft_strcmp(char *s1, char *s2);

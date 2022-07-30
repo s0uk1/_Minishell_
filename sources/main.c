@@ -21,28 +21,42 @@ t_envlst *env_lst(t_envlst **lst, char **env)
 }
 //a function to check if a command exists in path using access 
 //current workung directory to be stored in a struct ig
-
-void	execute_com(t_envlst *lst, char *command)
+void	check_access(char *cmd, char *to_join)
 {
-	char cwd[256];
-	char **paths;
-	int		fd;
-	//travel through the list until i find the path variable 
-	if (getcwd(cwd), sizeof(cwd) == NULL)
+	int	fd;
+
+	fd = access(ft_strcat(to_join, cmd), F_OK & X_OK);
+	if (fd == -1)
+		perror("access() error");
+	else 
+		execve(lst_cmd->cmd)
+}
+
+
+
+void	execute_com(t_envlst *lst, t_data *data)
+{
+	t_cmdex	*inst;
+
+	inst->cmd = data->lst_cmd->cmd[0];//this can be replacedby data->lst->cmd->cmd
+	if (getcwd(inst->cwd, sizeof(inst->cwd)) == NULL)
 		perror("getcwd() error");
+	if (inst->cmd[0] == '/')
+		check_access(inst->cmd,'\0');
 	while (lst)
 	{
 		if (ft_strcmp(lst->val_name, "PATH") == 0)
-			paths = ft_split(lst->val,':');
+		{
+			if(lst->val == NULL)
+				check_access(inst->cmd);
+			else
+			{
+				inst->paths = ft_split(lst->val,':');
+				while (inst->paths)
+					check_access(inst->cmd, inst->paths);
+			}
+		}
 		lst = lst->next;
-	}
-	while (paths)
-	{
-		fd = access(, F_OK);
-		if (fd == -1)
-			printf("found error\n");
-		else 
-			printf("no errors found\n");
 	}
 }
 
