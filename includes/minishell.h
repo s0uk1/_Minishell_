@@ -12,10 +12,9 @@ typedef struct s_envlst
 typedef struct	s_cmdex
 {
 	char	cwd[256];
-	char	*cmd;
-	char	**paths;
+	char	**cmd;
+	char	**env;
 }	t_cmdex;
-
 
 void	lst_add(t_envlst **lst, t_envlst *new);
 char	**ft_split(char const *s, char c);

@@ -25,35 +25,38 @@ void	check_access(char *cmd, char *to_join)
 {
 	int	fd;
 
-	fd = access(ft_strcat(to_join, cmd), F_OK & X_OK);
+	fd = access(ft_strcat(to_join, cmd[0]), F_OK & X_OK);
 	if (fd == -1)
 		perror("access() error");
 	else 
-		execve(lst_cmd->cmd)
+		execve(ft_strcat(to_join, cmd[0]),cmd);
+	perror("execve() error");
+	//free
+	exit(127);
 }
-
-
 
 void	execute_com(t_envlst *lst, t_data *data)
 {
 	t_cmdex	*inst;
+	int	i;
 
-	inst->cmd = data->lst_cmd->cmd[0];//this can be replacedby data->lst->cmd->cmd
+	i = 0;
+	inst->cmd = data->lst_cmd->cmd;
 	if (getcwd(inst->cwd, sizeof(inst->cwd)) == NULL)
 		perror("getcwd() error");
-	if (inst->cmd[0] == '/')
-		check_access(inst->cmd,'\0');
+	if (inst->cmd[0][0] == '/')
+		check_access(inst->cmd,'\0',NULL);
 	while (lst)
 	{
 		if (ft_strcmp(lst->val_name, "PATH") == 0)
 		{
 			if(lst->val == NULL)
-				check_access(inst->cmd);
+				check_access(inst->cmd, inst->cwd, NULL);
 			else
 			{
-				inst->paths = ft_split(lst->val,':');
-				while (inst->paths)
-					check_access(inst->cmd, inst->paths);
+				inst->env = ft_split(lst->val,':');
+				while (inst->env[i])
+					check_access(inst->cmd, inst->env[i], inst->env);
 			}
 		}
 		lst = lst->next;
