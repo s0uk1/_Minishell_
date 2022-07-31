@@ -8,7 +8,7 @@ SOURCES_LIST = main.c\
 			   list_tools.c\
 			   ft_split.c\
 			   ft_strcmp.c\
-
+			   ft_strchr.c\
 GREEN			=	"\033[1;32m"
 PURPLE			=	"\x1b[35m"
 RED				=  "\033[0;31m"

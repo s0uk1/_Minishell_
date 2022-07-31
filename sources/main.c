@@ -21,45 +21,45 @@ t_envlst *env_lst(t_envlst **lst, char **env)
 }
 //a function to check if a command exists in path using access 
 //current workung directory to be stored in a struct ig
-void	check_access(char *cmd, char *to_join)
+void	check_access(char *cmd, char *to_join, t_envlst *env)
 {
 	int	fd;
 
-	fd = access(ft_strcat(to_join, cmd[0]), F_OK & X_OK);
+	fd = access(ft_strcat(to_join, &cmd[0]), F_OK & X_OK);
 	if (fd == -1)
 		perror("access() error");
 	else 
-		execve(ft_strcat(to_join, cmd[0]),cmd);
+		execve(ft_strcat(to_join, &cmd[0]),cmd,NULL);
 	perror("execve() error");
 	//free
 	exit(127);
 }
 
-void	execute_com(t_envlst *lst, t_data *data)
+void	execute_com(t_envlst *env, t_data *data, t_cmd *lst_cmd)
 {
 	t_cmdex	*inst;
 	int	i;
 
 	i = 0;
-	inst->cmd = data->lst_cmd->cmd;
+	inst->cmd = lst_cmd->cmd;
 	if (getcwd(inst->cwd, sizeof(inst->cwd)) == NULL)
 		perror("getcwd() error");
 	if (inst->cmd[0][0] == '/')
 		check_access(inst->cmd,'\0',NULL);
-	while (lst)
+	while (env)
 	{
-		if (ft_strcmp(lst->val_name, "PATH") == 0)
+		if (ft_strcmp(env->val_name, "PATH") == 0)
 		{
-			if(lst->val == NULL)
+			if(env->val == NULL)
 				check_access(inst->cmd, inst->cwd, NULL);
 			else
 			{
-				inst->env = ft_split(lst->val,':');
+				inst->env = ft_split(env->val,':');
 				while (inst->env[i])
 					check_access(inst->cmd, inst->env[i], inst->env);
 			}
 		}
-		lst = lst->next;
+		env = env->next;
 	}
 }
 
@@ -102,10 +102,15 @@ int main(int argc , char **av , char **env)
 	//execlp("/sbin/ping", "/sbin/ping", "google.com", NULL);
 	//int	i = 0;
 	t_envlst *lst = NULL;
-	(void)av;
+	t_data	*data = NULL;
+	t_cmd	*cmd_test;
+
 	(void)argc;
+	
+	data->lst_cmd = cmd_test;
+	cmd_test->cmd = av;
 	env_lst(&lst,env);
-	execute_com(lst);
+	execute_com(lst, data, cmd_test);
 	//while (lst)
 	//{
 	//	printf("NAME%s\n",lst->val_name);
