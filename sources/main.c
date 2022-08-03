@@ -21,46 +21,64 @@ t_envlst *env_lst(t_envlst **lst, char **env)
 }
 //a function to check if a command exists in path using access 
 //current workung directory to be stored in a struct ig
-void	check_access(char *cmd, char *to_join, t_envlst *env)
+void	check_access(t_data *data, char **cmd, int i)
 {
-	int	fd;
+	char	*path = NULL;
+	int		fd;
 
-	fd = access(ft_strcat(to_join, &cmd[0]), F_OK & X_OK);
+	path = ft_strjoin(data->paths[i], "/");
+	path = ft_strjoin(path, cmd[0]);
+	fd = access(path, F_OK & X_OK);
 	if (fd == -1)
-		perror("access() error");
-	else 
-		execve(ft_strcat(to_join, &cmd[0]),cmd,NULL);
-	perror("execve() error");
+		return;
+	else
+	{
+		printf("path is %s\n", path);
+		execve(path, cmd, data->env);
+		perror("execve() error");
+	}
 	//free
 	exit(127);
 }
 
-void	execute_com(t_envlst *env, t_data *data, t_cmd *lst_cmd)
+void	execution_2(t_data *data)
 {
-	t_cmdex	*inst;
 	int	i;
+	char	**cmd;
+	char	**paths;
+	t_env	*lst_env;
 
-	i = 0;
-	inst->cmd = lst_cmd->cmd;
-	if (getcwd(inst->cwd, sizeof(inst->cwd)) == NULL)
+	i = -1;
+	cmd = data->lst_cmd->cmd;
+	lst_env = data->lst_env;
+	if (getcwd(data->cwd, sizeof(data->cwd)) == NULL)
 		perror("getcwd() error");
-	if (inst->cmd[0][0] == '/')
-		check_access(inst->cmd,'\0',NULL);
-	while (env)
+	if (cmd[0][0] == '/')
+		check_access(data,NULL,0);
+		// check_access(cmd[0],NULL,NULL);
+	while (lst_env->name)
 	{
-		if (ft_strcmp(env->val_name, "PATH") == 0)
+		if (ft_strcmp(lst_env->name, "PATH") == 0)
 		{
-			if(env->val == NULL)
-				check_access(inst->cmd, inst->cwd, NULL);
+			if(lst_env->value == NULL)
+			{
+				printf("unset PATH variable");
+				check_access(data,cmd, i);
+			}
 			else
 			{
-				inst->env = ft_split(env->val,':');
-				while (inst->env[i])
-					check_access(inst->cmd, inst->env[i], inst->env);
+				data->paths = ft_split(lst_env->value,':');
+				paths = data->paths;
+				while (paths[++i])
+				{
+					printf("path :%s\n",paths[i]);
+					check_access(data, cmd, i);
+				}
 			}
 		}
-		env = env->next;
+		lst_env = lst_env->next;
 	}
+	// free(data);
 }
 
 //void	built_in(t_data *data)
@@ -99,22 +117,17 @@ void	execute_com(t_envlst *env, t_data *data, t_cmd *lst_cmd)
 
 int main(int argc , char **av , char **env)
 {
-	//execlp("/sbin/ping", "/sbin/ping", "google.com", NULL);
 	//int	i = 0;
-	t_envlst *lst = NULL;
-	t_data	*data = NULL;
-	t_cmd	*cmd_test;
+	t_data		data = NULL;
+	t_cmd		cmd_test = NULL;
+	t_envlst	lst;
 
 	(void)argc;
 	
-	data->lst_cmd = cmd_test;
-	cmd_test->cmd = av;
+	data.env = env;
+	cmd_test.cmd = av;
+	data.lst_cmd = cmd_test;
 	env_lst(&lst,env);
-	execute_com(lst, data, cmd_test);
-	//while (lst)
-	//{
-	//	printf("NAME%s\n",lst->val_name);
-	//	printf("VALUE%s\n",lst->val);
-	//	lst = lst->next;
-	//}
+	data.lst_env = lst;
+	execute_com(lst, &data, cmd_test);
 }

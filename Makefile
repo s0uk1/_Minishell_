@@ -9,6 +9,8 @@ SOURCES_LIST = main.c\
 			   ft_split.c\
 			   ft_strcmp.c\
 			   ft_strchr.c\
+			   ft_strcat.c\
+
 GREEN			=	"\033[1;32m"
 PURPLE			=	"\x1b[35m"
 RED				=  "\033[0;31m"
