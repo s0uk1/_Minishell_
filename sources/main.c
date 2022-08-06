@@ -110,7 +110,6 @@ void	execution_2(t_data *data)
 //					new->val_name = p_list_>cmd[1];
 //					lst_add(&lst, new);
 //				} 
-//
 //			}
 //	}
 //}

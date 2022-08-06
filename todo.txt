@@ -1,7 +1,6 @@
--working on :make a function that checks if a function exists to be able to execute it 
-need the access command in order to do this job
-	-to do this particular task must check if the command exists in the current folder 
-if it does i can execute that file straight away , if it doesnt , i cat the name of the command to all of the paths in the PATH variable and test again.
+-made my own export , still imperfect doe
+-executing ls makes the bootleg bash exit gotta find out why
+
 
 next step is : initializing the pipes
 
