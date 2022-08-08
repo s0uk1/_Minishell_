@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 16:10:42 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/08/06 16:11:20 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/08/08 16:54:17 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_env *lst_last(t_env *lst)
 	if (lst == NULL)
 		return (NULL);
 	while (lst->next != NULL)
-		lst = lst->next;`
+		lst = lst->next;
 	return (lst);
 }
 

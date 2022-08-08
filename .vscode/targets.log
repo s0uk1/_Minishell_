@@ -1,0 +1,914 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 3.81
+# Copyright (C) 2006  Free Software Foundation, Inc.
+# This is free software; see the source for copying conditions.
+# There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+# This program built for i386-apple-darwin11.3.0
+ 
+make: *** No rule to make target `execution/my_export.o', needed by `minishell'
+.  Stop.
+
+
+# Make data base, printed on Mon Aug  8 16:53:54 2022
+
+# Variables
+
+# environment
+VSCODE_GIT_ASKPASS_MAIN = /Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass-main.js
+# makefile (from `Makefile', line 45)
+UTILS = ./utils/ft_putstr_fd.c ./utils/ft_get_env.c ./utils/ft_itoa.c ./utils/ft_strcmp.c ./utils/ft_strlen.c ./utils/ft_calloc.c ./utils/ft_strchr.c ./utils/ft_trim.c 
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
+# makefile (from `Makefile', line 57)
+OBJ = ${FILES:.c=.o}
+# makefile (from `Makefile', line 17)
+SRC = main.c ft_free.c ft_main.c ft_print_list.c 
+# environment
+VSCODE_LOG_NATIVE = false
+# makefile (from `Makefile', line 49)
+EXECUT = ./execution/execution.c ./execution/ft_get_path.c ./execution/ft_cmd_exist.c ./execution/ft_if_builtin.c ./execution/ft_init_pipes.c ./execution/start_execution.c ./execution/ft_dup.c ./execution/close_fds.c ./execution/non_fork_funcs.c ./execution/herdoc.c ./execution/my_exec.c init_signals.c ./execution/my_export.c 
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# makefile (from `Makefile', line 7)
+CPPFLAGS = -I /goinfre/rsaf/.brew/opt/readline/include
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# automatic
+@F = $(notdir $@)
+# makefile
+CURDIR := /Users/ssabbaji/Desktop/mms
+# makefile
+SHELL = /bin/sh
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# environment
+_ = /usr/bin/make
+# makefile (from `Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cfk80033mk/T/vscode-ipc-b3cdf5f6-9ab3-4fa4-ae02-8bb45157a789.sock
+# makefile (from `Makefile', line 37)
+SYNTAX = ./syntax/syntax_analyzer.c ./syntax/ft_pipe.c ./syntax/ft_redirection.c ./syntax/ft_quotes.c 
+# environment
+VSCODE_CWD = /Users/ssabbaji/Desktop/mms
+# environment
+PATH = /Users/ssabbaji/.brew/bin:/Users/ssabbaji/.brew/bin:/usr/local/bin/python3:/goinfre/ssabbaji/brew/bin:/goinfre/ssabbaji/.brew/bin:/Users/ssabbaji/brew/bin:/Users/ssabbaji/brew/bin:/Users/ssabbaji/.brew/bin:/Users/ssabbaji/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Applications/Visual Studio Code.app/Contents/Resources/app/bin
+# environment
+LSCOLORS = Gxfxcxdxbxegedabagacad
+# environment
+LaunchInstanceID = EA08F202-7E67-4E07-9C33-159277FBA13B
+# environment
+VSCODE_LOG_STACK = false
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# makefile (from `Makefile', line 8)
+LDFLAGS = -L /goinfre/rsaf/.brew/opt/readline/lib
+# default
+.FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
+# makefile (from `Makefile', line 21)
+PARSING = ./parsing/parsing.c ./parsing/parsing_utils.c ./parsing/ft_cmd_list.c ./parsing/ft_new_split.c ./delete_quotes/ft_delete_quotes.c ./delete_quotes/delete_quotes_utils.c ./parsing/exit_status.c ./parsing/parsing_utils2.c ./parsing/parsing_utils3.c ./parsing/parsing_utils4.c ./parsing/parsing_utils5.c 
+# environment
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.J28jPQuS5E/Listeners
+# automatic
+%F = $(notdir $%)
+# environment
+HOMEBREW_TEMP = /Users/ssabbaji/brew_temp
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+PWD = /Users/ssabbaji/Desktop/mms
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+HOME = /Users/ssabbaji
+# default
+MAKEFILEPATH = $(shell /usr/bin/xcode-select -print-path 2>/dev/null || echo /Developer)/Makefiles
+# environment
+VSCODE_CLI = 1
+# environment
+VSCODE_CODE_CACHE_PATH = /Users/ssabbaji/Library/Application Support/Code/CachedData/57fd6d0195bb9b9d1b49f6da5db789060795de47
+# environment
+LOGNAME = ssabbaji
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# makefile (from `Makefile', line 13)
+LIBRARIESS = ${LDFLAGS} -lreadline
+# environment
+ZSH = /Users/ssabbaji/.oh-my-zsh
+# makefile (from `Makefile', line 27)
+EXPANDING = ./expanding/ft_expanding.c ./expanding/expanding_utils.c ./expanding/ft_len.c ./expanding/expanding_utils2.c 
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# makefile (from `Makefile', line 3)
+YBA = minishell
+# environment
+MAKELEVEL := 0
+# environment
+XPC_FLAGS = 0x0
+# environment
+COLORTERM = truecolor
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# environment
+SHLVL = 3
+# makefile (from `Makefile', line 5)
+CC = gcc
+# environment
+JAVA_HOME = /Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/bin/apt
+# default
+MAKE_VERSION := 3.81
+# environment
+USER = ssabbaji
+# makefile
+.DEFAULT_GOAL := all
+# makefile (from `Makefile', line 1)
+NAME = minishell
+# environment
+LESS = -R
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# default
+MAKE_COMMAND := /Library/Developer/CommandLineTools/usr/bin/make
+# environment
+VSCODE_GIT_ASKPASS_EXTRA_ARGS = --ms-enable-electron-run-as-node
+# environment
+TERM_PROGRAM = vscode
+# default
+.VARIABLES := 
+# environment
+TMPDIR = /var/folders/zz/zyxvpxvq6csfxvn_n000cfk80033mk/T/
+# automatic
+*F = $(notdir $*)
+# environment
+VSCODE_IPC_HOOK = /Users/ssabbaji/Library/Application Support/Code/1.67.0-main.sock
+# environment
+VSCODE_GIT_ASKPASS_NODE = /Applications/Visual Studio Code.app/Contents/MacOS/Electron
+# makefile (from `Makefile', line 11)
+INCLUDESS = ${CPPFLAGS}
+# makefile
+MAKEFLAGS = Rrqp
+# environment
+MFLAGS = -Rrqp
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+TERM_PROGRAM_VERSION = 1.67.0
+# makefile (from `Makefile', line 30)
+LEXER = ./lexer/lexer.c ./lexer/lexer_utils.c ./lexer/ft_lexer_list.c ./lexer/ft_add_and.c ./lexer/ft_add_semi.c ./lexer/ft_add_parenth.c ./lexer/ft_add_word.c ./lexer/ft_add_pipe.c ./lexer/ft_add_redirection.c
+# environment
+XPC_SERVICE_NAME = 0
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# automatic
++F = $(notdir $+)
+# environment
+__CF_USER_TEXT_ENCODING = 0x18E92:0x0:0x0
+# environment
+COMMAND_MODE = unix2003
+# environment
+GIT_ASKPASS = /Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass.sh
+# default
+MAKEFILES := 
+# environment
+HOMEBREW_NO_AUTO_UPDATE = 1
+# automatic
+<F = $(notdir $<)
+# makefile (from `Makefile', line 40)
+BUILTIN = ./builtin/echo.c ./builtin/cd.c ./builtin/pwd.c ./builtin/unset.c ./builtin/env.c ./builtin/export/export.c ./builtin/export/export_utils.c ./builtin/export/export_utils2.c ./builtin/export/export_utils3.c ./builtin/exit.c 
+# environment
+PAGER = less
+# environment
+LC_ALL = C
+# environment
+SECURITYSESSIONID = 186a8
+# automatic
+^F = $(notdir $^)
+# default
+SUFFIXES := 
+# makefile (from `Makefile', line 15)
+FLAGS = -Wall -Wextra -Werror
+# default
+.INCLUDE_DIRS = /usr/local/include
+# environment
+VSCODE_GIT_IPC_HANDLE = /var/folders/zz/zyxvpxvq6csfxvn_n000cfk80033mk/T/vscode-git-5c5735a27f.sock
+# makefile (from `Makefile', line 19)
+ENV = ./env/ft_env.c ./env/ft_env_list.c 
+# environment
+LANG = C
+# environment
+TERM = xterm-256color
+# environment
+VSCODE_PID = 974
+# makefile (from `Makefile', line 55)
+FILES = $(SRC) $(PARSING) $(LEXER) $(ENV) $(SYNTAX) $(BUILTIN) $(UTILS) $(EXPANDING) $(EXECUT)
+# variable set hash-table stats:
+# Load=100/1024=10%, Rehash=0, Collisions=5/137=4%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# utils (device 16777225, inode 744836): 17 files, no impossibilities so far.
+# . (device 16777225, inode 122586): 27 files, 1 impossibilities.
+# syntax (device 16777225, inode 744835): 9 files, no impossibilities so far.
+# execution (device 16777225, inode 744823): 25 files, no impossibilities.
+# parsing (device 16777225, inode 744832): 19 files, no impossibilities so far.
+# builtin (device 16777225, inode 744819): 14 files, no impossibilities so far.
+# lexer (device 16777225, inode 744829): 19 files, no impossibilities so far.
+# expanding (device 16777225, inode 744824): 10 files, no impossibilities so far.
+# builtin/export (device 16777225, inode 744844): 9 files, no impossibilities so far.
+ 
+# delete_quotes (device 16777225, inode 744821): 5 files, no impossibilities so far.
+# env (device 16777225, inode 744822): 5 files, no impossibilities so far.
+
+# 159 files, 1 impossibilities in 11 directories.
+
+# Implicit Rules
+
+%.o: %.c minishel.h
+#  commands to execute (from `Makefile', line 60):
+	$(CC) $(FLAGS) -c $< ${INCLUDESS} -o $@
+	
+
+# 1 implicit rules, 0 (0.0%) terminal.
+
+# Files
+
+# Not a target:
+parsing/exit_status.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:36
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+syntax/ft_pipe.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:37
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+execution/ft_if_builtin.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:38
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+execution/start_execution.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:38
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+parsing/parsing_utils4.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:36
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+expanding/ft_len.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:38
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+execution/ft_dup.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:38
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+execution/my_exec.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:39
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+builtin/export/export_utils.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:37
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+all: minishell
+#  Command-line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has not been updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+utils/ft_calloc.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:38
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+syntax/ft_redirection.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:37
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+parsing/parsing_utils3.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:36
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+init_signals.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:39
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+syntax/ft_quotes.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:37
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+utils/ft_trim.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:38
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+builtin/pwd.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:37
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+parsing/parsing_utils.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:36
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+builtin/cd.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:37
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-06 14:25:58
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+lexer/lexer_utils.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:36
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+utils/ft_strcmp.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:38
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+expanding/expanding_utils.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:38
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+expanding/ft_expanding.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:38
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+utils/ft_strchr.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:38
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+env/ft_env.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:37
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+builtin/echo.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:37
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+lexer/ft_add_pipe.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:37
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+ft_main.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:35
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+utils/ft_putstr_fd.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:37
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+ 
+minishell: main.o ft_free.o ft_main.o ft_print_list.o parsing/parsing.o parsing/parsing_utils.o parsing/ft_cmd_list.o parsing/ft_new_split.o delete_quotes/ft_delete_quotes.o delete_quotes/delete_quotes_utils.o parsing/exit_status.o parsing/parsing_utils2.o parsing/parsing_utils3.o parsing/parsing_utils4.o parsing/parsing_utils5.o lexer/lexer.o lexer/lexer_utils.o lexer/ft_lexer_list.o lexer/ft_add_and.o lexer/ft_add_semi.o lexer/ft_add_parenth.o lexer/ft_add_word.o lexer/ft_add_pipe.o lexer/ft_add_redirection.o env/ft_env.o env/ft_env_list.o syntax/syntax_analyzer.o syntax/ft_pipe.o syntax/ft_redirection.o syntax/ft_quotes.o builtin/echo.o builtin/cd.o builtin/pwd.o builtin/unset.o builtin/env.o builtin/export/export.o builtin/export/export_utils.o builtin/export/export_utils2.o builtin/export/export_utils3.o builtin/exit.o utils/ft_putstr_fd.o utils/ft_get_env.o utils/ft_itoa.o utils/ft_strcmp.o utils/ft_strlen.o utils/ft_calloc.o utils/ft_strchr.o utils/ft_trim.o expanding/ft_expanding.o expanding/expanding_utils.o expanding/ft_len.o expanding/expanding_utils2.o execution/execution.o execution/ft_get_path.o execution/ft_cmd_exist.o execution/ft_if_builtin.o execution/ft_init_pipes.o execution/start_execution.o execution/ft_dup.o execution/close_fds.o execution/non_fork_funcs.o execution/herdoc.o execution/my_exec.o init_signals.o execution/my_export.o
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 65):
+	$(CC) ${LIBRARIESS} $(OBJ) -o ${NAME}
+	
+
+# Not a target:
+parsing/ft_cmd_list.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:36
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+execution/ft_init_pipes.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:38
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+builtin/export/export.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:37
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+syntax/syntax_analyzer.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:37
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+fclean: clean
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 71):
+	rm -rf ${NAME}
+	
+
+# Not a target:
+lexer/ft_add_redirection.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:37
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+lexer/ft_add_semi.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:36
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+builtin/export/export_utils2.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:37
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+ft_print_list.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:35
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+lexer/ft_add_and.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:36
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+delete_quotes/delete_quotes_utils.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:36
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+parsing/parsing.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:35
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+execution/ft_cmd_exist.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:38
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+lexer/ft_add_parenth.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:36
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+lexer/lexer.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:36
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+execution/execution.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:38
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+re: fclean all
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+utils/ft_itoa.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:38
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+utils/ft_strlen.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:38
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+clean:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 68):
+	rm -rf $(OBJ)
+	
+
+# Not a target:
+builtin/env.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:37
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+builtin/exit.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:37
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+parsing/parsing_utils2.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:36
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+ft_free.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:35
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+lexer/ft_add_word.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:37
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+expanding/expanding_utils2.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:38
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+lexer/ft_lexer_list.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:36
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+main.o:
+#  Implicit rule search has been done.
+ 
+#  Last modified 2022-08-08 16:53:35
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+utils/ft_get_env.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:37
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+execution/ft_get_path.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:38
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+builtin/unset.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:37
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+execution/herdoc.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:39
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+parsing/parsing_utils5.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:36
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+execution/my_export.o:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has not been updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+parsing/ft_new_split.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:36
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+execution/non_fork_funcs.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:38
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+execution/close_fds.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:38
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+env/ft_env_list.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:37
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+delete_quotes/ft_delete_quotes.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:36
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+builtin/export/export_utils3.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:53:37
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# files hash-table stats:
+# Load=73/1024=7%, Rehash=0, Collisions=17/223=8%
+# VPATH Search Paths
+
+# No `vpath' search paths.
+
+# No general (`VPATH' variable) search path.
+
+# # of strings in strcache: 1
+# # of strcache buffers: 1
+# strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
+# strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
+
+# Finished Make data base on Mon Aug  8 16:53:54 2022
+
+ 
