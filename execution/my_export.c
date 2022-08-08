@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 16:10:42 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/08/08 16:54:17 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/08/08 17:29:14 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ t_env	*add_new_env(char **cmd, t_env *lst)
 		new->name = cmd[1];
 		new->value = NULL;
 		lst_add(&lst, new);
+		print_env(lst);
 	}
 	return (lst);
 }
