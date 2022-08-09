@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rsaf <rsaf@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 12:22:29 by rsaf              #+#    #+#             */
-/*   Updated: 2022/07/28 15:20:37 by rsaf             ###   ########.fr       */
+/*   Updated: 2022/08/09 14:23:29 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ typedef struct s_data{
 	char			*first_export;
 	int				flag_s;
 	int				flag_d;
+	int				**pipes;
+	int				**nb_cmd;
 	t_env			*lst_env;
 	t_cmd			*lst_cmd;
 	t_lexer			*lst_lexer;

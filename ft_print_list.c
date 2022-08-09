@@ -72,4 +72,4 @@ void	ft_print_cmd(t_cmd *cmd)
 		printf("herdoc num %d\n", cmd_clone->her_doc_num);
 		cmd_clone = cmd_clone->next;
 	}
-}
+	}

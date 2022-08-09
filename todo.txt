@@ -1,8 +1,7 @@
 -made my own export , still imperfect doe
 -executing ls makes the bootleg bash exit gotta find out why
 -i have to comment the code section responsible for freeing the data, gotta fix this
--export doesnt work when its the following case "export var"
-
+-gotta make my custom getenv because the system one is reentrant
 
 next step is : initializing the pipes
 

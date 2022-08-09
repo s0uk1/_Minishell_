@@ -1,5 +1,6 @@
 #include "../minishell.h"
 
+
 int	check_access(t_data *data, char **cmd, int i)
 {
 	char	*path = NULL;

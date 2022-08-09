@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 16:10:42 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/08/09 13:53:39 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/08/09 16:43:55 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,10 +159,11 @@ void	my_pwd(t_data *data, t_cmd *lst_cmd)
 	char	**cmd;
 
 	cmd = data->lst_cmd->cmd;
-	// pwd = getcwd(NULL, 0);
+	pwd = getcwd(NULL, 0);
+	// perror("getcwd() error"); is useless(?)
 	//might also try with getenv("PWD")
-	pwd = getenv("PWD");
-	if (ft_strcmp(cmd[0], "pwd") == 0)
+	// pwd = getenv("PWD");
+	// if (ft_strcmp(cmd[0], "pwd") == 0)
 		printf("%s\n", pwd);
 }
 

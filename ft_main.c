@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 10:37:19 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/08/08 17:07:15 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/08/09 14:49:00 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ char *ft_strcat(char *dest, char *src)
 	dest[i + len] = '\0';
 	return (dest);
 }
+
 
 void	ft_start(t_data *data)
 {
