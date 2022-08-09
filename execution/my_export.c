@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 16:10:42 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/08/08 17:29:14 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/08/09 13:53:39 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,10 +124,58 @@ t_data	*my_export(t_data *data, t_cmd *lst_cmd)
 	return (data);
 }
 
+void	my_unset(t_data *data, t_cmd *lst_cmd)
+{
+	char	**cmd;
+	t_env	*lst;
+	t_env	*tmp;
+	
+	cmd = data->lst_cmd->cmd;
+	lst = data->lst_env;
+	if (lst)
+	{
+		if ((ft_strcmp(cmd[0], "unset") == 0 ) && !cmd[1])
+			print_env(data->lst_env);
+		else if ((ft_strcmp(cmd[0], "unset") == 0) && cmd[1])
+		{
+			while (lst)
+			{
+				if (ft_strcmp(lst->name, cmd[1]) == 0)
+				{
+					tmp = lst->next;
+					free(lst);
+					lst = tmp;
+				}
+				else
+					lst = lst->next;
+			}
+		}
+	}
+}
+
+void	my_pwd(t_data *data, t_cmd *lst_cmd)
+{
+	char	*pwd;
+	char	**cmd;
+
+	cmd = data->lst_cmd->cmd;
+	// pwd = getcwd(NULL, 0);
+	//might also try with getenv("PWD")
+	pwd = getenv("PWD");
+	if (ft_strcmp(cmd[0], "pwd") == 0)
+		printf("%s\n", pwd);
+}
+
+
+
 void	ft_builtins(t_data *data, t_cmd *lst_cmd)
 {
 	if (ft_strcmp(lst_cmd->cmd[0], "export") == 0)
 		my_export(data, lst_cmd);
+	else if (ft_strcmp(lst_cmd->cmd[0], "pwd") == 0)
+		my_pwd(data, lst_cmd);
+	else if (ft_strcmp(lst_cmd->cmd[0], "unset") == 0)
+		my_unset(data, lst_cmd);
 	else 
 		execution_2(data);
 }
