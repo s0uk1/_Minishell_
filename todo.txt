@@ -1,7 +1,8 @@
 -made my own export , still imperfect doe
--executing ls makes the bootleg bash exit gotta find out why
+-executing ls (or any command through exec) makes the bootleg bash exit gotta find out why
+    -> found out that this is due to the fact that i dont fork yet , it is all done in the main process explaining why it exits.
 -i have to comment the code section responsible for freeing the data, gotta fix this
--gotta make my custom getenv because the system one is reentrant
+-gotta make my custom getenv because the system one is non reentrant
 
 next step is : initializing the pipes
 
