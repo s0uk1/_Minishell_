@@ -6,11 +6,13 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 16:10:42 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/08/23 10:27:09 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/08/23 11:54:40 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+#include "../debug.h"
+#include <string.h>
 
 t_env *lst_last(t_env *lst)
 {
@@ -54,6 +56,7 @@ void	print_env(t_env *lst)
 			printf("declare -x %s=\"%s\"\n", lst->name, lst->value);
 		else
 			printf("declare -x %s\n", lst->name);
+		
 		lst = lst->next;
 	}
 }
@@ -75,7 +78,7 @@ void    sort_env(t_data *data)
     }
 }
 
-t_env	*add_new_env(char **cmd, t_env *lst)
+t_env	*add_new_env(char **cmd, t_env **lst)
 {
 	t_env	*new;
 	char	**spl_res;
@@ -88,38 +91,45 @@ t_env	*add_new_env(char **cmd, t_env *lst)
 		spl_res= ft_split(cmd[1] , '=');
 		new->name = spl_res[0];
 		new->value = spl_res[1];
-		lst_add(&lst,new);
-		print_env(lst);
+		lst_add(lst,new);
+		// print_env(*lst);
 	}
 	else
 	{
-		new->name = cmd[1];
+		//substr fixed export maybe strdup too
+		//new->name = ft_substr(cmd[1], 0, ft_strlen(cmd[1]));
+		new->name = strdup(cmd[1]);
 		new->value = NULL;
-		lst_add(&lst, new);
-		print_env(lst);
+		
+		lst_add(lst, new);
+		new->next = NULL;
+		// print_env(*lst);
 	}
-	return (lst);
+	return (*lst);
 }
 
 t_data	*my_export(t_data *data, t_cmd *lst_cmd)
 {
 	char    **cmd;
 	char	**spl_res;
-	t_env	*lst   ;
+	t_env	**lst   ;
     t_env 	*new;
 
 	cmd = data->lst_cmd->cmd;
-	lst = data->lst_env;
+	*lst = data->lst_env;
 	
     if (lst)
 	{
 		if ((ft_strcmp(cmd[0], "export") == 0 ) && !cmd[1])
 		{
 			sort_env(data);
-			print_env(data->lst_env);
+			print_env(*lst);
 		}
 		else if ((ft_strcmp(cmd[0], "export") == 0) && cmd[1])
+		{
+			printf("added env var\n");
 			add_new_env(cmd, lst);
+		}
 	}
 	return (data);
 }
