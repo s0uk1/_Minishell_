@@ -6,12 +6,11 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:10:11 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/08/10 11:10:12 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/08/22 15:15:51 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
 
 int	check_access(t_data *data, char **cmd, int i)
 {
@@ -32,6 +31,7 @@ int	check_access(t_data *data, char **cmd, int i)
     return (1);
 }
 
+//this function executes commands that arent builtin lmao
 void	execution_2(t_data *data)
 {
 	int	i;
@@ -46,12 +46,15 @@ void	execution_2(t_data *data)
 	lst_env = data->lst_env;
 	if (getcwd(data->cwd, sizeof(data->cwd)) == NULL)
 		perror("getcwd() error");
+	//checking if the command entered is an absolute path (can be an executable to check directly)
 	if (cmd[0][0] == '/')
 		check_access(data,NULL,0);
 	while (lst_env && lst_env->name)
 	{
 		if (ft_strcmp(lst_env->name, "PATH") == 0)
 		{
+			//for the case when the PATH is unset 
+			//rsaf says that if i unset PATH manually then readd it the next if can then be useful
 			if(lst_env->value == NULL)
 				check_access(data,cmd, i);
 			else

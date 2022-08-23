@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 16:10:42 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/08/09 16:43:55 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/08/23 10:27:09 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,9 +134,7 @@ void	my_unset(t_data *data, t_cmd *lst_cmd)
 	lst = data->lst_env;
 	if (lst)
 	{
-		if ((ft_strcmp(cmd[0], "unset") == 0 ) && !cmd[1])
-			print_env(data->lst_env);
-		else if ((ft_strcmp(cmd[0], "unset") == 0) && cmd[1])
+		if ((ft_strcmp(cmd[0], "unset") == 0) && cmd[1])
 		{
 			while (lst)
 			{
