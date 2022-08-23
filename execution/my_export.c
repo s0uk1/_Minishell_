@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 16:10:42 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/08/23 11:54:40 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/08/23 15:06:05 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,23 +139,25 @@ void	my_unset(t_data *data, t_cmd *lst_cmd)
 	char	**cmd;
 	t_env	*lst;
 	t_env	*tmp;
-	
+	t_env	*last;
+
 	cmd = data->lst_cmd->cmd;
 	lst = data->lst_env;
 	if (lst)
 	{
 		if ((ft_strcmp(cmd[0], "unset") == 0) && cmd[1])
 		{
-			while (lst)
+			while (lst && ft_strcmp(lst->name, cmd[1]))
+				lst = lst->next;
+			if (lst)
 			{
-				if (ft_strcmp(lst->name, cmd[1]) == 0)
-				{
-					tmp = lst->next;
-					free(lst);
-					lst = tmp;
-				}
-				else
-					lst = lst->next;
+				if (lst->next)
+					lst->next->prev = lst->prev;
+				if (lst->prev)
+					lst->prev->next = lst->next;
+				free(lst->name);
+				free(lst->value);
+				free(lst);				
 			}
 		}
 	}
@@ -184,7 +186,9 @@ void	ft_builtins(t_data *data, t_cmd *lst_cmd)
 	else if (ft_strcmp(lst_cmd->cmd[0], "pwd") == 0)
 		my_pwd(data, lst_cmd);
 	else if (ft_strcmp(lst_cmd->cmd[0], "unset") == 0)
-		my_unset(data, lst_cmd);
+		unset(data, lst_cmd);
+	else if (ft_strcmp(lst_cmd->cmd[0], "cd") == 0)
+		my_cd(data, lst_cmd);
 	else 
 		execution_2(data);
 }
