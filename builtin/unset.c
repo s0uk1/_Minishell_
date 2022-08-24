@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 17:56:39 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/08/23 16:51:25 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/08/23 19:05:47 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int	unset(t_data *data, t_cmd *lst_cmd)
 				env_clone->prev->next = env_clone->next;
 			idx++;
 			ft_free_this(env_clone);
-			if (!lst_cmd->cmd[idx])
-				return (0);
+			// if (!lst_cmd->cmd[idx])
+			// 	return (0);
 		}
 		if (env_clone)
 			env_clone = env_clone->next;

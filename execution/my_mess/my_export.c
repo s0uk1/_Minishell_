@@ -6,13 +6,12 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 16:10:42 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/08/23 17:47:08 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/08/24 16:37:04 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
-#include "../debug.h"
-#include <string.h>
+#include "../../minishell.h"
+#include "../../debug.h"
 
 t_env *lst_last(t_env *lst)
 {
@@ -50,14 +49,16 @@ void    ft_swap_env(t_env *a, t_env *b)
 }
 void	print_env(t_env *lst)
 {
-	while (lst)
+	t_env *clone;
+
+	clone = lst;
+	while (clone)
 	{
-		if (lst->value)
-			printf("declare -x %s=\"%s\"\n", lst->name, lst->value);
-		else
-			printf("declare -x %s\n", lst->name);
-		
-		lst = lst->next;
+		if (clone->name && clone->value)
+			printf("declare -x %s=\"%s\"\n", clone->name, clone->value);
+		else if (clone->name)
+			printf("declare -x %s\n", clone->name);
+		clone = clone->next;
 	}
 }
 
@@ -95,7 +96,7 @@ char *ft_strdup(char *src)
 	return (copy);
 }
 
-t_env	*add_new_env(char **cmd, t_env **lst)
+t_env	*add_new_env(char **cmd, t_env *lst)
 {
 	t_env	*new;
 	char	**spl_res;
@@ -108,35 +109,34 @@ t_env	*add_new_env(char **cmd, t_env **lst)
 		spl_res= ft_split(cmd[1] , '=');
 		new->name = spl_res[0];
 		new->value = spl_res[1];
-		lst_add(lst,new);
+		lst_add(&lst,new);
 	}
 	else
 	{
 		//strdup fixed my export for some reason
 		new->name = ft_strdup(cmd[1]);
 		new->value = NULL;
-		lst_add(lst, new);
+		lst_add(&lst, new);
 		new->next = NULL;
 	}
-	return (*lst);
+	return (lst);
 }
 
 t_data	*my_export(t_data *data, t_cmd *lst_cmd)
 {
 	char    **cmd;
 	char	**spl_res;
-	t_env	**lst   ;
+	t_env	*lst;
     t_env 	*new;
 
 	cmd = data->lst_cmd->cmd;
-	*lst = data->lst_env;
-	
+	lst = data->lst_env;
     if (lst)
 	{
 		if (!cmd[1])
 		{
-			sort_env(data);
-			print_env(*lst);
+			//sort_env(data);
+			print_env(data->lst_env);
 		}
 		else if (cmd[1])
 			add_new_env(cmd, lst);
@@ -168,37 +168,56 @@ void	my_unset(t_data *data, t_cmd *lst_cmd)
 			free(lst->value);
 			free(lst);
 			if (!cmd[i])
-				break ;				
+				break ;
 		}
 		if (lst)
 			lst = lst->next;
 	}
 }
 
+//the following function is a reentrant version of the getenv() function in c
+
+void	custom_getenv(char *env_var)
+{
+
+}
+
 void	my_pwd(t_data *data, t_cmd *lst_cmd)
 {
-	char	*pwd;
+	char	*cwd;
 	char	**cmd;
 
 	cmd = data->lst_cmd->cmd;
-	pwd = getcwd(NULL, 0);
-	// perror("getcwd() erro./r"); is useless(?)
+	cwd = getcwd(NULL, 0);
+	if (!cmd[1])
+	{
+		if (!cwd)
+			custom_getenv();		
+		printf("%s\n", cwd);
+	}
+	else 
+	perror("pwd() error:");
+	
+	//i forgor what these commands are supposed to mean lemeo
+	// perror("getcwd() error"); is useless(?)
 	//might also try with getenv("PWD")
 	// pwd = getenv("PWD");
 	// if (ft_strcmp(cmd[0], "pwd") == 0)
-		printf("%s\n", pwd);
 }
 
 void	ft_builtins(t_data *data, t_cmd *lst_cmd)
 {
-	if (ft_strcmp(lst_cmd->cmd[0], "export") == 0)
-		my_export(data, lst_cmd);
-	else if (ft_strcmp(lst_cmd->cmd[0], "pwd") == 0) 
-		my_pwd(data, lst_cmd);
-	else if (ft_strcmp(lst_cmd->cmd[0], "unset") == 0)
-		my_unset(data, lst_cmd);
-	// else if (ft_strcmp(lst_cmd->cmd[0], "cd") == 0)
-	// 	my_cd(data, lst_cmd);
-	else 
-		execution_2(data);
+	if (lst_cmd)
+	{
+		if (ft_strcmp(lst_cmd->cmd[0], "export") == 0)
+			my_export(data, lst_cmd);
+		else if (ft_strcmp(lst_cmd->cmd[0], "pwd") == 0) 
+			my_pwd(data, lst_cmd);
+		else if (ft_strcmp(lst_cmd->cmd[0], "unset") == 0)
+			unset(data, lst_cmd);
+		// else if (ft_strcmp(lst_cmd->cmd[0], "cd") == 0)
+		// 	my_cd(data, lst_cmd);
+		else 
+			execution_2(data);	
+	}
 }

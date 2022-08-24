@@ -49,8 +49,9 @@ UTILS= ./utils/ft_putstr_fd.c ./utils/ft_get_env.c ./utils/ft_itoa.c \
 EXECUT= ./execution/execution.c ./execution/ft_get_path.c ./execution/ft_cmd_exist.c \
 		./execution/ft_if_builtin.c ./execution/ft_init_pipes.c\
 		./execution/start_execution.c ./execution/ft_dup.c ./execution/close_fds.c \
-		./execution/non_fork_funcs.c ./execution/herdoc.c ./execution/my_exec.c init_signals.c\
-		./execution/my_export.c\
+		./execution/non_fork_funcs.c ./execution/herdoc.c init_signals.c\
+		./execution/my_mess/counting_funcs.c ./execution/my_mess/custom_getenv.c\
+		./execution/my_mess/my_exec.c ./execution/my_mess/my_export.c ./execution/my_mess/my_cd.c \
 
 FILES = $(SRC) $(PARSING) $(LEXER) $(ENV) $(SYNTAX) $(BUILTIN) $(UTILS) $(EXPANDING) $(EXECUT)
 

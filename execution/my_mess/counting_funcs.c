@@ -6,11 +6,11 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 14:48:15 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/08/09 14:52:02 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/08/24 16:12:48 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
 
 int count_cmds(t_data *data)
 {
@@ -39,7 +39,7 @@ int     count_pipes(t_data *data)
     count = 0;
     while (cmd[i])
     {
-        if (ft_strcmp(cmd, "|") == 0)
+        if (ft_strcmp(*cmd, "|") == 0)
             count++;
         i++;
     }
