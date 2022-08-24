@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yabtaour <yabtaour@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 08:46:44 by rsaf              #+#    #+#             */
-/*   Updated: 2022/07/28 10:30:11 by yabtaour         ###   ########.fr       */
+/*   Updated: 2022/08/24 17:48:24 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,3 +36,35 @@ int	pwd(t_data *data, t_cmd *lst_cmd, int fd)
 
 // change the PWD : /Users/rsaf/Desktop/2.0shell/t1/t2/..
 // and OLD PWD to : /Users/rsaf/Desktop/2.0shell/t1/t2
+
+//the following function is a reentrant version of the getenv() function in c
+
+char *custom_getenv(char *env_var, t_env *env_lst)
+{
+	t_env *tmp;
+	char *pwd;
+	
+	tmp = env_lst;
+	pwd = NULL;
+	while (tmp)
+	{
+		if (!ft_strcmp(tmp->name, env_var))
+			pwd = tmp->name;
+		else
+			tmp = tmp->next;
+	}
+	return (pwd);
+}
+
+void	my_pwd(t_data *data, t_cmd *lst_cmd)
+{
+	char	*cwd;
+	char	**cmd;
+
+	cmd = data->lst_cmd->cmd;
+	cwd = getcwd(NULL, 0);
+	if (cwd == NULL)
+		cwd = custom_getenv("PWD", data->lst_env);		
+	printf("%s\n", cwd);
+		// perror("pwd() error:");
+}

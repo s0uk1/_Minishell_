@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 12:22:29 by rsaf              #+#    #+#             */
-/*   Updated: 2022/08/09 14:23:29 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/08/24 17:03:05 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,16 @@ typedef struct s_data{
 	t_cmd			*lst_cmd;
 	t_lexer			*lst_lexer;
 }	t_data;
+
+
+//--------------------execution soukaina--------------------//
+char	*ft_strcat(char *dest, char *src);
+int		ft_strcmp(char *s1, char *s2);
+void	execution_2(t_data *data);
+int		check_access(t_data *data, char **cmd, int i);
+void	ft_builtins(t_data *data, t_cmd *lst_cmd);
+void	my_pwd(t_data *data, t_cmd *lst_cmd);
+
 
 //-----------------env--------------------------//
 void	ft_create_env_list(t_env **envi, char **env);
@@ -179,12 +189,6 @@ char	*ft_new(char *old);
 
 
 
-//--------------------execution soukaina--------------------//
-char	*ft_strcat(char *dest, char *src);
-int		ft_strcmp(char *s1, char *s2);
-void	execution_2(t_data *data);
-int		check_access(t_data *data, char **cmd, int i);
-void	ft_builtins(t_data *data, t_cmd *lst_cmd);
 
 
 //-----------------builtins-------------------------//

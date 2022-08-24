@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 16:10:42 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/08/24 16:37:04 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/08/24 16:45:10 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,35 +175,7 @@ void	my_unset(t_data *data, t_cmd *lst_cmd)
 	}
 }
 
-//the following function is a reentrant version of the getenv() function in c
 
-void	custom_getenv(char *env_var)
-{
-
-}
-
-void	my_pwd(t_data *data, t_cmd *lst_cmd)
-{
-	char	*cwd;
-	char	**cmd;
-
-	cmd = data->lst_cmd->cmd;
-	cwd = getcwd(NULL, 0);
-	if (!cmd[1])
-	{
-		if (!cwd)
-			custom_getenv();		
-		printf("%s\n", cwd);
-	}
-	else 
-	perror("pwd() error:");
-	
-	//i forgor what these commands are supposed to mean lemeo
-	// perror("getcwd() error"); is useless(?)
-	//might also try with getenv("PWD")
-	// pwd = getenv("PWD");
-	// if (ft_strcmp(cmd[0], "pwd") == 0)
-}
 
 void	ft_builtins(t_data *data, t_cmd *lst_cmd)
 {
