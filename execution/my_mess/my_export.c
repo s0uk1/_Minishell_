@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 16:10:42 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/08/24 16:45:10 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/08/24 18:24:42 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,8 +187,8 @@ void	ft_builtins(t_data *data, t_cmd *lst_cmd)
 			my_pwd(data, lst_cmd);
 		else if (ft_strcmp(lst_cmd->cmd[0], "unset") == 0)
 			unset(data, lst_cmd);
-		// else if (ft_strcmp(lst_cmd->cmd[0], "cd") == 0)
-		// 	my_cd(data, lst_cmd);
+		else if (ft_strcmp(lst_cmd->cmd[0], "cd") == 0)
+			my_cd(data, lst_cmd);
 		else 
 			execution_2(data);	
 	}

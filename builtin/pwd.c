@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 08:46:44 by rsaf              #+#    #+#             */
-/*   Updated: 2022/08/24 17:48:24 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/08/24 18:04:14 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,10 @@ char *custom_getenv(char *env_var, t_env *env_lst)
 void	my_pwd(t_data *data, t_cmd *lst_cmd)
 {
 	char	*cwd;
-	char	**cmd;
-
-	cmd = data->lst_cmd->cmd;
+	//char	**cmd;
+	
+	//useless var and init ???
+	//cmd = data->lst_cmd->cmd;
 	cwd = getcwd(NULL, 0);
 	if (cwd == NULL)
 		cwd = custom_getenv("PWD", data->lst_env);		
