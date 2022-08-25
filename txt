@@ -1,0 +1,24 @@
+total 192
+-rw-r--r--   1 ssabbaji  candidate   2378 Aug 24 16:13 Makefile
+-rwxr-xr-x   1 ssabbaji  candidate  49896 Aug 25 15:00 a.out
+drwxr-xr-x   9 ssabbaji  candidate    306 Aug 25 14:12 builtin
+-rw-r--r--   1 ssabbaji  candidate    885 Jul 30 13:22 debug.h
+drwxr-xr-x   4 ssabbaji  candidate    136 Aug 25 14:12 delete_quotes
+drwxr-xr-x   4 ssabbaji  candidate    136 Aug 25 14:12 env
+drwxr-xr-x  14 ssabbaji  candidate    476 Aug 25 14:12 execution
+drwxr-xr-x   7 ssabbaji  candidate    238 Aug 25 14:12 expanding
+-rw-r--r--   1 ssabbaji  candidate   1754 Jul 30 13:22 ft_free.c
+-rw-r--r--   1 ssabbaji  candidate   2269 Aug  9 14:49 ft_main.c
+-rw-r--r--   1 ssabbaji  candidate   1293 Aug  9 14:36 ft_print_list.c
+drwxr-xr-x   2 ssabbaji  candidate     68 Aug 25 14:22 hehe
+drwxr-xr-x   2 ssabbaji  candidate     68 Aug 24 18:47 hh
+-rw-r--r--   1 ssabbaji  candidate   1154 Jul 30 13:22 init_signals.c
+drwxr-xr-x  11 ssabbaji  candidate    374 Aug 25 14:12 lexer
+-rw-r--r--   1 ssabbaji  candidate   1270 Jul 30 13:22 main.c
+-rw-r--r--   1 ssabbaji  candidate   7608 Aug 25 14:13 minishell.h
+drwxr-xr-x  11 ssabbaji  candidate    374 Aug 25 14:12 parsing
+drwxr-xr-x   6 ssabbaji  candidate    204 Aug 25 14:12 syntax
+-rw-r--r--   1 ssabbaji  candidate    972 Aug 25 15:00 test.c
+-rw-r--r--@  1 ssabbaji  candidate    618 Aug 23 17:49 todo.txt
+-------r--   1 ssabbaji  candidate      0 Aug 25 15:00 txt
+drwxr-xr-x  10 ssabbaji  candidate    340 Aug 25 14:12 utils
