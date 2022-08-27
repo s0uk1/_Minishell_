@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 12:22:29 by rsaf              #+#    #+#             */
-/*   Updated: 2022/08/25 18:23:00 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/08/27 16:38:45 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ void    my_cd(t_data *data, t_cmd *lst_cmd);
 char	*custom_getenv(char *env_var, t_env *env_lst);
 char	*update_env(t_data *data, char *env, char *upd);
 char 	*ft_strdup(char *src);
+void  	my_env(t_data *data, t_cmd *lst_cmd);
 
 
 
