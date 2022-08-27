@@ -6,15 +6,15 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 14:48:15 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/08/24 16:12:48 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/08/27 18:21:51 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int count_cmds(t_data *data)
+int count_cmds(char **cmd)
 {
-	t_cmd	*tmp;
+	char    **tmp;
 	int		i;
 
 	i = 0;

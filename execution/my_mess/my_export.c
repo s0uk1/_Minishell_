@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 16:10:42 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/08/27 16:47:07 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/08/27 17:06:27 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,7 @@ void	ft_builtins(t_data *data, t_cmd *lst_cmd)
 	if (lst_cmd)
 	{
 		if (ft_strcmp(lst_cmd->cmd[0], "export") == 0)
-			export(data, lst_cmd);
+			my_export(data, lst_cmd);
 		else if (ft_strcmp(lst_cmd->cmd[0], "pwd") == 0) 
 			my_pwd(data, lst_cmd);
 		else if (ft_strcmp(lst_cmd->cmd[0], "unset") == 0)
