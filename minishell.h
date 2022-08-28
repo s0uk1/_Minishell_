@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 12:22:29 by rsaf              #+#    #+#             */
-/*   Updated: 2022/08/27 18:22:47 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/08/28 11:24:23 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ char 	*ft_strdup(char *src);
 void  	my_env(t_data *data, t_cmd *lst_cmd);
 void    my_echo(t_data *data ,t_cmd *lst_cmd);
 int 	count_cmds(char **cmd);
+int		my_strchr(char *s, int c);
 
 
 
@@ -246,7 +247,7 @@ int		ft_strcmp(char *s1, char *s2);
 int		ft_strncmp(char *s1, char *s2, size_t n);
 void	*ft_calloc(int count, int size);
 char	**ft_free_tab(char	**str, int i);
-char	*ft_strchr(char *s, int c);
+char		*ft_strchr(char *s, int c);
 char	*ft_strtrim(char *s1, char *set);
 int		ft_sub_main(t_data *data);
 void	ft_free_norme(t_data *data);

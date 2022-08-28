@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 14:48:15 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/08/27 18:21:51 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/08/28 13:11:41 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,16 @@ int count_cmds(char **cmd)
 {
 	char    **tmp;
 	int		i;
-
-	i = 0;
-	tmp = data->lst_cmd;
-	while (tmp)
+    int     j;
+	
+    i = 0;
+    j = 0;
+	tmp = cmd;
+	while (tmp[i])
 	{
-		if (tmp->cmd)
+		if (tmp)
 			i++;
-		tmp = tmp->next;
+		j++;
 	}
 	return (i);
 }

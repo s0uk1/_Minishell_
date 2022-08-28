@@ -8,49 +8,38 @@
 # include <readline/history.h>
 # include <termios.h>
 # include <errno.h>
+#include <string.h>
+#include "minishell.h"
 
-
-char	*ft_strncpy(char *dest, char *src, unsigned int n)
+char	*ft_substr(char *s, int start, size_t len)
 {
+	char			*ptr;
 	unsigned int	i;
+	int				end;
 
 	i = 0;
-	while ((src[i] != '\0') && (i < n))
+	end = len + start;
+	if (!s)
+		return (NULL);
+	ptr = (char *)malloc((len + 1) * sizeof(char));
+	if (!ptr)
+		exit (1);
+	if (start <= strlen(s))
 	{
-		dest[i] = src[i];
-		i++;
+		while (start < end && s[start] != '\0')
+		{
+			ptr[i] = s[start];
+			i++;
+			start++;
+		}
 	}
-	while (i < n)
-	{
-		dest[i] = '\0';
-		i++;
-	}
-	return (dest);
+	ptr[i] = '\0';
+	return (ptr);
 }
-
-void    find_dir(char *pwd)
-{
-    int     i;
-    char    *test_pwd;
-
-    i = 0;
-    while(pwd[i])
-        i++;
-    while (pwd[i] != '/')
-        i--;
-    test_pwd = ft_strncpy(test_pwd, pwd, i);
-    if (chdir(test_pwd))
-        find_dir(test_pwd);
-    else
-        //change dir to it
-}
-
-
 int main()
 {
-    char pwd[]= "f1/f2/f4/..";
-
-    find_dir(pwd);
+    char pwd[]= "alo ";
+    printf("%s", ft_substr(pwd, 0, strlen(pwd) - 1));
 }
 // int main ()
 // {
