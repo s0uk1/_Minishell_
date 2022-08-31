@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 15:42:55 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/08/26 18:35:14 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/08/30 11:20:29 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,28 @@ char *update_env(t_data *data, char *env, char *upd)
         {
             lst->value = ft_strdup(upd);
             return (lst->value);
-            // break ;
         }
         lst = lst->next;
     }
     return (NULL);    
 }
  
-void    my_chdir(t_data *data, char *cmd, char *cwd)
+ int    my_chdir(t_data *data, char *cmd, char *cwd)
 {
     char *new_pwd;
     
     new_pwd = NULL;
     if (!cmd)
     {
-        if (chdir(custom_getenv("HOME", data->lst_env)))
-            perror("chdir() error:");
+        data->error = chdir(custom_getenv("HOME", data->lst_env));
+        if (data->error)
+            return (perror("chdir() error:"),1);
     }
     else
     {
-        if (chdir(cmd))
-            perror("chdir() error:");    
+        data->error = chdir(cmd);
+        if (data->error)
+            return (perror("chdir() error:"),1);    
         else
         {
             new_pwd = getcwd(NULL, 0);
@@ -53,48 +54,8 @@ void    my_chdir(t_data *data, char *cmd, char *cwd)
             update_env(data, "PWD", new_pwd);
         }     
     }
-            
+    return (data->error);           
 }
-
-// char	*ft_strchr(const char *str, int c)
-// {
-// 	size_t		i;
-// 	size_t		size;
-
-// 	i = 0;
-// 	size = ft_strlen(str);
-// 	while (i < size)
-// 	{
-// 		if (str[i] == (char )c)
-// 			return ((char *)(str + i));
-// 		i++;
-// 	}
-// 	if (c == '\0')
-// 		return ((char *)(str + i));
-// 	return (NULL);
-// }
-
-// char	*ft_strtrim(char const *s1, char const *set)
-// {
-// 	size_t	start;
-// 	size_t	end;
-// 	char	*str;
-
-// 	str = 0;
-// 	if (s1 != 0 && set != 0)
-// 	{
-// 		start = 0;
-// 		end = ft_strlen(s1);
-// 		while (s1[start] && ft_strchr(set, s1[start]))
-// 			start++;
-// 		while (s1[end - 1] && ft_strchr(set, s1[end - 1]) && end > start)
-// 			end--;
-// 		str = (char *)malloc(sizeof(char) * (end - start + 1));
-// 		if (str)
-// 			ft_strlcpy(str, &s1[start], end - start + 1);
-// 	}
-// 	return (str);
-// }
 
 char	*ft_strncpy(char *dest, char *src, unsigned int n)
 {
@@ -137,21 +98,31 @@ void    find_dir(t_data *data, char *pwd, char *upd)
 
 //this function replicates the behavior of bash when
 // a nested directory is deleted
-void    catch_error(t_data *data)
+//the last if in this function goes back in nested dirs
+//checking for the working one and updating env accordingly
+int catch_error(t_data *data)
 {
     char    *old_pwd;
     char    *new_pwd;
     
     old_pwd = custom_getenv("PWD", data->lst_env);
-    printf("cd: error retrieving current directory: getcwd:cannot access parent directories: No such file or directory\n");
+    printf("cd: error retrieving current directory:");
+    printf("getcwd:cannot access parent directories:");
+    printf(" No such file or directory\n"); 
     update_env(data, "PWD", ft_strjoin(old_pwd, "/.."));
     new_pwd = update_env(data, "OLDPWD", old_pwd);
     old_pwd = ft_strjoin(old_pwd, "/..");
-    if (chdir(old_pwd))
+    data->error = chdir(old_pwd);
+    if (data->error)
         find_dir(data, old_pwd, old_pwd);
+    return (data->error)
 }
 
-void    my_cd(t_data *data, t_cmd *lst_cmd)
+
+
+// if !cwd means that there was an error while executing getcwd
+// meaning that one directory got deleted
+int my_cd(t_data *data, t_cmd *lst_cmd)
 {
     char *cwd;
     char **cmd;
@@ -161,12 +132,9 @@ void    my_cd(t_data *data, t_cmd *lst_cmd)
     if (cmd[1])
     {
         if (!cwd)
-            catch_error(data);
+            data->error =catch_error(data);
         else
-            my_chdir(data , cmd[1], cwd);   
-        // if (chdir(cmd[1]))
-        //     perror("chdir() error:");
-        // else
-        //     update_env("PWD");
+            return(my_chdir(data , cmd[1], cwd));   
     }
+    return (data->error);
 }

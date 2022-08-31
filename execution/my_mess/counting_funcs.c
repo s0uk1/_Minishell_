@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 14:48:15 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/08/28 13:11:41 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/08/31 11:08:50 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,29 @@ int count_cmds(char **cmd)
 {
 	char    **tmp;
 	int		i;
-    int     j;
 	
     i = 0;
-    j = 0;
 	tmp = cmd;
 	while (tmp[i])
 	{
 		if (tmp)
 			i++;
-		j++;
 	}
-	return (i);
+	return (i); 
+}
+int     c_lstcmd(t_data *data)
+{
+    t_cmd *lst;
+    int i;
+
+    i = 0;
+    lst = data->lst_cmd;
+    while (lst)
+    {
+        i++;
+        lst = lst->next;
+    }
+    return (i);
 }
 
 int     count_pipes(t_data *data)

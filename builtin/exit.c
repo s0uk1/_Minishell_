@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yabtaour <yabtaour@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 16:25:24 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/07/27 16:25:25 by yabtaour         ###   ########.fr       */
+/*   Updated: 2022/08/29 12:51:42 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,33 +24,6 @@ int	ft_is_num(char *str)
 		i++;
 	}
 	return (1);
-}
-
-int	ft_atoi(char *str)
-{
-	int				i;
-	int				sign;
-	int				result;
-	unsigned char	*new;
-
-	new = (unsigned char *) str;
-	sign = 1;
-	result = 0;
-	i = 0;
-	while (new[i] == '\t' || new[i] == '\n'
-		|| new[i] == '\r' || new[i] == '\v'
-		|| new[i] == ' ' || new[i] == '\f')
-		i++;
-	if (new[i] == '+')
-		i++;
-	else if (new[i] == '-')
-	{
-		sign *= -1;
-		i++;
-	}
-	while (new[i] >= '0' && new[i] <= '9')
-		result = (result * 10) + (new[i++] - '0');
-	return (result * sign);
 }
 
 int	ft_norme(t_data *data, t_cmd *lst_cmd, int fd)

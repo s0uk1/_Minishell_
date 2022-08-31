@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 10:42:26 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/08/28 14:00:54 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/08/29 10:47:10 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ char	*join_cmd(char **argv, int argc, int flag)
 	}
 	return (args);
 }
-////////////////////////////////////////////////
 
 int my_strchr(char *str, int c)
 {
@@ -111,5 +110,3 @@ void    my_echo(t_data *data ,t_cmd *lst_cmd)
     else
         print_rest(cmd, 1, 1);  
 }
-
-

@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 16:10:42 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/08/27 17:06:27 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/08/31 11:00:46 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,24 +175,32 @@ void	my_unset(t_data *data, t_cmd *lst_cmd)
 	}
 }
 
+void	my_execution(t_data *data, t_cmd *lst_cmd)
+{
+	//init pipes first
+	initialize_pipes(data);
 
+	
+}
 
 void	ft_builtins(t_data *data, t_cmd *lst_cmd)
 {
 	if (lst_cmd)
 	{
 		if (ft_strcmp(lst_cmd->cmd[0], "export") == 0)
-			my_export(data, lst_cmd);
+			my_export(data, lst_cmd, fd);
 		else if (ft_strcmp(lst_cmd->cmd[0], "pwd") == 0) 
-			my_pwd(data, lst_cmd);
+			my_pwd(data, lst_cmd, fd);
 		else if (ft_strcmp(lst_cmd->cmd[0], "unset") == 0)
-			unset(data, lst_cmd);
+			unset(data, lst_cmd, fd);
 		else if (ft_strcmp(lst_cmd->cmd[0], "cd") == 0)
 			my_cd(data, lst_cmd);
 		else if (ft_strcmp(lst_cmd->cmd[0], "env") == 0)
-			my_env(data, lst_cmd);
+			my_env(data, lst_cmd, fd);
 		else if (ft_strcmp(lst_cmd->cmd[0], "echo") == 0)
-			my_echo(data, lst_cmd);
+			my_echo(data, lst_cmd, fd);
+		else if (ft_strcmp(lst_cmd->cmd[0], "exit") == 0)
+			my_exit(data, lst_cmd, fd);
 		else 
 			execution_2(data);	
 	}

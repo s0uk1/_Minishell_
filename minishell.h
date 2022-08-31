@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 12:22:29 by rsaf              #+#    #+#             */
-/*   Updated: 2022/08/28 11:24:23 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/08/31 11:12:29 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,19 +95,22 @@ typedef struct s_data{
 
 
 //--------------------execution soukaina--------------------//
-char	*ft_strcat(char *dest, char *src);
-void	execution_2(t_data *data);
-int		check_access(t_data *data, char **cmd, int i);
 void	ft_builtins(t_data *data, t_cmd *lst_cmd);
+int		my_exit(t_data *data ,t_cmd *lst_cmd);
 void	my_pwd(t_data *data, t_cmd *lst_cmd);
 void    my_cd(t_data *data, t_cmd *lst_cmd);
-char	*custom_getenv(char *env_var, t_env *env_lst);
-char	*update_env(t_data *data, char *env, char *upd);
-char 	*ft_strdup(char *src);
 void  	my_env(t_data *data, t_cmd *lst_cmd);
 void    my_echo(t_data *data ,t_cmd *lst_cmd);
-int 	count_cmds(char **cmd);
+void	execution_2(t_data *data);
+int		check_access(t_data *data, char **cmd, int i);
+char	*update_env(t_data *data, char *env, char *upd);
+char	*custom_getenv(char *env_var, t_env *env_lst);
 int		my_strchr(char *s, int c);
+char	*ft_strcat(char *dest, char *src);
+char 	*ft_strdup(char *src);
+int 	count_cmds(char **cmd);
+int		ft_atoi(const char *str);
+int     c_lstcmd(t_data *data);
 
 
 
