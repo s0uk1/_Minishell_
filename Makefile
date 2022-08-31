@@ -52,7 +52,8 @@ EXECUT= ./execution/execution.c ./execution/ft_get_path.c ./execution/ft_cmd_exi
 		./execution/non_fork_funcs.c ./execution/herdoc.c init_signals.c\
 		./execution/my_mess/counting_funcs.c ./execution/my_mess/custom_getenv.c\
 		./execution/my_mess/my_exec.c ./execution/my_mess/my_export.c ./execution/my_mess/my_cd.c\
-		./execution/my_mess/my_env.c ./execution/my_mess/my_echo.c   ./execution/my_mess/my_exit.c\
+		./execution/my_mess/my_env.c ./execution/my_mess/my_echo.c  ./execution/my_mess/my_exit.c\
+		./execution/my_mess/pipes.c\
 
 FILES = $(SRC) $(PARSING) $(LEXER) $(ENV) $(SYNTAX) $(BUILTIN) $(UTILS) $(EXPANDING) $(EXECUT)
 

@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 15:42:55 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/08/30 11:20:29 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/08/31 16:14:55 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int catch_error(t_data *data)
     data->error = chdir(old_pwd);
     if (data->error)
         find_dir(data, old_pwd, old_pwd);
-    return (data->error)
+    return (data->error);
 }
 
 

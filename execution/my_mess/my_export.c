@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 16:10:42 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/08/31 11:00:46 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/08/31 16:16:11 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_env *lst_last(t_env *lst)
 }
 
 void	lst_add(t_env	**lst, t_env *new)
-{
+{ 
 	t_env *last;
 
 	if (lst == NULL || new == NULL)
@@ -188,19 +188,19 @@ void	ft_builtins(t_data *data, t_cmd *lst_cmd)
 	if (lst_cmd)
 	{
 		if (ft_strcmp(lst_cmd->cmd[0], "export") == 0)
-			my_export(data, lst_cmd, fd);
+			my_export(data, lst_cmd);
 		else if (ft_strcmp(lst_cmd->cmd[0], "pwd") == 0) 
-			my_pwd(data, lst_cmd, fd);
+			my_pwd(data, lst_cmd);
 		else if (ft_strcmp(lst_cmd->cmd[0], "unset") == 0)
-			unset(data, lst_cmd, fd);
+			unset(data, lst_cmd);
 		else if (ft_strcmp(lst_cmd->cmd[0], "cd") == 0)
 			my_cd(data, lst_cmd);
 		else if (ft_strcmp(lst_cmd->cmd[0], "env") == 0)
-			my_env(data, lst_cmd, fd);
+			my_env(data, lst_cmd);
 		else if (ft_strcmp(lst_cmd->cmd[0], "echo") == 0)
-			my_echo(data, lst_cmd, fd);
+			my_echo(data, lst_cmd);
 		else if (ft_strcmp(lst_cmd->cmd[0], "exit") == 0)
-			my_exit(data, lst_cmd, fd);
+			my_exit(data, lst_cmd, 1);
 		else 
 			execution_2(data);	
 	}

@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 12:22:48 by rsaf              #+#    #+#             */
-/*   Updated: 2022/08/27 11:34:32 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/08/31 16:46:52 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,23 @@ int	cmds_lent(t_data *data)
 	return (lent);
 }
 
-// int	execution(t_data *data)
-// {
-// 	int	idx;
-// 	int	**pip;
-// 	int	lent;
-// 	int	pid;
+int	execution(t_data *data)
+{
+	int	**pip;
+	int	pid;
+	t_cmd *cmd;
 
-// 	idx = 0;
-// 	pid = 0;
-// 	data->general.pid = -42;
-// 	data->general.lent = cmds_lent(data);
-// 	pip = ft_init_pipes(data, 0, 0, 0);
-// 	ft_get_paths(data);
-// 	if (data->lst_cmd)
-// 		start_execution(data, pip, 0);
-// 	return (0);
-// }
+	pid = 0;
+	// data->general.pid = -42;
+	// data->general.lent = cmds_lent(data);
+	if (data->lst_cmd)
+	{
+		// ft_builtins(data, data->lst_cmd);
+		pip = initialize_pipes(data);
+		ft_print_cmd(data->lst_cmd);
+	}
+	// ft_get_paths(data);
+	// if (data->lst_cmd)
+	// 	start_execution(data, pip, 0);
+	return (0);
+}

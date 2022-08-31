@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 10:37:19 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/08/09 14:49:00 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/08/31 16:34:14 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ void	ft_start(t_data *data)
 {
 	ft_expanding(data);
 	ft_parsing(data);
-	ft_print_cmd(data->lst_cmd);
-	ft_builtins(data, data->lst_cmd);
+	execution(data);
 	ft_free_norme(data);
 }
 
