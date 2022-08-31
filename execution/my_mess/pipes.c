@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 14:12:33 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/08/31 16:46:25 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/08/31 17:22:47 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,29 +18,25 @@ int **alloc_pipes(t_data *data)
     int c;
     int i;
 
-    i = 0;
     c = c_lstcmd(data);
     fds = (int **)malloc(sizeof(int *) * (c - 1));
     if (!fds)
         return (NULL);
+    i = 0;
     while (i < c - 1)
     {
         fds[i] = malloc(sizeof(int) * 2);
         if (!fds[i])
             return (NULL);
-        i++;
-    }
-    while (i < c - 1)
-    {
         pipe(fds[i]);
         i++;
     }
+    fds[i] = NULL;
     return (fds);
 }
 
 void    init_fd(int **fd, t_cmd *cmd, int i)
 {
-
     if (i == 0 && cmd->next)
     {
         if (cmd->fd_out == 1)
@@ -72,9 +68,9 @@ int **initialize_pipes(t_data *data)
     {
         init_fd(fd, cmd, i);
         i++;
-        cmd = cmd->next;
         printf("IN %d\n: ", cmd->fd_in);
         printf("OUT %d\n: ", cmd->fd_out);
+        cmd = cmd->next;
     }
     return (0);
 }
