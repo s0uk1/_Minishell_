@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 12:22:38 by rsaf              #+#    #+#             */
-/*   Updated: 2022/08/27 11:34:44 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/01 15:00:57 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	ft_fork(t_data *data, int idx)
 // 		if (data->general.pid == 0 && cmd_clone->fd_in != -69)
 // 		{
 // 			ft_dup(data->general.lent, cmd_clone, pip);
-// 			close_fds(cmd_clone);
+// 			close_ fds(cmd_clone);
 // 			close_pipes(pip, data->general.lent);
 // 			data->error = ft_if_builtin(data, cmd_clone);
 // 			if (data->error == 2)

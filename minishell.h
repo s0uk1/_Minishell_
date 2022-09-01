@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 12:22:29 by rsaf              #+#    #+#             */
-/*   Updated: 2022/08/31 16:16:05 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/01 16:26:08 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,13 +95,13 @@ typedef struct s_data{
 
 
 //--------------------execution soukaina--------------------//
-void	ft_builtins(t_data *data, t_cmd *lst_cmd);
+int	ft_builtins(t_data *data);
 int		my_exit(t_data *data ,t_cmd *lst_cmd, int fd);
 void	my_pwd(t_data *data, t_cmd *lst_cmd);
-int    my_cd(t_data *data, t_cmd *lst_cmd);
+int    	my_cd(t_data *data, t_cmd *lst_cmd);
 void  	my_env(t_data *data, t_cmd *lst_cmd);
 void    my_echo(t_data *data ,t_cmd *lst_cmd);
-void	execution_2(t_data *data);
+void	execution_2(t_data *data, t_cmd *cmd);
 int		check_access(t_data *data, char **cmd, int i);
 char	*update_env(t_data *data, char *env, char *upd);
 char	*custom_getenv(char *env_var, t_env *env_lst);
@@ -112,6 +112,10 @@ char 	*ft_strdup(char *src);
 int 	count_cmds(char **cmd);
 int		ft_atoi(const char *str);
 int     c_lstcmd(t_data *data);
+int		pre_execution(t_data *data);
+void	fork_func(t_data *data);
+
+
 
 
 

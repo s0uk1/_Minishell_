@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 16:10:42 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/08/31 16:16:11 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/01 15:48:16 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	lst_add(t_env	**lst, t_env *new)
 	last = lst_last(*lst);
 	last->next = new;
 }
+
 void    ft_swap_env(t_env *a, t_env *b)
 {
     char    *tmp;
@@ -47,6 +48,7 @@ void    ft_swap_env(t_env *a, t_env *b)
     a->value = b->value;
     b->value = tmp;
 }
+
 void	print_env(t_env *lst)
 {
 	t_env *clone;
@@ -157,7 +159,7 @@ void	my_unset(t_data *data, t_cmd *lst_cmd)
 	lst = data->lst_env;
 	while (lst)
 	{
-		if(ft_strcmp(lst->name, cmd[i]) == 0)
+		if(ft_strcmp(lst->name, cmd[i]))
 		{
 			if (lst->next)
 				lst->next->prev = lst->prev;
@@ -183,25 +185,60 @@ void	my_execution(t_data *data, t_cmd *lst_cmd)
 	
 }
 
-void	ft_builtins(t_data *data, t_cmd *lst_cmd)
-{
-	if (lst_cmd)
-	{
-		if (ft_strcmp(lst_cmd->cmd[0], "export") == 0)
-			my_export(data, lst_cmd);
-		else if (ft_strcmp(lst_cmd->cmd[0], "pwd") == 0) 
-			my_pwd(data, lst_cmd);
-		else if (ft_strcmp(lst_cmd->cmd[0], "unset") == 0)
-			unset(data, lst_cmd);
-		else if (ft_strcmp(lst_cmd->cmd[0], "cd") == 0)
-			my_cd(data, lst_cmd);
-		else if (ft_strcmp(lst_cmd->cmd[0], "env") == 0)
-			my_env(data, lst_cmd);
-		else if (ft_strcmp(lst_cmd->cmd[0], "echo") == 0)
-			my_echo(data, lst_cmd);
-		else if (ft_strcmp(lst_cmd->cmd[0], "exit") == 0)
-			my_exit(data, lst_cmd, 1);
-		else 
-			execution_2(data);	
-	}
-}
+// int	ft_builtins(t_data *data)
+// {
+// 	t_cmd	*lst_cmd;
+
+// 	lst_cmd = data->lst_cmd;
+// 	if (lst_cmd)
+// 	{
+// 		if (!ft_strcmp(lst_cmd->cmd[0], "export"))
+// 			data->error = export(data, lst_cmd, 1);
+// 		else if (!ft_strcmp(lst_cmd->cmd[0], "unset"))
+// 			data->error = unset(data, lst_cmd);
+// 		else if (!ft_strcmp(lst_cmd->cmd[0], "cd"))
+// 			data->error = my_cd(data, lst_cmd);
+// 		else if (!ft_strcmp(lst_cmd->cmd[0], "env"))
+// 			data->error = my_env(data, lst_cmd);
+// 		else if (!ft_strcmp(lst_cmd->cmd[0], "exit"))
+// 		{
+// 			data->error = my_exit(data, lst_cmd, 1);
+// 			if(!data->error)
+// 				my_exit(data->error);
+// 		}
+// 	}
+// 	else
+// 		return (NULL);
+// 	return (data->error);
+// }
+
+//the following func is my first iteration of
+//the builtins func , i put all funcs i made into it
+
+
+// void	ft_builtins(t_data *data)
+// {
+// 	t_cmd	*lst_cmd;
+
+// 	lst_cmd = data->lst_cmd;
+// 	if (lst_cmd)
+// 	{
+// 		if (ft_strcmp(lst_cmd->cmd[0], "export"))
+// 			my_export(data, lst_cmd);
+// 		else if (ft_strcmp(lst_cmd->cmd[0], "pwd")) 
+// 			my_pwd(data, lst_cmd);
+// 		else if (ft_strcmp(lst_cmd->cmd[0], "unset"))
+// 			unset(data, lst_cmd);
+// 		else if (ft_strcmp(lst_cmd->cmd[0], "cd"))
+// 			my_cd(data, lst_cmd);
+// 		else if (ft_strcmp(lst_cmd->cmd[0], "env"))
+// 			my_env(data, lst_cmd);
+// 		else if (ft_strcmp(lst_cmd->cmd[0], "echo"))
+// 			my_echo(data, lst_cmd);
+// 		else if (ft_strcmp(lst_cmd->cmd[0], "exit"))
+// 			my_exit(data, lst_cmd, 1);
+// 		else 
+// 			execution_2(data);	
+// 	}
+// }
+

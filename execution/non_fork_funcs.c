@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   non_fork_funcs.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rsaf <rsaf@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 12:23:14 by rsaf              #+#    #+#             */
-/*   Updated: 2022/07/28 15:02:28 by rsaf             ###   ########.fr       */
+/*   Updated: 2022/09/01 13:23:33 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	non_fork_funcs(t_data *data, t_cmd *cmd, int **pip)
 	{
 		if (cmd->her_in != 1)
 			close(cmd->her_in);
+		//next line is to not fork , genius rsaf
 		if (cmd->cmd[0])
 			return (-666);
 	}

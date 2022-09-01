@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   herdoc.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rsaf <rsaf@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 12:22:33 by rsaf              #+#    #+#             */
-/*   Updated: 2022/07/29 13:46:26 by rsaf             ###   ########.fr       */
+/*   Updated: 2022/09/01 13:34:23 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,12 @@ void	herdoc_routine(t_data *data, t_cmd *cmd_lst, int i)
 {
 	char	*buff;
 	int		idx;
+	
 
-	idx = 0;
+	
+	idx = 0; // loop index that increments to n number of
+	//heredocs in a command
+	// is the index of EOF
 	while (1 && idx < cmd_lst->her_doc_num)
 	{
 		buff = readline("heredoc> ");

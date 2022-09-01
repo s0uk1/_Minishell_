@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:10:11 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/08/25 16:31:53 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/01 16:27:51 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	check_access(t_data *data, char **cmd, int i)
 }
 
 //this function executes commands that arent builtin lmao
-void	execution_2(t_data *data)
+void	execution_2(t_data *data , t_cmd *lst_cmd)
 {
 	int	i;
     int ret;
@@ -42,14 +42,9 @@ void	execution_2(t_data *data)
 	i = -1;
 	ret = 0;
     data->paths = NULL;
-	cmd = data->lst_cmd->cmd;
+	cmd = lst_cmd->cmd;
 	lst_env = data->lst_env;
 	
-
-	/* delete me plesae */
-	int pid = fork();
-	if (pid == 0)
-	{
 		if (getcwd(data->cwd, sizeof(data->cwd)) == NULL)
 			perror("getcwd() error");
 		//checking if the command entered is an absolute path (can be an executable to check directly)
@@ -77,7 +72,5 @@ void	execution_2(t_data *data)
 			}
 			lst_env = lst_env->next;
 		}
-	}
-	waitpid(pid, 0, 0);
-	// free(data);
 }
+	// free(data);

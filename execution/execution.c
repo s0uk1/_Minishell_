@@ -6,55 +6,105 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 12:22:48 by rsaf              #+#    #+#             */
-/*   Updated: 2022/08/31 18:38:15 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/01 16:33:34 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	ft_execute_cmd(t_data *data, char *path, t_cmd *lst_cmd)
-{
-	if (lst_cmd->fd_in != 0)
-		close(lst_cmd->fd_in);
-	if (lst_cmd->fd_out != 1)
-		close(lst_cmd->fd_out);
-	execve(path, lst_cmd->cmd, data->env);
-	perror("mshell: ");
-	if (errno == EACCES)
-		exit(126);
-	exit (127);
-}
+//non fork funcs are the ones that change the env
+//therefore they dont need to be forked for 
+//gotta check the heredoc and execute it
+// int	check_delim_idx(t_data *data)
+// {
+// 	t_cmd	*cmd;
+// 	int		delim_idx;
+	
+// 	delim_idx = 0;
+// 	cmd = data->cmd;
+// 	if (cmd->prev)
+// 		delim_idx += cmd->prev->her_doc_num;
+// 	return (delim_idx);
+// }
 
-int	cmds_lent(t_data *data)
-{
-	int		lent;
-	t_cmd	*cmd_clone;
+// //exheredoc is to be made
 
-	lent = 0;
-	cmd_clone = data->lst_cmd;
-	while (cmd_clone)
+// int	check_nonfork(data)
+// {
+// 	t_cmd	*cmd;
+// 	int		delim_idx;
+	
+// 	cmd = data->cmd;
+// 	delim_idx = check_delim_idx(cmd);
+// 	if (cmd->her_doc_num > 0 && ex_heredoc(data, delim_idx))
+// 		if (cmd->her_in)
+// 			return (close(cmd->her_in), NULL);
+// 	if(cmd->cmd[0])
+// 		return (ft_builtins(data));
+// }
+
+void	fork_func(t_data *data)
+{
+	t_cmd	*cmd;
+	int		pid;
+	
+	cmd = data->lst_cmd;
+	pid = 66;
+	while(cmd)
 	{
-		lent++;
-		cmd_clone = cmd_clone->next;
+		if (pid != 0)
+			pid = fork();
+		if(pid == 0)
+		{
+			dup2(cmd->fd_in, 0);
+			dup2(cmd->fd_out, 1);
+			close_fds(cmd);
+			close_pipes(data->pipes, c_lstcmd(data));
+			execution_2(data , cmd);
+			exit(1);
+		}
+		cmd = cmd->next;
 	}
-	return (lent);
+	close_fds(cmd);
+	close_pipes(data->pipes, c_lstcmd(data));
+	int i = -1;
+	while (++i < c_lstcmd(data))
+		waitpid(-1, 0, 0);
 }
 
-int	execution(t_data *data)
+
+// int	execution(t_data *data)
+// {
+// 	t_cmd	*cmd;
+
+// 	cmd = data->lst_cmd;
+// 	while (cmd)
+// 	{
+// 		data->error = check_nonfork(data);
+// 		if (data->error == NULL)
+// 		{
+			
+// 		}
+// 		else
+// 		{
+// 			fork_func(data);
+// 		}	
+// 	}
+// }
+
+
+int	pre_execution(t_data *data)
 {
-	int	**pip;
 	int	pid;
 	t_cmd *cmd;
 
 	pid = 0;
+	data->paths = ft_split(custom_getenv("PATH", data->lst_env),':');
 	if (data->lst_cmd)
 	{
-		ft_builtins(data, data->lst_cmd);
-		pip = initialize_pipes(data);
+		data->pipes = initialize_pipes(data);
 		ft_print_cmd(data->lst_cmd);
+		fork_func(data);
 	}
-	// ft_get_paths(data);
-	// if (data->lst_cmd)
-	// 	start_execution(data, pip, 0);
 	return (0);
 }

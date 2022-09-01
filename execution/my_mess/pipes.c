@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 14:12:33 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/08/31 18:46:02 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/01 16:20:52 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ int **alloc_pipes(t_data *data)
 void    init_fd(int **fd, t_cmd *cmd, int i)
 {
     if (i == 0 && cmd->next)
+    {
         if (cmd->fd_out == 1)
             cmd->fd_out = fd[i][1];
+    }
     else if (i != 0 && cmd->next)
     {
         if (cmd->fd_in == 0)
@@ -69,5 +71,5 @@ int **initialize_pipes(t_data *data)
         i++;
         cmd = cmd->next;
     }
-    return (0);
+    return (fd);
 }
