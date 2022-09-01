@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:10:11 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/01 16:27:51 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/01 17:32:22 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,32 +45,32 @@ void	execution_2(t_data *data , t_cmd *lst_cmd)
 	cmd = lst_cmd->cmd;
 	lst_env = data->lst_env;
 	
-		if (getcwd(data->cwd, sizeof(data->cwd)) == NULL)
-			perror("getcwd() error");
-		//checking if the command entered is an absolute path (can be an executable to check directly)
-		if (cmd[0][0] == '/')
-			check_access(data,NULL,0);
-		while (lst_env && lst_env->name)
+	if (getcwd(data->cwd, sizeof(data->cwd)) == NULL)
+		perror("getcwd() error");
+	//checking if the command entered is an absolute path (can be an executable to check directly)
+	if (cmd[0][0] == '/')
+		check_access(data,NULL,0);
+	while (lst_env && lst_env->name)
+	{
+		if (ft_strcmp(lst_env->name, "PATH") == 0)
 		{
-			if (ft_strcmp(lst_env->name, "PATH") == 0)
-			{
-				//for the case when the PATH is unset 
-				//rsaf says that if i unset PATH manually then readd it the next if can then be useful
-				if(lst_env->value == NULL)
-					check_access(data,cmd, i);
-				else
-				{		
-    	            data->paths = ft_split(lst_env->value,':');
-    	            while (data->paths[++i] && ret != 1)
-						ret = check_access(data, cmd, i);
-				}
-    	        if (ret == 0)
-    	        {
-    	            perror("access() error");
-    	           break ;
-    	        }
+			//for the case when the PATH is unset 
+			//rsaf says that if i unset PATH manually then readd it the next if can then be useful
+			if(lst_env->value == NULL)
+				check_access(data,cmd, i);
+			else
+			{		
+    	        data->paths = ft_split(lst_env->value,':');
+    	         while (data->paths[++i] && ret != 1)
+					ret = check_access(data, cmd, i);
 			}
-			lst_env = lst_env->next;
+    	    if (ret == 0)
+    	    {
+    	        perror("access() error");
+    	        break ;
+    	    }
 		}
-}
+		lst_env = lst_env->next;
+	}
 	// free(data);
+}

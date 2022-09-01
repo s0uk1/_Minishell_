@@ -1,8 +1,8 @@
--executing ls (or any command through exec) makes the bootleg bash exit gotta find out why
-    -> found out that this is due to the fact that i dont fork yet , it is all done in the main process
+
 -i have to comment the code section responsible for freeing the data, gotta fix this
--gotta make my custom getenv because the system one is non reentrant
--i have an issue with unset , it segfaults after exporting then unsetting a variable in a unconsistent way
-next step is : initializing the pipes
--yarbi nkhdem pipes chi nhar 
--also found out that i should be using the logic for a doubly linked list rather than a singly
+-pipes are now working i just have to differentiate between the fork and non fork functions
+to do next:
+    -heredoc
+    -init_signals
+    -garbage collection
+
