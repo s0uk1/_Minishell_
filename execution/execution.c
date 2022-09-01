@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 12:22:48 by rsaf              #+#    #+#             */
-/*   Updated: 2022/08/31 16:46:52 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/08/31 18:38:15 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,9 @@ int	execution(t_data *data)
 	t_cmd *cmd;
 
 	pid = 0;
-	// data->general.pid = -42;
-	// data->general.lent = cmds_lent(data);
 	if (data->lst_cmd)
 	{
-		// ft_builtins(data, data->lst_cmd);
+		ft_builtins(data, data->lst_cmd);
 		pip = initialize_pipes(data);
 		ft_print_cmd(data->lst_cmd);
 	}
