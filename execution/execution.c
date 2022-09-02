@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 12:22:48 by rsaf              #+#    #+#             */
-/*   Updated: 2022/09/01 19:44:27 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/02 12:04:13 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	check_nonfork(data)
 	delim_idx = check_delim_idx(cmd);
 	if (cmd->her_doc_num > 0 && ex_heredoc(data, cmd,delim_idx))
 		if (cmd->her_in)
-			return (close(cmd->her_in), NULL);
+			return (close(cmd->her_in), -666);
 	if(cmd->cmd[0])
 		return (ft_builtins(data));
 }
@@ -55,7 +55,6 @@ void	fork_func(t_data *data)
 		if (pid != 0)
 		{
 			pid = fork();
-			//builtins go here
 		}
 		if(pid == 0)
 		{
@@ -80,20 +79,33 @@ int	execution(t_data *data)
 {
 	t_cmd	*cmd;
 	int		pid;
-	cmd = data->lst_cmd;
+	int		fork_c;
 	
+	cmd = data->lst_cmd;
+	pid = 66;
+	fork_c = 0;
 	while (cmd)
 	{
 		data->error = check_nonfork(data);
-		if (data->error == -666)
+		if (pid != 0 && data->error == -666)
 		{
-			//non fork func goes here
+			pid = fork();
+			fork_c++:
 		}
-		else
+		if (pid == 0 && cmd->fd_in != -69)
 		{
-			//very confused will get back to this tomorrow`
-		}	
+			dup2(cmd->fd_in, 0);
+			dup2(cmd->fd_out, 1);
+			close_all(cmd , data->pipes, c_lstcmd(data));
+			//check builtins here
+			executions2(data, cmd);
+			exit(1);
+		}
+		cmd = cmd->next;	
 	}
+	close_all(data->lst_cmd, data->pipes, c_lstcmd(data));
+	if (fork_c)
+		//waitpid goes here
 }
 
 
@@ -107,8 +119,7 @@ int	pre_execution(t_data *data)
 	if (data->lst_cmd)
 	{
 		data->pipes = initialize_pipes(data);
-		// ft_print_cmd(data->lst_cmd);
-		fork_func(data);
+		execution(data);
 	}
 	return (0);
 }

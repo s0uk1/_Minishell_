@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 12:22:29 by rsaf              #+#    #+#             */
-/*   Updated: 2022/09/01 16:26:08 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/02 10:47:12 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ typedef struct s_data{
 
 
 //--------------------execution soukaina--------------------//
-int	ft_builtins(t_data *data);
+int		ft_builtins(t_data *data);
 int		my_exit(t_data *data ,t_cmd *lst_cmd, int fd);
 void	my_pwd(t_data *data, t_cmd *lst_cmd);
 int    	my_cd(t_data *data, t_cmd *lst_cmd);
