@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 12:22:29 by rsaf              #+#    #+#             */
-/*   Updated: 2022/09/02 10:47:12 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/02 18:46:13 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_cmd{
 
 typedef struct s_data{
 	int				error; // exit status
+	int				fork_flag;
 	int				ac;
 	char			*cmd;
 	char			**av;
@@ -96,7 +97,7 @@ typedef struct s_data{
 
 //--------------------execution soukaina--------------------//
 int		ft_builtins(t_data *data);
-int		my_exit(t_data *data ,t_cmd *lst_cmd, int fd);
+int		my_exit(t_data *data ,t_cmd *lst_cmd);
 void	my_pwd(t_data *data, t_cmd *lst_cmd);
 int    	my_cd(t_data *data, t_cmd *lst_cmd);
 void  	my_env(t_data *data, t_cmd *lst_cmd);
@@ -114,6 +115,7 @@ int		ft_atoi(const char *str);
 int     c_lstcmd(t_data *data);
 int		pre_execution(t_data *data);
 void	fork_func(t_data *data);
+int	close_all(t_cmd *lst_cmd, int **pipes, int count);
 
 
 

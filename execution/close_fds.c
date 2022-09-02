@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 10:58:48 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/02 11:02:59 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/02 18:46:06 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 
 //if you close default in and out fds the parent exits ??
-int	close_all(t_cmd *lst_cmd, int **pipes, int count);
+int	close_all(t_cmd *lst_cmd, int **pipes, int count)
 {
 	int	idx;
 	t_cmd	*cmd;

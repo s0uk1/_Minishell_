@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 10:52:05 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/08/31 16:15:58 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/02 14:03:00 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ft_isdigit(char *num)
     return (0);
 }
 
-int my_exit(t_data *data ,t_cmd *lst_cmd, int fd)
+int my_exit(t_data *data ,t_cmd *lst_cmd)
 {
     char **cmd;
 
@@ -62,14 +62,12 @@ int my_exit(t_data *data ,t_cmd *lst_cmd, int fd)
         if (cmd[1])
         {
             if (cmd[2])
-                ft_putstr_fd("bash: exit: too many arguments\n", fd);
+                printf("bash: exit: too many arguments\n");
             else if(ft_isdigit(cmd[1]))
                 return (ft_atoi(cmd[1]));
             else
             {
-                ft_putstr_fd("bash: exit :", fd);
-                ft_putstr_fd(cmd[1], fd);
-                ft_putstr_fd(" :numeric argument required\n", 1);
+                printf("bash: exit: %s :numeric argument required\n", cmd[1]);
                 return (255);
             }  
         }

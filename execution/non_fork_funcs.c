@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 12:23:14 by rsaf              #+#    #+#             */
-/*   Updated: 2022/09/01 13:23:33 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/02 14:25:11 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ int	ft_x(t_data *data, t_cmd *cmd)
 
 int	built_list(t_data *data, t_cmd *cmd)
 {
-	if (ft_strcmp(cmd->cmd[0], "cd") == 0)
+	if (!ft_strcmp(cmd->cmd[0], "cd") == 0)
 		data->error = cd(data, cmd);
-	else if (ft_strcmp(cmd->cmd[0], "export") == 0 && !cmd->next)
+	else if (!ft_strcmp(cmd->cmd[0], "export") == 0 && !cmd->next)
 		data->error = export(data, cmd, 1);
-	else if (ft_strcmp(cmd->cmd[0], "env") == 0 && !cmd->next)
+	else if (!ft_strcmp(cmd->cmd[0], "env") == 0 && !cmd->next)
 		data->error = ft_env_built(data, cmd->fd_out);
 	else if (!ft_strcmp(cmd->cmd[0], "unset") && !cmd->next)
 		data->error = unset(data, cmd);
-	else if (ft_strcmp(cmd->cmd[0], "exit") == 0 && !cmd->next)
+	else if (!ft_strcmp(cmd->cmd[0], "exit") && !cmd->next)
 	{
 		data->error = ft_exit(data, cmd, 1);
 		if (data->error != 1)

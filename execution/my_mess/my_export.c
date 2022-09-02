@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 16:10:42 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/01 15:48:16 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/02 14:23:58 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,15 +177,7 @@ void	my_unset(t_data *data, t_cmd *lst_cmd)
 	}
 }
 
-void	my_execution(t_data *data, t_cmd *lst_cmd)
-{
-	//init pipes first
-	initialize_pipes(data);
-
-	
-}
-
-// int	ft_builtins(t_data *data)
+// void	non_fork_funcs(t_data *data)
 // {
 // 	t_cmd	*lst_cmd;
 
@@ -193,41 +185,10 @@ void	my_execution(t_data *data, t_cmd *lst_cmd)
 // 	if (lst_cmd)
 // 	{
 // 		if (!ft_strcmp(lst_cmd->cmd[0], "export"))
-// 			data->error = export(data, lst_cmd, 1);
-// 		else if (!ft_strcmp(lst_cmd->cmd[0], "unset"))
-// 			data->error = unset(data, lst_cmd);
-// 		else if (!ft_strcmp(lst_cmd->cmd[0], "cd"))
-// 			data->error = my_cd(data, lst_cmd);
-// 		else if (!ft_strcmp(lst_cmd->cmd[0], "env"))
-// 			data->error = my_env(data, lst_cmd);
-// 		else if (!ft_strcmp(lst_cmd->cmd[0], "exit"))
-// 		{
-// 			data->error = my_exit(data, lst_cmd, 1);
-// 			if(!data->error)
-// 				my_exit(data->error);
-// 		}
-// 	}
-// 	else
-// 		return (NULL);
-// 	return (data->error);
-// }
-
-//the following func is my first iteration of
-//the builtins func , i put all funcs i made into it
-
-
-// void	ft_builtins(t_data *data)
-// {
-// 	t_cmd	*lst_cmd;
-
-// 	lst_cmd = data->lst_cmd;
-// 	if (lst_cmd)
-// 	{
-// 		if (ft_strcmp(lst_cmd->cmd[0], "export"))
 // 			my_export(data, lst_cmd);
-// 		else if (ft_strcmp(lst_cmd->cmd[0], "pwd")) 
+// 		else if (!ft_strcmp(lst_cmd->cmd[0], "pwd")) 
 // 			my_pwd(data, lst_cmd);
-// 		else if (ft_strcmp(lst_cmd->cmd[0], "unset"))
+// 		else if (!ft_strcmp(lst_cmd->cmd[0], "unset"))
 // 			unset(data, lst_cmd);
 // 		else if (ft_strcmp(lst_cmd->cmd[0], "cd"))
 // 			my_cd(data, lst_cmd);
