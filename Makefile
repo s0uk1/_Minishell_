@@ -37,23 +37,23 @@ LEXER = ./lexer/lexer.c ./lexer/lexer_utils.c \
 SYNTAX = ./syntax/syntax_analyzer.c ./syntax/ft_pipe.c \
 	 	 ./syntax/ft_redirection.c ./syntax/ft_quotes.c \
 
-BUILTIN= ./builtin/echo.c ./builtin/cd.c ./builtin/pwd.c ./builtin/unset.c \
-		 ./builtin/env.c ./builtin/export/export.c ./builtin/export/export_utils.c \
+BUILTIN= ./builtin/unset.c \
+		 ./builtin/export/export.c ./builtin/export/export_utils.c \
 		 ./builtin/export/export_utils2.c ./builtin/export/export_utils3.c \
-		 ./builtin/exit.c \
+		 
 
 UTILS= ./utils/ft_putstr_fd.c ./utils/ft_get_env.c ./utils/ft_itoa.c \
 	   ./utils/ft_strcmp.c ./utils/ft_strlen.c ./utils/ft_calloc.c \
 	   ./utils/ft_strchr.c ./utils/ft_trim.c \
 
-EXECUT= ./execution/execution.c ./execution/ft_get_path.c ./execution/ft_cmd_exist.c \
-		./execution/ft_if_builtin.c ./execution/ft_init_pipes.c\
-		./execution/start_execution.c ./execution/ft_dup.c ./execution/close_fds.c \
-		./execution/non_fork_funcs.c ./execution/herdoc.c init_signals.c\
+EXECUT= ./execution/execution.c\
+		./execution/my_mess/pipes.c\
+		./execution/close_all.c \
+		./execution/herdoc.c init_signals.c\
 		./execution/my_mess/counting_funcs.c ./execution/my_mess/custom_getenv.c\
 		./execution/my_mess/my_exec.c ./execution/my_mess/my_export.c ./execution/my_mess/my_cd.c\
 		./execution/my_mess/my_env.c ./execution/my_mess/my_echo.c  ./execution/my_mess/my_exit.c\
-		./execution/my_mess/pipes.c\
+		
 
 FILES = $(SRC) $(PARSING) $(LEXER) $(ENV) $(SYNTAX) $(BUILTIN) $(UTILS) $(EXPANDING) $(EXECUT)
 

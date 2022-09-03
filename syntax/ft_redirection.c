@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_redirection.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yabtaour <yabtaour@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:17:27 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/07/26 18:18:53 by yabtaour         ###   ########.fr       */
+/*   Updated: 2022/09/03 11:51:48 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_for_norme(t_data *data, char *value)
 {
-	data->error = 258;
+	data->exit_stat = 258;
 	printf("Syntax error near unexpected token `%s'\n", value);
 }
 
@@ -27,9 +27,9 @@ static int	ft_check_red(t_data *data)
 		lexer_clone = lexer_clone->next;
 	if (lexer_clone->type == REDIRECTION)
 	{
-		data->error = 258;
+		data->exit_stat = 258;
 		printf("Syntax error near unexpected token `newline'\n");
-		return (data->error);
+		return (data->exit_stat);
 	}
 	lexer_clone = data->lst_lexer;
 	while (lexer_clone)
@@ -38,11 +38,11 @@ static int	ft_check_red(t_data *data)
 			&& ft_strlen(lexer_clone->value) > 2)
 		{
 			ft_for_norme(data, lexer_clone->value);
-			return (data->error);
+			return (data->exit_stat);
 		}
 		lexer_clone = lexer_clone->next;
 	}
-	return (data->error);
+	return (data->exit_stat);
 }
 
 static int	ft_check_type(int lexer_clone_type)
@@ -67,7 +67,7 @@ static int	ft_check_after_red(t_data *data)
 				if (ft_check_type(lexer_clone->type))
 				{
 					ft_for_norme(data, lexer_clone->value);
-					return (data->error);
+					return (data->exit_stat);
 				}
 				else
 					break ;
@@ -76,16 +76,16 @@ static int	ft_check_after_red(t_data *data)
 		}
 		lexer_clone = lexer_clone->next;
 	}
-	return (data->error);
+	return (data->exit_stat);
 }
 
 int	ft_check_redirection(t_data *data)
 {	
-	data->error = ft_check_red(data);
-	if (data->error)
-		return (data->error);
-	data->error = ft_check_after_red(data);
-	if (data->error)
-		return (data->error);
-	return (data->error);
+	data->exit_stat = ft_check_red(data);
+	if (data->exit_stat)
+		return (data->exit_stat);
+	data->exit_stat = ft_check_after_red(data);
+	if (data->exit_stat)
+		return (data->exit_stat);
+	return (data->exit_stat);
 }

@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 16:10:42 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/02 14:23:58 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/03 14:12:30 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,30 +176,3 @@ void	my_unset(t_data *data, t_cmd *lst_cmd)
 			lst = lst->next;
 	}
 }
-
-// void	non_fork_funcs(t_data *data)
-// {
-// 	t_cmd	*lst_cmd;
-
-// 	lst_cmd = data->lst_cmd;
-// 	if (lst_cmd)
-// 	{
-// 		if (!ft_strcmp(lst_cmd->cmd[0], "export"))
-// 			my_export(data, lst_cmd);
-// 		else if (!ft_strcmp(lst_cmd->cmd[0], "pwd")) 
-// 			my_pwd(data, lst_cmd);
-// 		else if (!ft_strcmp(lst_cmd->cmd[0], "unset"))
-// 			unset(data, lst_cmd);
-// 		else if (ft_strcmp(lst_cmd->cmd[0], "cd"))
-// 			my_cd(data, lst_cmd);
-// 		else if (ft_strcmp(lst_cmd->cmd[0], "env"))
-// 			my_env(data, lst_cmd);
-// 		else if (ft_strcmp(lst_cmd->cmd[0], "echo"))
-// 			my_echo(data, lst_cmd);
-// 		else if (ft_strcmp(lst_cmd->cmd[0], "exit"))
-// 			my_exit(data, lst_cmd, 1);
-// 		else 
-// 			execution_2(data);	
-// 	}
-// }
-

@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 10:52:05 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/02 14:03:00 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/03 14:12:21 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int	ft_isdigit(char *num)
     return (0);
 }
 
+//255 means wrong argument to the exit builtin
+
 int my_exit(t_data *data ,t_cmd *lst_cmd)
 {
     char **cmd;
@@ -58,7 +60,7 @@ int my_exit(t_data *data ,t_cmd *lst_cmd)
     
     if (!lst_cmd->next)
     {
-        ft_putstr_fd("exit\n", fd);   
+        printf("exit\n");
         if (cmd[1])
         {
             if (cmd[2])
@@ -72,7 +74,7 @@ int my_exit(t_data *data ,t_cmd *lst_cmd)
             }  
         }
         else
-            return (0);
+            return (EXIT_SUCCESS);
     }
-    return (0);
+    return (EXIT_SUCCESS);
 }

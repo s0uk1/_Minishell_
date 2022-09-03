@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 12:22:29 by rsaf              #+#    #+#             */
-/*   Updated: 2022/09/02 18:46:13 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/03 11:52:29 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ typedef struct s_cmd{
 }	t_cmd;
 
 typedef struct s_data{
-	int				error; // exit status
+	int				exit_stat; // exit status
 	int				fork_flag;
 	int				ac;
 	char			*cmd;
@@ -88,7 +88,6 @@ typedef struct s_data{
 	int				flag_s;
 	int				flag_d;
 	int				**pipes;
-	int				**nb_cmd;
 	t_env			*lst_env;
 	t_cmd			*lst_cmd;
 	t_lexer			*lst_lexer;
@@ -115,7 +114,7 @@ int		ft_atoi(const char *str);
 int     c_lstcmd(t_data *data);
 int		pre_execution(t_data *data);
 void	fork_func(t_data *data);
-int	close_all(t_cmd *lst_cmd, int **pipes, int count);
+int		close_all(t_cmd *lst_cmd, int **pipes, int count);
 
 
 

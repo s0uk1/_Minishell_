@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_quotes.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yabtaour <yabtaour@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:17:25 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/07/26 18:17:26 by yabtaour         ###   ########.fr       */
+/*   Updated: 2022/09/03 11:51:48 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,6 @@ int	ft_check_the_quotes(t_data *data)
 
 int	ft_check_quotes(t_data *data)
 {
-	data->error = ft_check_the_quotes(data);
-	return (data->error);
+	data->exit_stat = ft_check_the_quotes(data);
+	return (data->exit_stat);
 }

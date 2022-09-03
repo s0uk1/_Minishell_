@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 15:42:55 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/08/31 16:14:55 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/03 11:51:48 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,27 @@ char *update_env(t_data *data, char *env, char *upd)
     }
     return (NULL);    
 }
- 
+
+char *custom_getenv(char *env_var, t_env *env_lst)
+{
+	t_env *tmp;
+	char *pwd;
+	
+	tmp = env_lst;
+	pwd = NULL;
+	while (tmp)
+	{
+		if (!ft_strcmp(tmp->name, env_var))
+		{
+			pwd = tmp->value;
+			break;
+		}
+		else
+			tmp = tmp->next;
+	}
+	return (pwd);
+}
+
  int    my_chdir(t_data *data, char *cmd, char *cwd)
 {
     char *new_pwd;
@@ -38,14 +58,14 @@ char *update_env(t_data *data, char *env, char *upd)
     new_pwd = NULL;
     if (!cmd)
     {
-        data->error = chdir(custom_getenv("HOME", data->lst_env));
-        if (data->error)
+        data->exit_stat = chdir(custom_getenv("HOME", data->lst_env));
+        if (data->exit_stat)
             return (perror("chdir() error:"),1);
     }
     else
     {
-        data->error = chdir(cmd);
-        if (data->error)
+        data->exit_stat = chdir(cmd);
+        if (data->exit_stat)
             return (perror("chdir() error:"),1);    
         else
         {
@@ -54,7 +74,7 @@ char *update_env(t_data *data, char *env, char *upd)
             update_env(data, "PWD", new_pwd);
         }     
     }
-    return (data->error);           
+    return (data->exit_stat);           
 }
 
 char	*ft_strncpy(char *dest, char *src, unsigned int n)
@@ -112,10 +132,10 @@ int catch_error(t_data *data)
     update_env(data, "PWD", ft_strjoin(old_pwd, "/.."));
     new_pwd = update_env(data, "OLDPWD", old_pwd);
     old_pwd = ft_strjoin(old_pwd, "/..");
-    data->error = chdir(old_pwd);
-    if (data->error)
+    data->exit_stat = chdir(old_pwd);
+    if (data->exit_stat)
         find_dir(data, old_pwd, old_pwd);
-    return (data->error);
+    return (data->exit_stat);
 }
 
 
@@ -132,9 +152,9 @@ int my_cd(t_data *data, t_cmd *lst_cmd)
     if (cmd[1])
     {
         if (!cwd)
-            data->error =catch_error(data);
+            data->exit_stat =catch_error(data);
         else
             return(my_chdir(data , cmd[1], cwd));   
     }
-    return (data->error);
+    return (data->exit_stat);
 }
