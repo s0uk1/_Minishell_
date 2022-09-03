@@ -6,13 +6,13 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 12:22:48 by rsaf              #+#    #+#             */
-/*   Updated: 2022/09/03 18:02:26 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/03 18:47:44 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-
+//env has an issue with variables with no values
 
 int	nofork_list(t_data *data, t_cmd *cmd)
 {
@@ -22,7 +22,8 @@ int	nofork_list(t_data *data, t_cmd *cmd)
 	else if (!ft_strcmp(cmd->cmd[0], "export") && !cmd->next)
 		data->exit_stat = export(data, cmd, 1);
 		// data = my_export(data, cmd);
-	else if (!ft_strcmp(cmd->cmd[0], "env") && !cmd->next)
+	else if (!ft_strcmp(cmd->cmd[0], "env") || 
+	!ft_strcmp(cmd->cmd[0], "/usr/bin/env") && !cmd->next)
 		my_env(data, cmd);
 	else if (!ft_strcmp(cmd->cmd[0], "unset") && !cmd->next)
 		data->exit_stat = unset(data, cmd);
