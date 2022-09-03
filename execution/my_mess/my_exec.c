@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:10:11 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/03 18:21:44 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/03 18:29:09 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	check_access(t_data *data, char **cmd, int i, int flag)
 	else
 		path = ft_strjoin(path, cmd[0]);
 	fd = access(path, F_OK | X_OK);
+		//the reason i didnt use perror here is because
+		//it returns an error every single time
 	if (fd == -1)
 		return (0);
 	else
