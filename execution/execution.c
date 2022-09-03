@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 12:22:48 by rsaf              #+#    #+#             */
-/*   Updated: 2022/09/03 13:55:21 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/03 18:02:26 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	nofork_list(t_data *data, t_cmd *cmd)
 		data->exit_stat = my_cd(data, cmd);
 	else if (!ft_strcmp(cmd->cmd[0], "export") && !cmd->next)
 		data->exit_stat = export(data, cmd, 1);
+		// data = my_export(data, cmd);
 	else if (!ft_strcmp(cmd->cmd[0], "env") && !cmd->next)
 		my_env(data, cmd);
 	else if (!ft_strcmp(cmd->cmd[0], "unset") && !cmd->next)
@@ -92,31 +93,50 @@ int	check_builtins(t_data *data, t_cmd *cmd_lst)
 	return (data->exit_stat);
 }
 
-int	terminate_pid(int	count)
-{
-	pid_t	p;
-	int		status;
-	int		res;
+// int	terminate_pid(int	count)
+// {
+// 	pid_t	p;
+// 	int		status;
+// 	int		res;
 	
-	while(count)
+// 	while(count)
+// 	{
+// 		while ((p = wait(&status) > 0))
+// 		{
+// 			if(WIFEXITED(status))
+// 			{
+// 				res = kill(p, SIGKILL);
+// 				// if (res < 0)
+// 				// 	perror("kill()error:");
+// 				// else
+// 					return (WIFEXITED(status));
+// 			}
+// 			else
+// 				perror("minishell kill error");
+// 		}
+// 		count--;
+// 	}
+// 	return (WIFEXITED(status));
+// }
+
+
+int	ft_wait_nd_kill(int idx)
+{
+	int	pid;
+	int	status;
+
+	while (idx > 0)
 	{
-		while ((p = wait(&status) > 0))
-		{
-			if(WIFEXITED(status))
-			{
-				res = kill(p, SIGKILL);
-				if (res < 0)
-					perror("kill()error:");
-				else
-					return (WIFEXITED(status));
-			}
-			else
-				perror("minishell kill error");
-		}
-		count--;
+		pid = waitpid(-1, &status, 0);
+		if (WIFEXITED(status) == 0)
+			return (130);
+		if (WIFEXITED(status) && WEXITSTATUS(status) != -1 && pid != -1)
+			kill(pid, SIGKILL);
+		idx--;
 	}
-	return (WIFEXITED(status));
+	return (WEXITSTATUS(status));
 }
+
 
 int	execution(t_data *data)
 {
@@ -151,7 +171,8 @@ int	execution(t_data *data)
 	}
 	close_all(data->lst_cmd, data->pipes, c_lstcmd(data));
 	if (fork_c)
-		data->exit_stat = terminate_pid(fork_c);
+		// data->exit_stat = terminate_pid(fork_c);
+		data->exit_stat = ft_wait_nd_kill(fork_c);
 	return (data->exit_stat);
 }
 

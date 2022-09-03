@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 12:22:29 by rsaf              #+#    #+#             */
-/*   Updated: 2022/09/03 11:52:29 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/03 18:18:40 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,9 @@ void	my_pwd(t_data *data, t_cmd *lst_cmd);
 int    	my_cd(t_data *data, t_cmd *lst_cmd);
 void  	my_env(t_data *data, t_cmd *lst_cmd);
 void    my_echo(t_data *data ,t_cmd *lst_cmd);
+t_data	*my_export(t_data *data, t_cmd *lst_cmd);
 void	execution_2(t_data *data, t_cmd *cmd);
-int		check_access(t_data *data, char **cmd, int i);
+int		check_access(t_data *data, char **cmd, int i, int flag);
 char	*update_env(t_data *data, char *env, char *upd);
 char	*custom_getenv(char *env_var, t_env *env_lst);
 int		**initialize_pipes(t_data *data);
