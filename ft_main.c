@@ -6,22 +6,25 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 10:37:19 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/03 11:51:48 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/04 17:38:26 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./minishell.h"
+#define CYELLOW "\001\e[0;31m\002"
+
 
 void	ft_initialize2(t_data *data)
 {
+	g_where_ami = 1;	
 	data->lst_cmd = NULL;
 	data->lst_lexer = NULL;
 	data->exit_stat = 0;
 	data->her_doc = 0;
 	data->general.index = 0;
-	// rl_catch_signals = 0;
-	signal(SIGINT, handler);
-	signal(SIGQUIT, handler);
+	rl_catch_signals = 0;
+	signal(SIGINT, sig_handler);
+	signal(SIGQUIT, sig_handler);
 }
 
 void	ft_free_norme(t_data *data)
@@ -66,7 +69,6 @@ int	ft_sub_main(t_data *data)
 {
 	while (42)
 	{
-		g_where_ami = 1;
 		ft_initialize2(data);
 		data->cmd = readline("minishell-1.0> ");
 		if (!data->cmd)

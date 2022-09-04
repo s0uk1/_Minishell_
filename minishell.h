@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:37:28 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/03 18:37:40 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/04 16:56:09 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ int     c_lstcmd(t_data *data);
 int		pre_execution(t_data *data);
 void	fork_func(t_data *data);
 int		close_all(t_cmd *lst_cmd, int **pipes, int count);
+void    sig_handler(int num);
 
 
 
@@ -216,7 +217,7 @@ int		echo(t_data *data, t_cmd *cmd_lst, int fd);
 int		cd(t_data *data, t_cmd *lst_cmd);
 int		pwd(t_data *data, t_cmd *lst_cmd, int fd);
 int		unset(t_data *data, t_cmd *lst_cmd);
-int		export(t_data *data, t_cmd *lst_cmd, int fd);
+int		export(t_data *data, t_cmd *lst_cmd);
 int		ft_env_built(t_data *data, int fd);
 int		ft_change_env_value(t_data *data, char *name, char *value, int size);
 void	ft_add_new_env(t_data *data, char *name, char *value);

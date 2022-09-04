@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:53:10 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/04 11:51:51 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/04 15:54:43 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	nofork_list(t_data *data, t_cmd *cmd)
 	if (!ft_strcmp(cmd->cmd[0], "cd"))
 		data->exit_stat = my_cd(data, cmd);
 	else if (!ft_strcmp(cmd->cmd[0], "export") && !cmd->next)
-		data->exit_stat = export(data, cmd, 1);
+		data->exit_stat = export(data, cmd);
 	else if (!ft_strcmp(cmd->cmd[0], "env") || 
 	!ft_strcmp(cmd->cmd[0], "/usr/bin/env") && !cmd->next)
 		my_env(data, cmd);
@@ -54,7 +54,8 @@ int	check_nonfork(t_data *data, t_cmd *cmd)
 	
 	data->fork_flag = 0;
 	delim_idx = check_delim_idx(cmd);
-	if (cmd->her_doc_num > 0 && ft_herdoc(data, cmd, data->pipes, delim_idx))
+	// if (cmd->her_doc_num > 0 && ft_herdoc(data, cmd, data->pipes, delim_idx))
+	if (cmd->her_doc_num > 0)
 	{
 		if (cmd->her_in)
 		{
@@ -74,7 +75,7 @@ int	check_builtins(t_data *data, t_cmd *cmd_lst)
 
 	cmd = cmd_lst->cmd;
 	if (!ft_strcmp(cmd[0], "export"))
-		data->exit_stat = export(data, cmd_lst, 1);
+		data->exit_stat = export(data, cmd_lst);
 	else if (!ft_strcmp(cmd[0], "unset"))
 		data->exit_stat = unset(data, cmd_lst);
 	else if (!ft_strcmp(cmd[0], "echo"))

@@ -6,13 +6,11 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 11:42:22 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/04 12:56:57 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/04 18:13:47 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-
 
 //a variable should hava a value in order for it to be
 //displayed when the env command is invoked 
