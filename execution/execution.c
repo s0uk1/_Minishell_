@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:53:10 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/05 18:20:09 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/05 18:59:51 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,23 @@ void	dup_and_close(t_data *data, t_cmd *cmd)
 		execution_2(data, cmd);
 }
 
+
+
+int	check_fork(int	*pid, t_data *data)
+{
+	int i;
+
+	i = 0;
+	if (*pid != 0 && data->fork_flag)
+	{
+		*pid = fork();
+		if (*pid < 0)
+			perror("fork() error");
+		i++;
+	}
+	return (i);
+}
+
 int	execution(t_data *data)
 {
 	t_cmd	*cmd;
@@ -138,13 +155,7 @@ int	execution(t_data *data)
 	while (cmd)
 	{
 		data->exit_stat = check_nonfork(data, cmd);
-		if (pid != 0 && data->fork_flag)
-		{
-			pid = fork();
-			if (pid < 0)
-				perror("fork() error");
-			fork_c++;
-		}
+		fork_c = check_fork(&pid, data);
 		if (pid == 0 && cmd->fd_in != -69)
 		{
 			dup_and_close(data , cmd);
