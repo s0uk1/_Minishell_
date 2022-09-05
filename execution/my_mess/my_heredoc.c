@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 13:14:19 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/04 13:14:44 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/05 14:09:44 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,10 @@ void	herdoc_routine(t_data *data, t_cmd *cmd_lst, int i)
 
 int	ft_herdoc(t_data *data, t_cmd *cmd_lst, int **pip, int i)
 {
+	//i here is the delimeter of the eof we should start from
+		
+	
+	
 	int		pid;
 	char	*buff;
 	t_cmd	*cmd_clone;

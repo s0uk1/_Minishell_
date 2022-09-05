@@ -6,11 +6,12 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:53:10 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/04 15:54:43 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/05 15:48:20 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+#define TERM_OWNER 130
 //env has an issue with variables with no values
 
 int	nofork_list(t_data *data, t_cmd *cmd)
@@ -93,50 +94,28 @@ int	check_builtins(t_data *data, t_cmd *cmd_lst)
 	return (data->exit_stat);
 }
 
-// int	terminate_pid(int	count)
-// {
-// 	pid_t	p;
-// 	int		status;
-// 	int		res;
-	
-// 	while(count)
-// 	{
-// 		while ((p = wait(&status) > 0))
-// 		{
-// 			if(WIFEXITED(status))
-// 			{
-// 				res = kill(p, SIGKILL);
-// 				// if (res < 0)
-// 				// 	perror("kill()error:");
-// 				// else
-// 					return (WIFEXITED(status));
-// 			}
-// 			else
-// 				perror("minishell kill error");
-// 		}
-// 		count--;
-// 	}
-// 	return (WIFEXITED(status));
-// }
-
-
-int	ft_wait_nd_kill(int idx)
+int	terminate_pid(int	count)
 {
-	int	pid;
-	int	status;
-
-	while (idx > 0)
+	pid_t	p;
+	int		status;
+	int		res;
+		
+		
+				int ppid = getpid();
+			printf("||||||||||||||||%d\n", ppid);
+	while(count)
 	{
-		pid = waitpid(-1, &status, 0);
-		if (WIFEXITED(status) == 0)
-			return (130);
-		if (WIFEXITED(status) && WEXITSTATUS(status) != -1 && pid != -1)
-			kill(pid, SIGKILL);
-		idx--;
+		while ((p = wait(&status) > 0))
+		{
+			if(WIFEXITED(status))
+				res = kill(p, SIGKILL);
+			else
+				return (TERM_OWNER);
+		}
+		count--;
 	}
-	return (WEXITSTATUS(status));
+	return (WIFEXITED(status));
 }
-
 
 int	execution(t_data *data)
 {
@@ -164,21 +143,16 @@ int	execution(t_data *data)
 			close_all(cmd , data->pipes, c_lstcmd(data));
 			data->exit_stat = check_builtins(data, cmd);
 			if(data->exit_stat == -42)
-				execution_2(data, cmd);
+				execu tion_2(data, cmd);
 			exit(1);
 		}
 		cmd = cmd->next;	
 	}
 	close_all(data->lst_cmd, data->pipes, c_lstcmd(data));
 	if (fork_c)
-		// data->exit_stat = terminate_pid(fork_c);
-		data->exit_stat = ft_wait_nd_kill(fork_c);
+		data->exit_stat = terminate_pid(fork_c);
 	return (data->exit_stat);
 }
-
-
-
-
 
 int	pre_execution(t_data *data)
 {
