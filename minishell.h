@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:37:28 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/04 16:56:09 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/05 16:25:31 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,8 @@
 int	g_where_ami;
 
 typedef struct s_gen{
-	int				pid;
 	int				index;
 	int				old_error;
-	int				lent;
 }	t_gen;
 
 typedef struct s_split{

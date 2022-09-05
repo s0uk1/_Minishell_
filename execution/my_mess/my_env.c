@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 11:42:22 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/04 18:13:47 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/05 15:59:13 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ void    my_env(t_data *data, t_cmd *lst_cmd)
     
     cmd =lst_cmd->cmd;
     env = data->lst_env;
+    if (cmd[1])
+    {
+        perror("env() error");
+        return ;
+    }
     while (env)
     {
         if (env->value && ft_strlen(env->value))

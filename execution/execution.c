@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:53:10 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/05 15:48:20 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/05 18:20:09 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,16 +93,16 @@ int	check_builtins(t_data *data, t_cmd *cmd_lst)
 		return (-42);
 	return (data->exit_stat);
 }
+//if the child process exits normally WIFEXITED evaluates to true
+//and the macro is used to query the exit code of the child
+//p evaluates to 1 , the pid of the exited child process
 
 int	terminate_pid(int	count)
 {
 	pid_t	p;
 	int		status;
 	int		res;
-		
-		
-				int ppid = getpid();
-			printf("||||||||||||||||%d\n", ppid);
+	
 	while(count)
 	{
 		while ((p = wait(&status) > 0))
@@ -117,6 +117,16 @@ int	terminate_pid(int	count)
 	return (WIFEXITED(status));
 }
 
+void	dup_and_close(t_data *data, t_cmd *cmd)
+{
+	dup2(cmd->fd_in, 0);
+	dup2(cmd->fd_out, 1);
+	close_all(cmd , data->pipes, c_lstcmd(data));
+	data->exit_stat = check_builtins(data, cmd);
+	if(data->exit_stat == -42)
+		execution_2(data, cmd);
+}
+
 int	execution(t_data *data)
 {
 	t_cmd	*cmd;
@@ -124,7 +134,6 @@ int	execution(t_data *data)
 	int		fork_c;
 	
 	cmd = data->lst_cmd;
-	pid = 66;
 	fork_c = 0;
 	while (cmd)
 	{
@@ -133,17 +142,12 @@ int	execution(t_data *data)
 		{
 			pid = fork();
 			if (pid < 0)
-				perror("fork failed");
+				perror("fork() error");
 			fork_c++;
 		}
 		if (pid == 0 && cmd->fd_in != -69)
 		{
-			dup2(cmd->fd_in, 0);
-			dup2(cmd->fd_out, 1);
-			close_all(cmd , data->pipes, c_lstcmd(data));
-			data->exit_stat = check_builtins(data, cmd);
-			if(data->exit_stat == -42)
-				execu tion_2(data, cmd);
+			dup_and_close(data , cmd);
 			exit(1);
 		}
 		cmd = cmd->next;	

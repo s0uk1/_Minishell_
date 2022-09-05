@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:10:11 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/05 13:30:54 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/05 16:30:16 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	execution_2(t_data *data , t_cmd *lst_cmd)
 		if (ft_strcmp(lst_env->name, "PATH") == 0)
 		{
 			//for the case when the PATH is unset 
-			//rsaf says that if i unset PATH manually then read it 
+			//if i unset PATH manually then read it 
 			// the next if can then be useful
 			if(lst_env->value == NULL)
 				check_access(data,cmd, i, 0);

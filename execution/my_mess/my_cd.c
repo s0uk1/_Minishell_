@@ -6,13 +6,11 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 15:42:55 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/03 11:51:48 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/05 17:03:39 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-#include "../../debug.h"
-
 
 char *update_env(t_data *data, char *env, char *upd)
 {
@@ -152,7 +150,7 @@ int my_cd(t_data *data, t_cmd *lst_cmd)
     if (cmd[1])
     {
         if (!cwd)
-            data->exit_stat =catch_error(data);
+            data->exit_stat = catch_error(data);
         else
             return(my_chdir(data , cmd[1], cwd));   
     }
