@@ -27,7 +27,8 @@ void	ft_initialize1(t_data *data, int argc, char **env)
 int	main(int argc, char **argv, char **env)
 {
 	t_data	data;
-
+	int		i;
+	//this is a comment to test github identity
 	ft_initialize1(&data, argc, env);
 	if (!ft_sub_main(&data))
 		return (0);
