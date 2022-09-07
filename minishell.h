@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:37:28 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/05 16:25:31 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/06 11:07:44 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_cmd{
 typedef struct s_data{
 	int				exit_stat; // exit status
 	int				fork_flag;
+	int				heredoc_f;
 	int				ac;
 	char			*cmd;
 	char			**av;

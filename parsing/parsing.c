@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:17:19 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/05 13:29:30 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/06 11:37:55 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	ft_add_normal_command(t_data *data, char *new, int *fd, int *red)
 	if (!fd)
 		exit (1);
 	lexer_clone = data->lst_lexer;
+	data->heredoc_f = 0;
 	while (lexer_clone && lexer_clone->type != PIPE)
 	{
 		if (lexer_clone->type == REDIRECTION
@@ -61,6 +62,7 @@ void	ft_add_normal_command(t_data *data, char *new, int *fd, int *red)
 		{
 			lexer_clone = lexer_clone->next;
 			new = ft_new(lexer_clone->value);
+			//here goes the -69 value , signaling the heredoc fd
 			fd[i] = ft_fill_fd(data, new, red[i]);
 			free(new);
 			i++;

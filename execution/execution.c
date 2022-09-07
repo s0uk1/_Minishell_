@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:53:10 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/05 18:59:51 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/06 11:38:24 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ int	execution(t_data *data)
 	{
 		data->exit_stat = check_nonfork(data, cmd);
 		fork_c = check_fork(&pid, data);
-		if (pid == 0 && cmd->fd_in != -69)
+		if (pid == 0 && !data->heredoc_f)
 		{
 			dup_and_close(data , cmd);
 			exit(1);
