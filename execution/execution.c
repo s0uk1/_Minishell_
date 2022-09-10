@@ -6,13 +6,12 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:53:10 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/07 17:24:27 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/10 11:12:58 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #define TERM_OWNER 130
-//env has an issue with variables with no values
 
 int	nofork_list(t_data *data, t_cmd *cmd)
 {
@@ -40,7 +39,7 @@ int	nofork_list(t_data *data, t_cmd *cmd)
 int	check_nonfork(t_data *data, t_cmd *cmd)
 {	
 	data->fork_flag = 0;
-	if (cmd->her_doc_num > 0 && heredoc_exec(data, cmd))
+	if (heredoc_exec(data, cmd))
 	{
 		if (cmd->her_in)
 		{

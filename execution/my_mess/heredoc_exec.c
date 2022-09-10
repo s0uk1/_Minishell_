@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 13:15:29 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/07 17:26:38 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/10 11:36:56 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ void    check_delims(t_data *data, t_cmd *cmd)
     int     delim_idx;
     int     i;
     
+    i = 0;
     delim_idx = check_delim_idx(cmd);
-    printf("%d\n",delim_idx);
     while (i < cmd->her_doc_num)
     {
-        here_buff = readline("heredoc> ");
+        here_buff = readline("> ");
         if (here_buff == NULL)
             break ;
         else if(here_buff && !ft_strcmp(data->eof[delim_idx] , here_buff))
@@ -56,19 +56,18 @@ void    check_delims(t_data *data, t_cmd *cmd)
     int     pid;
     t_cmd   *cmd;
     
+    cmd = cmd_lst;
     g_where_ami = 0;
     pid = fork();
-    
     if (pid == 0 && cmd->her_doc_num)
     {
-        printf("|||||||||||||||||||||\n");
         check_delims(data , cmd);
         close_all(cmd, data->pipes, count_cmds(cmd->cmd));
         close(cmd->fd_in);
 	    close(cmd->her_in);
         exit(0);
     }
-    // waitpid(pid, 0, 0);
-	// kill(pid, SIGKILL);
+    waitpid(pid, 0, 0);
+	kill(pid, SIGKILL);
     return (1);  
  }
