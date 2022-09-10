@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 13:44:37 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/04 17:38:29 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/07 14:51:50 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void    sig_handler(int num)
 		rl_on_new_line();
 		rl_redisplay();
 	}
-    if (num == SIGQUIT && g_where_ami)
+	if (num == SIGQUIT && g_where_ami)
         if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
-            perror("signal(): error");        
+            perror("signal(): error");
 }

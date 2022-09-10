@@ -6,13 +6,23 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 10:37:19 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/05 13:34:37 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/07 14:53:24 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./minishell.h"
 #define CYELLOW "\001\e[0;31m\002"
 
+//rl_catch_signals 
+//if this variable evaluates to true, readline will install
+//signals handlers for most signals
+//the 3 ones we are asked to handle included
+
+
+//global variable needs to be set to one
+//when it comes to the parent for it to handle signals
+//same variable needs to be set to 0 with children
+//no need to handle signals there , wouldnt even get to them
 
 void	ft_initialize2(t_data *data)
 {
@@ -26,6 +36,7 @@ void	ft_initialize2(t_data *data)
 	signal(SIGINT, sig_handler);
 	signal(SIGQUIT, sig_handler);
 }
+
 
 void	ft_free_norme(t_data *data)
 {

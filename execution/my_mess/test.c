@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_heredoc.c                                       :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 13:14:19 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/05 14:09:44 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/07 15:09:03 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,15 @@ void	herdoc_routine(t_data *data, t_cmd *cmd_lst, int i)
 	
 
 	
-	idx = 0; // loop index that increments to n number of
+	idx = 0; 
+	// loop index that increments to n number of
 	//heredocs in a command
-	// is the index of EOF
+	//i is the index of EOF
 	while (1 && idx < cmd_lst->her_doc_num)
 	{
 		buff = readline("heredoc> ");
-		if (!buff)
-			exit (1);
+		if (buff == NULL)
+			break ;
 		else if (buff[0] != '\0' && !ft_strcmp(buff, data->eof[i]))
 		{
 			i++;
@@ -64,6 +65,7 @@ int	ft_herdoc(t_data *data, t_cmd *cmd_lst, int **pip, int i)
 	t_cmd	*cmd_clone;
 	int		idx;
 
+	//i here is delim_idx for me
 	idx = 0;
 	cmd_clone = cmd_lst;
 	g_where_ami = 0;

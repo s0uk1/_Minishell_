@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:17:10 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/06 11:34:47 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:22:40 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ int	ft_fill_fd(t_data *data, char *name, int red)
 		{
 			printf("No such file or directory\n");
 			data->exit_stat = 1;
-			data->heredoc_f = 1;
-			// fd = -69;
+			// data->heredoc_f = 1;
+			fd = -69;
 		}
 	}
 	return (fd);

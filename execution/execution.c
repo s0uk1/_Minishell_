@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:53:10 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/06 11:38:24 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:24:27 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,26 +37,10 @@ int	nofork_list(t_data *data, t_cmd *cmd)
 	return (data->exit_stat);
 }
 
-int	check_delim_idx(t_cmd *cmd)
-{
-	int		delim_idx;
-	
-	delim_idx = 0;
-	if (cmd->prev)
-		delim_idx += cmd->prev->her_doc_num;
-	return (delim_idx);
-}
-
-//exheredoc is to be made
-
 int	check_nonfork(t_data *data, t_cmd *cmd)
-{
-	int		delim_idx;
-	
+{	
 	data->fork_flag = 0;
-	delim_idx = check_delim_idx(cmd);
-	// if (cmd->her_doc_num > 0 && ft_herdoc(data, cmd, data->pipes, delim_idx))
-	if (cmd->her_doc_num > 0)
+	if (cmd->her_doc_num > 0 && heredoc_exec(data, cmd))
 	{
 		if (cmd->her_in)
 		{
@@ -158,6 +142,8 @@ int	execution(t_data *data)
 		fork_c = check_fork(&pid, data);
 		if (pid == 0 && !data->heredoc_f)
 		{
+			//global variable needs to be 0 here ig ??
+			g_where_ami = 0;
 			dup_and_close(data , cmd);
 			exit(1);
 		}

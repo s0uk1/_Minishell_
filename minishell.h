@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:37:28 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/06 11:07:44 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/07 14:32:43 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ int		pre_execution(t_data *data);
 void	fork_func(t_data *data);
 int		close_all(t_cmd *lst_cmd, int **pipes, int count);
 void    sig_handler(int num);
+int		heredoc_exec(t_data *data, t_cmd *cmd_lst);
 
 
 
