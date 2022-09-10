@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:53:10 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/10 11:12:58 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/10 12:19:36 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	nofork_list(t_data *data, t_cmd *cmd)
 int	check_nonfork(t_data *data, t_cmd *cmd)
 {	
 	data->fork_flag = 0;
-	if (heredoc_exec(data, cmd))
+	if (heredoc_exec(data, cmd) && cmd->her_doc_num)
 	{
 		if (cmd->her_in)
 		{

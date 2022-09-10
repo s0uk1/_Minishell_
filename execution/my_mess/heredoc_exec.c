@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 13:15:29 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/10 11:36:56 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/10 13:49:33 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void    check_delims(t_data *data, t_cmd *cmd)
     cmd = cmd_lst;
     g_where_ami = 0;
     pid = fork();
-    if (pid == 0 && cmd->her_doc_num)
+    if (pid == 0)
     {
         check_delims(data , cmd);
         close_all(cmd, data->pipes, count_cmds(cmd->cmd));
