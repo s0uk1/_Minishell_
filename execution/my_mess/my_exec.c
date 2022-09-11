@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:10:11 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/05 16:30:16 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/11 13:55:32 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	execution_2(t_data *data , t_cmd *lst_cmd)
 		check_access(data,cmd,0,1);
 	while (lst_env && lst_env->name)
 	{
-		if (ft_strcmp(lst_env->name, "PATH") == 0)
+		if (!ft_strcmp(lst_env->name, "PATH"))
 		{
 			//for the case when the PATH is unset 
 			//if i unset PATH manually then read it 

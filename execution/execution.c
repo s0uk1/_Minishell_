@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:53:10 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/10 12:19:36 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/11 12:22:58 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	nofork_list(t_data *data, t_cmd *cmd)
 	else if (!ft_strcmp(cmd->cmd[0], "export") && !cmd->next)
 		data->exit_stat = export(data, cmd);
 	else if (!ft_strcmp(cmd->cmd[0], "env") || 
-	!ft_strcmp(cmd->cmd[0], "/usr/bin/env") && !cmd->next)
+	(!ft_strcmp(cmd->cmd[0], "/usr/bin/env") && !cmd->next))
 		my_env(data, cmd);
 	else if (!ft_strcmp(cmd->cmd[0], "unset") && !cmd->next)
 		data->exit_stat = unset(data, cmd);
@@ -127,6 +127,9 @@ int	check_fork(int	*pid, t_data *data)
 	return (i);
 }
 
+//heredoc is checked in check non fork
+//the command is later then executed 
+//why the fuckis heredoc checked 11 times in parsing
 int	execution(t_data *data)
 {
 	t_cmd	*cmd;
@@ -139,7 +142,8 @@ int	execution(t_data *data)
 	{
 		data->exit_stat = check_nonfork(data, cmd);
 		fork_c = check_fork(&pid, data);
-		if (pid == 0 && !data->heredoc_f)
+		if (pid == 0 && cmd->fd_in != -69)
+		// if (pid == 0 && !data->heredoc_f)
 		{
 			//global variable needs to be 0 here ig ??
 			g_where_ami = 0;

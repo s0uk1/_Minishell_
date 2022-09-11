@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:37:28 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/07 14:32:43 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/11 14:20:29 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <readline/history.h>
 # include <termios.h>
 # include <errno.h>
+# include "debug.h"
 # define WORD 1
 # define PIPE 2
 # define PARENTHESIS 4
@@ -73,7 +74,7 @@ typedef struct s_cmd{
 typedef struct s_data{
 	int				exit_stat; // exit status
 	int				fork_flag;
-	int				heredoc_f;
+	int				rerror_f;
 	int				ac;
 	char			*cmd;
 	char			**av;
