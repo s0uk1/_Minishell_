@@ -9,4 +9,3 @@ how heredoc is handled :
 doesnt exist we must return an error
 -gotta fix the command not found error
 -exit code error
--when path is unset no command should execute correctly

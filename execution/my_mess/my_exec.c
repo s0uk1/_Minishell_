@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:10:11 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/11 16:07:55 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/11 17:05:08 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,31 +61,46 @@ int	check_path(t_env *lst_env)
 	return (0);
 }
 
-void	execution_2(t_data *data , t_cmd *lst_cmd)
+int	check_nonabs(t_data *data, t_cmd *lst_cmd, char **cmd)
 {
+	int	ret;
 	int	i;
-    int ret;
-	char	**cmd;
-	t_env	*lst_env;
 
 	i = -1;
 	ret = 0;
-    data->paths = NULL;
-	cmd = lst_cmd->cmd;
-	lst_env = data->lst_env;
-	if (getcwd(data->cwd, sizeof(data->cwd)) == NULL)
-		perror("getcwd() error");
-	if (cmd[0][0] == '/')
-		check_access(data,cmd,0,1);
 	if (check_path(data->lst_env))
 	{
     	data->paths = ft_split(custom_getenv("PATH", data->lst_env),':');
     	while (data->paths[++i] && ret != 1)
 			ret = check_access(data, cmd, i, 0);
     	if (!ret)
-    	    printf("bash : %s: command not found\n",cmd[0]);
+		{
+			printf("bash : %s: command not found\n",cmd[0]);
+			return (0);
+		}
 	}
 	else
 		if(!check_access(data,cmd,0 , 3))
-			printf("bash: %s: No such file or directory\n",cmd[0]);	
+		{
+			printf("bash: %s: No such file or directory\n",cmd[0]);
+			return (0);	
+		}
+	return (1);
+}
+
+int	execution_2(t_data *data , t_cmd *lst_cmd)
+{
+	char	**cmd;
+
+    data->paths = NULL;
+	cmd = lst_cmd->cmd;
+	if (getcwd(data->cwd, sizeof(data->cwd)) == NULL)
+		perror("getcwd() error");
+	if (cmd[0][0] == '/')
+		check_access(data,cmd,0,1);
+	if (check_nonabs(data, lst_cmd, cmd))
+		data->exit_stat = 0;
+	else
+		data->exit_stat = 127;
+	return (data->exit_stat);
 }

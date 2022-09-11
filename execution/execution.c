@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:53:10 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/11 14:29:51 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/11 16:29:45 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,10 +107,8 @@ void	dup_and_close(t_data *data, t_cmd *cmd)
 	close_all(cmd , data->pipes, c_lstcmd(data));
 	data->exit_stat = check_builtins(data, cmd);
 	if(data->exit_stat == -42)
-		execution_2(data, cmd);
+		data->exit_stat = execution_2(data, cmd);
 }
-
-
 
 int	check_fork(int	*pid, t_data *data)
 {
@@ -143,12 +141,12 @@ int	execution(t_data *data)
 		{
 			g_where_ami = 0;
 			dup_and_close(data , cmd);
-			exit(1);
+			exit(data->exit_stat);
 		}
 		cmd = cmd->next;	
 	}
 	close_all(data->lst_cmd, data->pipes, c_lstcmd(data));
-	if (fork_c)
+	if (fork_c && data->exit_stat != 127)
 		data->exit_stat = terminate_pid(fork_c);
 	return (data->exit_stat);
 }
@@ -163,7 +161,7 @@ int	pre_execution(t_data *data)
 	if (data->lst_cmd)
 	{
 		data->pipes = initialize_pipes(data);
-		execution(data);
+		data->exit_stat = execution(data);
 	}
 	return (0);
 }
