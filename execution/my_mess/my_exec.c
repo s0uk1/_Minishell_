@@ -6,28 +6,40 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:10:11 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/11 13:55:32 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/11 16:07:55 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	check_access(t_data *data, char **cmd, int i, int flag)
+char *generate_path(t_data *data, char **cmd, int i, int flag)
 {
-	char	*path = NULL;
-	int		fd;
-
-	fd = 0;
+	char *path;
+	
+	path = NULL;
 	if (!flag)
 	{
 		path = ft_strjoin(data->paths[i], "/");
 		path = ft_strjoin(path, cmd[0]);
 	}
-	else
+	else if (flag == 1)
 		path = ft_strjoin(path, cmd[0]);
+	else
+	{
+		path = ft_strjoin(custom_getenv("PWD", data->lst_env), "/");
+		path = ft_strjoin(path, cmd[0]);
+	}
+	return (path);
+}
+
+int	check_access(t_data *data, char **cmd, int i, int flag)
+{
+	char	*path;
+	int		fd;
+
+	fd = 0;
+	path = generate_path(data, cmd, i, flag);
 	fd = access(path, F_OK | X_OK);
-		//the reason i didnt use perror here is because
-		//it returns an error every single time
 	if (fd == -1)
 		return (0);
 	else
@@ -38,7 +50,17 @@ int	check_access(t_data *data, char **cmd, int i, int flag)
     return (1);
 }
 
-//this function executes commands that arent builtin lmao
+int	check_path(t_env *lst_env)
+{
+	while (lst_env && lst_env->name)
+	{
+		if (!ft_strcmp(lst_env->name, "PATH"))
+			return (1);
+		lst_env = lst_env->next;
+	}
+	return (0);
+}
+
 void	execution_2(t_data *data , t_cmd *lst_cmd)
 {
 	int	i;
@@ -51,34 +73,19 @@ void	execution_2(t_data *data , t_cmd *lst_cmd)
     data->paths = NULL;
 	cmd = lst_cmd->cmd;
 	lst_env = data->lst_env;
-	
 	if (getcwd(data->cwd, sizeof(data->cwd)) == NULL)
 		perror("getcwd() error");
-	//checking if the command entered is an absolute path (can be an executable to check directly)
 	if (cmd[0][0] == '/')
 		check_access(data,cmd,0,1);
-	while (lst_env && lst_env->name)
+	if (check_path(data->lst_env))
 	{
-		if (!ft_strcmp(lst_env->name, "PATH"))
-		{
-			//for the case when the PATH is unset 
-			//if i unset PATH manually then read it 
-			// the next if can then be useful
-			if(lst_env->value == NULL)
-				check_access(data,cmd, i, 0);
-			else
-			{		
-    	        data->paths = ft_split(lst_env->value,':');
-    	         while (data->paths[++i] && ret != 1)
-					ret = check_access(data, cmd, i, 0);
-			}
-    	    if (ret == 0)
-    	    {
-    	        perror("access() error");
-    	        break ;
-    	    }
-		}
-		lst_env = lst_env->next;
+    	data->paths = ft_split(custom_getenv("PATH", data->lst_env),':');
+    	while (data->paths[++i] && ret != 1)
+			ret = check_access(data, cmd, i, 0);
+    	if (!ret)
+    	    printf("bash : %s: command not found\n",cmd[0]);
 	}
-	// free(data);
+	else
+		if(!check_access(data,cmd,0 , 3))
+			printf("bash: %s: No such file or directory\n",cmd[0]);	
 }

@@ -7,4 +7,6 @@ how heredoc is handled :
 - fd = -69 in the case when redirection type is read 
     -there's no create flag so when we try reading a flag that
 doesnt exist we must return an error
-
+-gotta fix the command not found error
+-exit code error
+-when path is unset no command should execute correctly

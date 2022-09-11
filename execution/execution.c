@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:53:10 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/11 12:22:58 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/11 14:29:51 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,9 +127,6 @@ int	check_fork(int	*pid, t_data *data)
 	return (i);
 }
 
-//heredoc is checked in check non fork
-//the command is later then executed 
-//why the fuckis heredoc checked 11 times in parsing
 int	execution(t_data *data)
 {
 	t_cmd	*cmd;
@@ -142,10 +139,8 @@ int	execution(t_data *data)
 	{
 		data->exit_stat = check_nonfork(data, cmd);
 		fork_c = check_fork(&pid, data);
-		if (pid == 0 && cmd->fd_in != -69)
-		// if (pid == 0 && !data->heredoc_f)
+		if (pid == 0 && !data->rerror_f)
 		{
-			//global variable needs to be 0 here ig ??
 			g_where_ami = 0;
 			dup_and_close(data , cmd);
 			exit(1);
