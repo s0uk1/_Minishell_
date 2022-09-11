@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:53:10 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/11 16:29:45 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/11 18:55:02 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	check_builtins(t_data *data, t_cmd *cmd_lst)
 	//echo pwd , unset, export , env , exit
 	char **cmd;
 
+	data->non_built_f = 0;
 	cmd = cmd_lst->cmd;
 	if (!ft_strcmp(cmd[0], "export"))
 		data->exit_stat = export(data, cmd_lst);
@@ -73,7 +74,7 @@ int	check_builtins(t_data *data, t_cmd *cmd_lst)
 			exit(data->exit_stat);
 	}
 	else
-		return (-42);
+		data->non_built_f = 1;;
 	return (data->exit_stat);
 }
 //if the child process exits normally WIFEXITED evaluates to true
@@ -106,7 +107,7 @@ void	dup_and_close(t_data *data, t_cmd *cmd)
 	dup2(cmd->fd_out, 1);
 	close_all(cmd , data->pipes, c_lstcmd(data));
 	data->exit_stat = check_builtins(data, cmd);
-	if(data->exit_stat == -42)
+	if(data->non_built_f)
 		data->exit_stat = execution_2(data, cmd);
 }
 
@@ -133,6 +134,7 @@ int	execution(t_data *data)
 	
 	cmd = data->lst_cmd;
 	fork_c = 0;
+	int h = 0;
 	while (cmd)
 	{
 		data->exit_stat = check_nonfork(data, cmd);
@@ -146,7 +148,7 @@ int	execution(t_data *data)
 		cmd = cmd->next;	
 	}
 	close_all(data->lst_cmd, data->pipes, c_lstcmd(data));
-	if (fork_c && data->exit_stat != 127)
+	if (fork_c)
 		data->exit_stat = terminate_pid(fork_c);
 	return (data->exit_stat);
 }

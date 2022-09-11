@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:37:28 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/11 16:12:33 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/11 17:56:23 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct s_data{
 	int				exit_stat; // exit status
 	int				fork_flag;
 	int				rerror_f;
+	int				non_built_f;
 	int				ac;
 	char			*cmd;
 	char			**av;

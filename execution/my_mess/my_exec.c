@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:10:11 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/11 17:05:08 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/11 17:54:43 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int	check_access(t_data *data, char **cmd, int i, int flag)
 	{
 		execve(path, cmd, data->env);
 		perror("execve() error");
+		if (errno == EACCES)
+			exit(126);
 	}
     return (1);
 }
