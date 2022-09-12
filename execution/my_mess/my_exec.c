@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:10:11 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/11 17:54:43 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/12 13:37:05 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,9 @@ int	execution_2(t_data *data , t_cmd *lst_cmd)
 	if (check_nonabs(data, lst_cmd, cmd))
 		data->exit_stat = 0;
 	else
+	{
+		
 		data->exit_stat = 127;
+	}
 	return (data->exit_stat);
 }

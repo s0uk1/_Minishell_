@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:53:10 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/11 18:55:02 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/12 14:55:02 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,24 +81,24 @@ int	check_builtins(t_data *data, t_cmd *cmd_lst)
 //and the macro is used to query the exit code of the child
 //p evaluates to 1 , the pid of the exited child process
 
-int	terminate_pid(int	count)
+int	terminate_pid(int pid, int count)
 {
-	pid_t	p;
-	int		status;
-	int		res;
-	
-	while(count)
+    int status;
+    int corpse;
+		
+	while (count)
 	{
-		while ((p = wait(&status) > 0))
-		{
-			if(WIFEXITED(status))
-				res = kill(p, SIGKILL);
-			else
-				return (TERM_OWNER);
-		}
+		corpse = wait(&status);
+        if (corpse < 0)
+            printf("Failed to wait for process %d (errno = %d)\n", (int)pid, errno);
+        else if (corpse != pid)
+            printf("Got corpse of process %d (status 0x%.4X) when expecting PID %d\n",
+                   corpse, status, (int)pid);
+        else if (WIFEXITED(status))
+			kill(pid, SIGKILL);
 		count--;
 	}
-	return (WIFEXITED(status));
+    return WEXITSTATUS(status);
 }
 
 void	dup_and_close(t_data *data, t_cmd *cmd)
@@ -149,7 +149,7 @@ int	execution(t_data *data)
 	}
 	close_all(data->lst_cmd, data->pipes, c_lstcmd(data));
 	if (fork_c)
-		data->exit_stat = terminate_pid(fork_c);
+		data->exit_stat = terminate_pid(pid , fork_c);
 	return (data->exit_stat);
 }
 
