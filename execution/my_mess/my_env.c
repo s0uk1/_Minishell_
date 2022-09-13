@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 11:42:22 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/05 15:59:13 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/13 14:34:42 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //a variable should hava a value in order for it to be
 //displayed when the env command is invoked 
-void    my_env(t_data *data, t_cmd *lst_cmd)
+int    my_env(t_data *data, t_cmd *lst_cmd)
 {
     char **cmd;
     t_env *env;
@@ -23,8 +23,8 @@ void    my_env(t_data *data, t_cmd *lst_cmd)
     env = data->lst_env;
     if (cmd[1])
     {
-        perror("env() error");
-        return ;
+        printf("env: %s: No such file or directory\n", cmd[1]);
+        return (127);
     }
     while (env)
     {
@@ -32,4 +32,5 @@ void    my_env(t_data *data, t_cmd *lst_cmd)
             printf("%s=%s\n",env->name, env->value);
         env = env->next;
     }
+    return (0);
 }

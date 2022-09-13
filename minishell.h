@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:37:28 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/13 14:20:47 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/13 14:37:57 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_data{
 	int				exit_stat; // exit status
 	int				fork_flag;
 	int				rerror_f;
+	int				nonbuilt_f;
 	int				ac;
 	char			*cmd;
 	char			**av;
@@ -98,7 +99,7 @@ int		ft_builtins(t_data *data);
 int		my_exit(t_data *data ,t_cmd *lst_cmd);
 int		my_pwd(t_data *data, t_cmd *lst_cmd);
 int    	my_cd(t_data *data, t_cmd *lst_cmd);
-void  	my_env(t_data *data, t_cmd *lst_cmd);
+int  	my_env(t_data *data, t_cmd *lst_cmd);
 void    my_echo(t_data *data ,t_cmd *lst_cmd);
 t_data	*my_export(t_data *data, t_cmd *lst_cmd);
 int		execution_2(t_data *data, t_cmd *cmd);

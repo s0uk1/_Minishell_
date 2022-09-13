@@ -6,11 +6,13 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:53:10 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/13 14:05:49 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/13 14:41:38 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+#include "../debug.h"
+
 #define TERM_OWNER 130
 
 int	nofork_list(t_data *data, t_cmd *cmd)
@@ -21,7 +23,7 @@ int	nofork_list(t_data *data, t_cmd *cmd)
 	else if (!ft_strcmp(cmd->cmd[0], "export") && !cmd->next)
 		data->exit_stat = export(data, cmd);
 	else if ((!ft_strcmp(cmd->cmd[0], "env") || !ft_strcmp(cmd->cmd[0], "/usr/bin/env")) && !cmd->next)
-		my_env(data, cmd);
+		data->exit_stat = my_env(data, data->lst_cmd); 
 	else if (!ft_strcmp(cmd->cmd[0], "unset") && !cmd->next)
 		data->exit_stat = unset(data, cmd);
 	else if (!ft_strcmp(cmd->cmd[0], "exit") && !cmd->next)
@@ -55,7 +57,8 @@ int	check_builtins(t_data *data, t_cmd *cmd_lst)
 {
 	//echo pwd , unset, export , env , exit
 	char **cmd;
-
+	
+	data->nonbuilt_f = 0;
 	cmd = cmd_lst->cmd;
 	if (!ft_strcmp(cmd[0], "export"))
 		data->exit_stat = export(data, cmd_lst);
@@ -66,7 +69,7 @@ int	check_builtins(t_data *data, t_cmd *cmd_lst)
 	else if (!ft_strcmp(cmd[0], "pwd"))
 		data->exit_stat = my_pwd(data, data->lst_cmd);
 	else if (!ft_strcmp(cmd[0], "env"))
-		my_env(data, data->lst_cmd);
+		data->exit_stat = my_env(data, data->lst_cmd);
 	else if (!ft_strcmp(cmd[0], "exit"))
 	{
 		data->exit_stat = my_exit(data, cmd_lst);
@@ -74,7 +77,7 @@ int	check_builtins(t_data *data, t_cmd *cmd_lst)
 			exit(data->exit_stat);
 	}
 	else
-		return (-42);
+		data->nonbuilt_f = 1;
 	return (data->exit_stat);
 }
 //if the child process exits normally WIFEXITED evaluates to true
@@ -107,7 +110,7 @@ int	dup_and_close(t_data *data, t_cmd *cmd)
 	dup2(cmd->fd_out, 1);
 	close_all(cmd , data->pipes, c_lstcmd(data));
 	data->exit_stat = check_builtins(data, cmd);
-	if(data->exit_stat == -42)
+	if(data->nonbuilt_f)
 		data->exit_stat = execution_2(data, cmd);
 	return (data->exit_stat);
 }
