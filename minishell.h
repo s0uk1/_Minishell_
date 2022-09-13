@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:37:28 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/11 17:56:23 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/13 14:20:47 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # include <readline/history.h>
 # include <termios.h>
 # include <errno.h>
-# include "debug.h"
 # define WORD 1
 # define PIPE 2
 # define PARENTHESIS 4
@@ -75,7 +74,6 @@ typedef struct s_data{
 	int				exit_stat; // exit status
 	int				fork_flag;
 	int				rerror_f;
-	int				non_built_f;
 	int				ac;
 	char			*cmd;
 	char			**av;
@@ -98,7 +96,7 @@ typedef struct s_data{
 //--------------------execution soukaina--------------------//
 int		ft_builtins(t_data *data);
 int		my_exit(t_data *data ,t_cmd *lst_cmd);
-void	my_pwd(t_data *data, t_cmd *lst_cmd);
+int		my_pwd(t_data *data, t_cmd *lst_cmd);
 int    	my_cd(t_data *data, t_cmd *lst_cmd);
 void  	my_env(t_data *data, t_cmd *lst_cmd);
 void    my_echo(t_data *data ,t_cmd *lst_cmd);

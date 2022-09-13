@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 10:37:19 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/11 16:34:46 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/13 13:33:16 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,30 +42,12 @@ void	ft_free_norme(t_data *data)
 {
 	if (data->her_doc)
 		free_split(data->eof);
-	// if (data->paths)
-	// 	free_split(data->paths);
+	if (data->paths)
+		free_split(data->paths);
 	ft_free_lexer(data->lst_lexer);
 	ft_free_cmd(data->lst_cmd);
 }
 
-
-// util function to add somewhere later 
-
-char *ft_strcat(char *dest, char *src)
-{
-	int len;
-	int	i;
-
-	i = 0;
-	len = ft_strlen(src);
-	while(src[i])
-	{
-		dest[i + len] = src[i];
-		i++;
-	}
-	dest[i + len] = '\0';
-	return (dest);
-}
 
 
 void	ft_start(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 14:12:33 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/01 16:20:52 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/13 13:32:33 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,16 @@ int **alloc_pipes(t_data *data)
     c = c_lstcmd(data);
     fds = (int **)malloc(sizeof(int *) * (c - 1));
     if (!fds)
-        return (NULL);
+        exit(1);
     i = 0;
     while (i < c - 1)
     {
         fds[i] = malloc(sizeof(int) * 2);
         if (!fds[i])
-            return (NULL);
+            exit(1);
         pipe(fds[i]);
         i++;
     }
-    fds[i] = NULL;
     return (fds);
 }
 

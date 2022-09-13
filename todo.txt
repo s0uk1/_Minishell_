@@ -1,10 +1,8 @@
-how heredoc is handled :
--its checked and executed in the checknonfork function
--it then gets to execute the command if its paired with analyzer
--fd_in and her_in values are changed in create_new_command
--when a ctrl d EOF signal is sent to heredoc , it then goes to the execution function
--the same way when it encounters the actual EOF string
-- fd = -69 in the case when redirection type is read 
-    -there's no create flag so when we try reading a file that
-doesnt exist we must return an error
--exit code errors
+
+-i have to comment the code section responsible for freeing the data, gotta fix this
+-pipes are now working i just have to differentiate between the fork and non fork functions
+to do next:
+    -heredoc
+    -init_signals
+    -garbage collection
+

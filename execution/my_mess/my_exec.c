@@ -6,12 +6,11 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:10:11 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/12 13:37:05 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/13 11:17:31 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
 char *generate_path(t_data *data, char **cmd, int i, int flag)
 {
 	char *path;
@@ -36,19 +35,23 @@ int	check_access(t_data *data, char **cmd, int i, int flag)
 {
 	char	*path;
 	int		fd;
+	int		size;
 
+	size = 0;
 	fd = 0;
+	path = NULL;
 	path = generate_path(data, cmd, i, flag);
 	fd = access(path, F_OK | X_OK);
+	size = count_cmds(cmd);
+	cmd[size] = NULL;
 	if (fd == -1)
 		return (0);
 	else
 	{
 		execve(path, cmd, data->env);
 		perror("execve() error");
-		if (errno == EACCES)
-			exit(126);
 	}
+	free(path);
     return (1);
 }
 
@@ -103,9 +106,6 @@ int	execution_2(t_data *data , t_cmd *lst_cmd)
 	if (check_nonabs(data, lst_cmd, cmd))
 		data->exit_stat = 0;
 	else
-	{
-		
 		data->exit_stat = 127;
-	}
 	return (data->exit_stat);
 }
