@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:53:10 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/15 14:00:53 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/15 16:42:30 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ int	check_builtins(t_data *data, t_cmd *cmd_lst)
 		return (-42);
 	return (data->exit_stat);
 }
+int		wait_p(pid_t *p, int *status)
+{
+	p = wait(&status);
+	return (p);
+}
 
 int	terminate_pid(int count)
 {
@@ -45,9 +50,10 @@ int	terminate_pid(int count)
 	int		status;
 	int		res;
 
+	p = 0;
 	while (count)
 	{
-		while ((p = wait(&status) > 0))
+		while (wait_p(&p , &status) > 0)
 		{
 			if (WIFEXITED(status))
 				res = kill(p, SIGKILL);

@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:17:12 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/15 13:38:40 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/15 15:06:47 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_handle_herdoc(t_data *data, t_lexer *lexer)
 			data->her_doc++;
 		lexer = lexer->next;
 	}
-	data->eof = malloc(sizeof(char *) * data->her_doc + 1);
+	data->eof = malloc(sizeof(char *) * (data->her_doc + 1));
 	if (!data->eof)
 		exit (1);
 	lexer = data->lst_lexer;
