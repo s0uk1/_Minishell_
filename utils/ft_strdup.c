@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals_handling.c                                 :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/04 13:44:37 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/15 13:28:32 by ssabbaji         ###   ########.fr       */
+/*   Created: 2022/09/14 14:01:52 by ssabbaji          #+#    #+#             */
+/*   Updated: 2022/09/15 13:42:01 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	sig_handler(int num)
+char	*ft_strdup(char *s1)
 {
-	if (num == SIGINT && g_where_ami)
+	size_t	i;
+	char	*str;
+
+	i = 0;
+	str = (char *)malloc((ft_strlen(s1) + 1) * sizeof(char));
+	if (str == NULL)
+		return (NULL);
+	while (s1[i] != '\0')
 	{
-		write(1, "\n", 1);
-		rl_replace_line("", 0);
-		rl_on_new_line();
-		rl_redisplay();
+		str[i] = s1[i];
+		i++;
 	}
-	if (num == SIGQUIT && g_where_ami)
-		if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
-			perror("signal(): error");
+	str[i] = '\0';
+	return (str);
 }

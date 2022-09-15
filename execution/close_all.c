@@ -6,19 +6,17 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 11:02:55 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/03 11:02:58 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/15 13:22:17 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-
-//if you close default in and out fds the parent exits ??
 int	close_all(t_cmd *lst_cmd, int **pipes, int count)
 {
-	int	idx;
+	int		idx;
 	t_cmd	*cmd;
-	
+
 	idx = 0;
 	cmd = lst_cmd;
 	while (cmd)

@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:17:12 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/05 13:29:14 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/15 13:38:40 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,21 @@ void	ft_handle_herdoc(t_data *data, t_lexer *lexer)
 			data->her_doc++;
 		lexer = lexer->next;
 	}
-	if (data->her_doc)
+	data->eof = malloc(sizeof(char *) * data->her_doc + 1);
+	if (!data->eof)
+		exit (1);
+	lexer = data->lst_lexer;
+	while (lexer)
 	{
-		data->eof = malloc(sizeof(char *) * (data->her_doc + 1 ));
-		if (!data->eof)
-			exit (1);
-		lexer = data->lst_lexer;
-		while (lexer)
+		if (ft_strcmp(lexer->value, "<<") == 0)
 		{
-			if (ft_strcmp(lexer->value, "<<") == 0)
-			{
-				lexer = lexer->next;
-				data->eof[i] = ft_substr(lexer->value, 0, ft_strlen(lexer->value));
-				ft_delete_eof_quotes(data->eof[i++]);
-			}
 			lexer = lexer->next;
+			data->eof[i] = ft_substr(lexer->value, 0, ft_strlen(lexer->value));
+			ft_delete_eof_quotes(data->eof[i++]);
 		}
-		data->eof[i] = NULL;
+		lexer = lexer->next;
 	}
+	data->eof[i] = NULL;
 }
 
 void	ft_delete_command(t_data *data)

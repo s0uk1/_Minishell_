@@ -6,107 +6,65 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 10:42:26 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/08/29 10:47:10 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/15 14:01:58 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-char	*join_cmd(char **argv, int argc, int flag)
+void	print_rest(char **cmd, int i, int flag)
 {
-	int		i;
-	char	*args;
+	char	*echo;
 
-    if (!flag)
-        i = 2;
-    else
-	    i = 1;
-	args = NULL;
-	while (i < argc)
+	if (flag)
 	{
-		args = ft_strjoin(args, argv[i++]);
-		args = ft_strjoin(args, " ");
+		echo = join_cmd(cmd, count_cmds(cmd), 1);
+		echo = ft_substr(echo, 0, ft_strlen(echo) - 1);
+		printf("%s", echo);
+		printf("\n");
 	}
-	return (args);
+	if (!flag)
+	{
+		echo = join_cmd(cmd, count_cmds(cmd), i);
+		echo = ft_substr(echo, 0, ft_strlen(echo) - 1);
+		printf("%s", echo);
+	}
 }
 
-int my_strchr(char *str, int c)
+int	start_index(char **cmd)
 {
-	size_t		i;
-	size_t		size;
+	int	i;
+	int	idx;
 
-	i = 0;
-	size = ft_strlen(str);
-	while (i < size)
+	idx = 0;
+	i = 1;
+	while (cmd[i])
 	{
-		if (str[i] == (char )c)
-			return (1);
+		if (cmd[i][0] == '-')
+		{
+			if (!check_valid(cmd[i]))
+			{
+				idx = i;
+				break ;
+			}
+		}
+		idx = i;
 		i++;
 	}
-	if (c == '\0')
-		return (1);
+	return (idx);
+}
+
+int	my_echo(t_data *data, t_cmd *cmd_lst)
+{
+	char	**cmd;
+	int		idx;
+
+	cmd = cmd_lst->cmd;
+	if (!cmd[1])
+		printf("\n");
+	if (cmd[1][0] != '-' && cmd[1][1] != 'n')
+		print_rest(cmd, 0, 1);
+	idx = start_index(cmd);
+	print_rest(cmd, idx, 0);
 	return (0);
-}
-
-int    check_valid(char *cmd)
-{
-    char *tmp;
-    int i;
-
-    i = 1;
-    tmp = cmd;
-    while (tmp[i])
-    {
-        if (tmp[i] != 'n')
-            return (0);
-        i++;
-    }
-    return (1);
-}
-
-void    print_rest(char **cmd, int i, int flag)
-{
-    char *echo;
-    if (!flag)
-    {
-       echo = join_cmd(cmd, count_cmds(cmd), 0);
-       echo = ft_substr(echo, 0, ft_strlen(echo) - 1);
-       printf("%s",echo);
-    }
-    if (flag)
-    {
-        echo = join_cmd(cmd, count_cmds(cmd), 1);
-        echo = ft_substr(echo, 0, ft_strlen(echo) - 1);
-        printf("%s",echo);
-        printf("\n");
-    }
-}
-
-
-void    my_echo(t_data *data ,t_cmd *lst_cmd)
-{
-    char **cmd;
-    int i;
-    int j;
-
-    i = 1;
-    j = 0;
-    cmd = lst_cmd->cmd;
-    while (cmd[i])
-    {
-        if (cmd[i][0] == '-' && cmd[i][1] == 'n')
-        {
-            if (!check_valid(cmd[i]))
-            {
-                print_rest(cmd, i, 0);
-                break ;       
-            }    
-        } 
-        i++;
-    }
-    i = 1;
-    if (cmd[i][0] == '-' && cmd[i][1] == 'n')
-        print_rest(cmd, 2, 0);
-    else
-        print_rest(cmd, 1, 1);  
 }

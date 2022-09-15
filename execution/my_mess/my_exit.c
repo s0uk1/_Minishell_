@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 10:52:05 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/03 14:12:21 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/15 13:20:25 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int	ft_atoi(const char *str)
 {
-	int i;
-	int n;
-	int res;
+	int	i;
+	int	n;
+	int	res;
 
 	i = 0;
-	res = 0; 
+	res = 0;
 	n = 1;
 	while (str[i] <= 32)
 		i++;
@@ -38,43 +38,40 @@ int	ft_atoi(const char *str)
 
 int	ft_isdigit(char *num)
 {
-	int i;
-    
-    i = 0;
-    while (num[i])
-    {      
-        if (num[i] >= '0' && num[i] <= '9')
-		    return (1);
-	    i++;
-    }
-    return (0);
+	int	i;
+
+	i = 0;
+	while (num[i])
+	{
+		if (num[i] >= '0' && num[i] <= '9')
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
-//255 means wrong argument to the exit builtin
-
-int my_exit(t_data *data ,t_cmd *lst_cmd)
+int	my_exit(t_data *data, t_cmd *lst_cmd)
 {
-    char **cmd;
+	char	**cmd;
 
-    cmd = lst_cmd->cmd;
-    
-    if (!lst_cmd->next)
-    {
-        printf("exit\n");
-        if (cmd[1])
-        {
-            if (cmd[2])
-                printf("bash: exit: too many arguments\n");
-            else if(ft_isdigit(cmd[1]))
-                return (ft_atoi(cmd[1]));
-            else
-            {
-                printf("bash: exit: %s :numeric argument required\n", cmd[1]);
-                return (255);
-            }  
-        }
-        else
-            return (EXIT_SUCCESS);
-    }
-    return (EXIT_SUCCESS);
+	cmd = lst_cmd->cmd;
+	if (!lst_cmd->next)
+	{
+		printf("exit\n");
+		if (cmd[1])
+		{
+			if (cmd[2])
+				printf("bash: exit: too many arguments\n");
+			else if (ft_isdigit(cmd[1]))
+				return (ft_atoi(cmd[1]));
+			else
+			{
+				printf("bash: exit: %s :numeric argument required\n", cmd[1]);
+				return (255);
+			}
+		}
+		else
+			return (EXIT_SUCCESS);
+	}
+	return (EXIT_SUCCESS);
 }

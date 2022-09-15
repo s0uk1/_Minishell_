@@ -1,61 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   counting_funcs.c                                   :+:      :+:    :+:   */
+/*   cd_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/09 14:48:15 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/15 13:16:08 by ssabbaji         ###   ########.fr       */
+/*   Created: 2022/09/15 13:55:18 by ssabbaji          #+#    #+#             */
+/*   Updated: 2022/09/15 14:01:02 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	count_cmds(char **cmd)
+char	*update_env(t_data *data, char *env, char *upd)
 {
-	char	**tmp;
-	int		i;
+	t_env	*lst;
 
-	i = 0;
-	tmp = cmd;
-	while (tmp[i])
-	{
-		if (tmp)
-			i++;
-	}
-	return (i);
-}
-
-int	c_lstcmd(t_data *data)
-{
-	t_cmd	*lst;
-	int		i;
-
-	i = 0;
-	lst = data->lst_cmd;
+	lst = data->lst_env;
 	while (lst)
 	{
-		i++;
+		if (!ft_strcmp(lst->name, env))
+		{
+			lst->value = ft_strdup(upd);
+			return (lst->value);
+		}
 		lst = lst->next;
 	}
-	return (i);
+	return (NULL);
 }
 
-int	count_pipes(t_data *data)
+char	*custom_getenv(char *env_var, t_env *env_lst)
 {
-	int		i;
-	int		count;
-	char	**cmd;
+	t_env	*tmp;
+	char	*pwd;
 
-	cmd = data->lst_cmd->cmd;
-	i = 0;
-	count = 0;
-	while (cmd[i])
+	tmp = env_lst;
+	pwd = NULL;
+	while (tmp)
 	{
-		if (ft_strcmp(*cmd, "|") == 0)
-			count++;
-		i++;
+		if (!ft_strcmp(tmp->name, env_var))
+		{
+			pwd = tmp->value;
+			break ;
+		}
+		else
+			tmp = tmp->next;
 	}
-	return (count);
+	return (pwd);
 }

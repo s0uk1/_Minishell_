@@ -1,8 +1,0 @@
-
--i have to comment the code section responsible for freeing the data, gotta fix this
--pipes are now working i just have to differentiate between the fork and non fork functions
-to do next:
-    -heredoc
-    -init_signals
-    -garbage collection
-

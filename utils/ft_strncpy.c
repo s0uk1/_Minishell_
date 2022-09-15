@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals_handling.c                                 :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/04 13:44:37 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/15 13:28:32 by ssabbaji         ###   ########.fr       */
+/*   Created: 2022/09/15 13:55:59 by ssabbaji          #+#    #+#             */
+/*   Updated: 2022/09/15 14:00:30 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	sig_handler(int num)
+char	*ft_strncpy(char *dest, char *src, unsigned int n)
 {
-	if (num == SIGINT && g_where_ami)
+	unsigned int	i;
+
+	i = 0;
+	dest = (char *)malloc(sizeof(char) * n + 1);
+	while ((src[i] != '\0') && (i < n))
 	{
-		write(1, "\n", 1);
-		rl_replace_line("", 0);
-		rl_on_new_line();
-		rl_redisplay();
+		dest[i] = src[i];
+		i++;
 	}
-	if (num == SIGQUIT && g_where_ami)
-		if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
-			perror("signal(): error");
+	while (i < n)
+	{
+		dest[i] = '\0';
+		i++;
+	}
+	return (dest);
 }

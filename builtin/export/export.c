@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 17:56:29 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/04 15:54:10 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/15 13:32:46 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,16 @@ void	ft_print_export(t_data *data)
 		env_clone = env_clone->next;
 	}
 }
+
 int	valid_name(char *name, t_data **data)
 {
 	if (name[0] >= '0' && name[0] <= '9')
 	{
 		printf("bash: export: `%s': not a valid identifier\n", name);
 		(*data)->exit_stat = 1;
-		return (0);	
+		return (0);
 	}
-	return(1);
+	return (1);
 }
 
 void	ft_export_arg(t_data *data, t_cmd *lst_cmd, char *name, char *value)
@@ -48,8 +49,8 @@ void	ft_export_arg(t_data *data, t_cmd *lst_cmd, char *name, char *value)
 		if (ft_name_exists(data, name))
 			ft_change_env_value(data, name, value, ft_strlen(value));
 		else
-		{	
-			if(valid_name(name, &data))
+		{
+			if (valid_name(name, &data))
 			{
 				ft_add_new_env(data, name, value);
 				if (!data->first_export)
@@ -66,9 +67,9 @@ void	ft_export_arg(t_data *data, t_cmd *lst_cmd, char *name, char *value)
 
 int	export(t_data *data, t_cmd *lst_cmd)
 {
-	char *name;
-	char *value;
-	
+	char	*name;
+	char	*value;
+
 	if (lst_cmd && !lst_cmd->cmd[1])
 	{
 		ft_sort_env(data);

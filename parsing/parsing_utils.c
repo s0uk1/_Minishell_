@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:17:08 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/08/28 13:39:31 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/15 13:36:02 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,7 @@ void	free_split(char **arguments)
 		free(arguments[i]);
 		i++;
 	}
-	if (arguments)
-		free(arguments);
+	free(arguments);
 }
 
 char	*ft_join_args(char *s1, char *s2)
@@ -87,6 +86,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2[j])
 		str[i++] = s2[j++];
 	str[ft_strlen(s1) + ft_strlen(s2)] = '\0';
-	// free(s1);
+	free(s1);
 	return (str);
 }
