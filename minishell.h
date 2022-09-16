@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:37:28 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/15 18:10:49 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/16 13:58:02 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ char				*custom_getenv(char *env_var, t_env *env_lst);
 char				*join_cmd(char **argv, int argc, int i);
 int					check_valid(char *cmd);
 int					check_builtins(t_data *data, t_cmd *cmd_lst);
+char				*cd_strjoin(char *s1, char *s2);
 //-----------------env--------------------------//
 void				ft_create_env_list(t_env **envi, char **env);
 void				ft_env(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:10:11 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/15 13:20:00 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/16 15:03:57 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,6 @@ int	execution_2(t_data *data, t_cmd *lst_cmd)
 
 	data->paths = NULL;
 	cmd = lst_cmd->cmd;
-	if (getcwd(data->cwd, sizeof(data->cwd)) == NULL)
-		perror("getcwd() error");
 	if (cmd[0][0] == '/')
 		check_access(data, cmd, 0, 1);
 	if (check_nonabs(data, lst_cmd, cmd))
