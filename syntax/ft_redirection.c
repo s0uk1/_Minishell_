@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:17:27 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/03 11:51:48 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:08:28 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ static int	ft_check_red(t_data *data)
 	while (lexer_clone)
 	{
 		if (lexer_clone->type == REDIRECTION
-			&& ft_strlen(lexer_clone->value) > 2)
+			&& ft_strlen(lexer_clone->val) > 2)
 		{
-			ft_for_norme(data, lexer_clone->value);
+			ft_for_norme(data, lexer_clone->val);
 			return (data->exit_stat);
 		}
 		lexer_clone = lexer_clone->next;
@@ -66,7 +66,7 @@ static int	ft_check_after_red(t_data *data)
 			{
 				if (ft_check_type(lexer_clone->type))
 				{
-					ft_for_norme(data, lexer_clone->value);
+					ft_for_norme(data, lexer_clone->val);
 					return (data->exit_stat);
 				}
 				else

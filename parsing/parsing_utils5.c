@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:17:17 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/05 13:29:25 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:08:28 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_delete_node_red(t_data *data, int position)
 		if (lexer_clone && lexer_clone->prev)
 			lexer_clone->prev->next = lexer_clone->next;
 		lexer_clone2 = lexer_clone->next;
-		free(lexer_clone->value);
+		free(lexer_clone->val);
 		free(lexer_clone);
 		lexer_clone = lexer_clone2;
 	}
@@ -46,7 +46,7 @@ void	ft_delete_red_norme(t_data *data, int position, int flag)
 	{
 		flag = 0;
 		if (lexer_clone && lexer_clone->type == REDIRECTION
-			&& ft_strcmp(lexer_clone->value, "<<"))
+			&& ft_strcmp(lexer_clone->val, "<<"))
 		{
 			flag = 1;
 			position++;
@@ -80,7 +80,7 @@ void	ft_delete_redirections(t_data *data)
 		while (lexer_clone && lexer_clone->type != PIPE)
 		{
 			if (lexer_clone && lexer_clone->type == REDIRECTION
-				&& ft_strcmp(lexer_clone->value, "<<"))
+				&& ft_strcmp(lexer_clone->val, "<<"))
 				ft_delete_node_red(data, position);
 			position++;
 			lexer_clone = lexer_clone->next;

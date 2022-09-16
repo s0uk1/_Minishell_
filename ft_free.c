@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yabtaour <yabtaour@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 17:55:52 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/07/28 10:47:47 by yabtaour         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:06:18 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_free_lexer(t_lexer *lexer)
 	while (lexer_current)
 	{
 		lexer_next = lexer_current->next;
-		free(lexer_current->value);
+		free(lexer_current->val);
 		free(lexer_current);
 		lexer_current = lexer_next;
 	}

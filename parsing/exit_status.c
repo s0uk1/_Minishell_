@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_status.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yabtaour <yabtaour@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:16:59 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/07/26 19:48:20 by yabtaour         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:07:22 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,15 +75,15 @@ void	ft_change_exit_status(t_data *data)
 		data->flag_d = 0;
 		data->flag_s = 0;
 		i = 0;
-		while (lexer_clone->value[i])
+		while (lexer_clone->val[i])
 		{
-			if (lexer_clone->value[i] == '"' && data->flag_s == 0)
+			if (lexer_clone->val[i] == '"' && data->flag_s == 0)
 				ft_change_flag(data->flag_d);
-			if (lexer_clone->value[i] == '\'' && data->flag_d == 0)
+			if (lexer_clone->val[i] == '\'' && data->flag_d == 0)
 				ft_change_flag(data->flag_s);
-			if (data->flag_s == 0 && lexer_clone->value[i] == '$'
-				&& lexer_clone->value[i + 1] == '?')
-				lexer_clone->value = ft_change_value(data, lexer_clone->value);
+			if (data->flag_s == 0 && lexer_clone->val[i] == '$'
+				&& lexer_clone->val[i + 1] == '?')
+				lexer_clone->val = ft_change_value(data, lexer_clone->val);
 			i++;
 		}
 		lexer_clone = lexer_clone->next;

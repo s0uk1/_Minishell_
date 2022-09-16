@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:17:10 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/13 11:19:38 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:08:28 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ int	*ft_fill_red(t_data *data, int red_num)
 	lexer_clone = data->lst_lexer;
 	while (lexer_clone && lexer_clone->type != PIPE)
 	{
-		if (ft_strcmp(lexer_clone->value, ">") == 0)
+		if (ft_strcmp(lexer_clone->val, ">") == 0)
 			red[i++] = 1;
-		if (ft_strcmp(lexer_clone->value, ">>") == 0)
+		if (ft_strcmp(lexer_clone->val, ">>") == 0)
 			red[i++] = 2;
-		if (ft_strcmp(lexer_clone->value, "<") == 0)
+		if (ft_strcmp(lexer_clone->val, "<") == 0)
 			red[i++] = 3;
 		lexer_clone = lexer_clone->next;
 	}
@@ -99,7 +99,7 @@ int	ft_red_num(t_data *data)
 	while (lexer_clone && lexer_clone->type != PIPE)
 	{		
 		if (lexer_clone->type == REDIRECTION
-			&& ft_strcmp(lexer_clone->value, "<<"))
+			&& ft_strcmp(lexer_clone->val, "<<"))
 			red_num++;
 		lexer_clone = lexer_clone->next;
 	}

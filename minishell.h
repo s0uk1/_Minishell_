@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:37:28 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/15 14:03:09 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:10:49 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int					g_where_ami;
 typedef struct s_gen
 {
 	int				index;
+	int				count;
 	int				old_error;
 }					t_gen;
 
@@ -58,7 +59,7 @@ typedef struct s_env
 
 typedef struct s_lexer
 {
-	char			*value;
+	char			*val;
 	int				type;
 	struct s_lexer	*next;
 	struct s_lexer	*prev;
@@ -131,6 +132,7 @@ char				*update_env(t_data *data, char *env, char *upd);
 char				*custom_getenv(char *env_var, t_env *env_lst);
 char				*join_cmd(char **argv, int argc, int i);
 int					check_valid(char *cmd);
+int					check_builtins(t_data *data, t_cmd *cmd_lst);
 //-----------------env--------------------------//
 void				ft_create_env_list(t_env **envi, char **env);
 void				ft_env(t_data *data);
@@ -195,7 +197,7 @@ void				ft_change_exit_status(t_data *data);
 int					ft_get_in(int *fd, int *red, int red_num);
 int					ft_get_out(int *fd, int *red, int red_num);
 void				ft_delete_command(t_data *data);
-void				ft_handle_herdoc(t_data *data, t_lexer *lexer);
+void				ft_handle_herdoc(t_data *data, t_lexer *lexer, int i);
 void				ft_delete_herdoc(t_data *data);
 int					*ft_fill_red(t_data *data, int red_num);
 int					ft_fill_fd(t_data *data, char *name, int red);

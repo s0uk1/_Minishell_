@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:17:25 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/03 11:51:48 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:08:28 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ int	ft_check_the_quotes(t_data *data)
 		if (lexer_clone->type == WORD)
 		{
 			i = 0;
-			while (lexer_clone->value[i])
+			while (lexer_clone->val[i])
 			{
-				do_num = ft_change_double(data, lexer_clone->value[i], do_num);
-				si_num = ft_change_single(data, lexer_clone->value[i], si_num);
+				do_num = ft_change_double(data, lexer_clone->val[i], do_num);
+				si_num = ft_change_single(data, lexer_clone->val[i], si_num);
 				i++;
 			}
 		}

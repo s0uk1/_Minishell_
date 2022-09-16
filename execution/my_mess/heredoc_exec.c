@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 13:15:29 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/15 13:17:03 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/15 17:22:04 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	heredoc_exec(t_data *data, t_cmd *cmd_lst)
 	if (pid == 0)
 	{
 		check_delims(data, cmd);
-		close_all(cmd, data->pipes, count_cmds(cmd->cmd));
+		close_all(cmd, data->pipes, data->general.count);
 		close(cmd->fd_in);
 		close(cmd->her_in);
 		exit(0);

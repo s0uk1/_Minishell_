@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expanding_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yabtaour <yabtaour@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:16:24 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/07/26 18:16:25 by yabtaour         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:08:28 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_check_still_dollar(t_data *data)
 	lexer_clone = data->lst_lexer;
 	while (lexer_clone)
 	{
-		if (!ft_strcmp(lexer_clone->value, "<<"))
+		if (!ft_strcmp(lexer_clone->val, "<<"))
 		{
 			lexer_clone = lexer_clone->next;
 			if (lexer_clone)
@@ -43,9 +43,9 @@ int	ft_check_still_dollar(t_data *data)
 		data->flag_d = 0;
 		data->flag_s = 0;
 		i = -1;
-		while (lexer_clone && lexer_clone->value[++i])
+		while (lexer_clone && lexer_clone->val[++i])
 		{
-			if (ft_check_for_norme(data, lexer_clone->value, i))
+			if (ft_check_for_norme(data, lexer_clone->val, i))
 				return (1);
 		}
 		if (lexer_clone)

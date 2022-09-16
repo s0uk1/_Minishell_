@@ -6,42 +6,17 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:53:10 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/15 16:42:30 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:11:44 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #define TERM_OWNER 130
 
-int	check_builtins(t_data *data, t_cmd *cmd_lst)
+int	wait_p(pid_t *p, int *status)
 {
-	char	**cmd;
-
-	cmd = cmd_lst->cmd;
-	if (!ft_strcmp(cmd[0], "export"))
-		data->exit_stat = export(data, cmd_lst);
-	else if (!ft_strcmp(cmd[0], "unset"))
-		data->exit_stat = unset(data, cmd_lst);
-	else if (!ft_strcmp(cmd[0], "echo"))
-		my_echo(data, cmd_lst);
-	else if (!ft_strcmp(cmd[0], "pwd"))
-		data->exit_stat = my_pwd(data, data->lst_cmd);
-	else if (!ft_strcmp(cmd[0], "env"))
-		my_env(data, data->lst_cmd);
-	else if (!ft_strcmp(cmd[0], "exit"))
-	{
-		data->exit_stat = my_exit(data, cmd_lst);
-		if (data->exit_stat != 1)
-			exit(data->exit_stat);
-	}
-	else
-		return (-42);
-	return (data->exit_stat);
-}
-int		wait_p(pid_t *p, int *status)
-{
-	p = wait(&status);
-	return (p);
+	*p = wait(status);
+	return (*p);
 }
 
 int	terminate_pid(int count)
@@ -53,7 +28,7 @@ int	terminate_pid(int count)
 	p = 0;
 	while (count)
 	{
-		while (wait_p(&p , &status) > 0)
+		while (wait_p(&p, &status) > 0)
 		{
 			if (WIFEXITED(status))
 				res = kill(p, SIGKILL);
@@ -69,7 +44,7 @@ int	dup_and_close(t_data *data, t_cmd *cmd)
 {
 	dup2(cmd->fd_in, 0);
 	dup2(cmd->fd_out, 1);
-	close_all(cmd, data->pipes, c_lstcmd(data));
+	close_all(cmd, data->pipes, data->general.count);
 	data->exit_stat = check_builtins(data, cmd);
 	if (data->exit_stat == -42)
 		data->exit_stat = execution_2(data, cmd);
@@ -84,6 +59,7 @@ int	execution(t_data *data)
 
 	cmd = data->lst_cmd;
 	fork_c = 0;
+	data->general.count = c_lstcmd(data);
 	while (cmd)
 	{
 		data->exit_stat = check_nonfork(data, cmd);
@@ -96,7 +72,7 @@ int	execution(t_data *data)
 		}
 		cmd = cmd->next;
 	}
-	close_all(data->lst_cmd, data->pipes, c_lstcmd(data));
+	close_all(data->lst_cmd, data->pipes, data->general.count);
 	if (fork_c)
 		data->exit_stat = terminate_pid(fork_c);
 	return (data->exit_stat);

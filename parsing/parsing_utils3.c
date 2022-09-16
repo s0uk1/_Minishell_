@@ -6,38 +6,38 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:17:12 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/15 15:06:47 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:08:28 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	ft_handle_herdoc(t_data *data, t_lexer *lexer)
+void	ft_handle_herdoc(t_data *data, t_lexer *lexer, int i)
 {
-	int		i;
-
-	i = 0;
 	while (lexer)
 	{
-		if (ft_strcmp(lexer->value, "<<") == 0)
+		if (ft_strcmp(lexer->val, "<<") == 0)
 			data->her_doc++;
 		lexer = lexer->next;
 	}
-	data->eof = malloc(sizeof(char *) * (data->her_doc + 1));
-	if (!data->eof)
-		exit (1);
-	lexer = data->lst_lexer;
-	while (lexer)
+	if (data->her_doc)
 	{
-		if (ft_strcmp(lexer->value, "<<") == 0)
+		data->eof = malloc(sizeof(char *) * (data->her_doc + 1));
+		if (!data->eof)
+			exit (1);
+		lexer = data->lst_lexer;
+		while (lexer)
 		{
+			if (ft_strcmp(lexer->val, "<<") == 0)
+			{
+				lexer = lexer->next;
+				data->eof[i] = ft_substr(lexer->val, 0, ft_strlen(lexer->val));
+				ft_delete_eof_quotes(data->eof[i++]);
+			}
 			lexer = lexer->next;
-			data->eof[i] = ft_substr(lexer->value, 0, ft_strlen(lexer->value));
-			ft_delete_eof_quotes(data->eof[i++]);
 		}
-		lexer = lexer->next;
+		data->eof[i] = NULL;
 	}
-	data->eof[i] = NULL;
 }
 
 void	ft_delete_command(t_data *data)
@@ -52,7 +52,7 @@ void	ft_delete_command(t_data *data)
 		if (lexer_clone->prev)
 			lexer_clone->prev->next = lexer_clone->next;
 		data->lst_lexer = lexer_clone->next;
-		free(lexer_clone->value);
+		free(lexer_clone->val);
 		free(lexer_clone);
 		lexer_clone = data->lst_lexer;
 	}
@@ -63,7 +63,7 @@ void	ft_delete_command(t_data *data)
 		if (lexer_clone->prev)
 			lexer_clone->prev->next = lexer_clone->next;
 		data->lst_lexer = lexer_clone->next;
-		free(lexer_clone->value);
+		free(lexer_clone->val);
 		free(lexer_clone);
 		lexer_clone = data->lst_lexer;
 	}

@@ -6,11 +6,37 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:50:24 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/15 13:53:54 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/16 10:44:23 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+int	check_builtins(t_data *data, t_cmd *cmd_lst)
+{
+	char	**cmd;
+
+	cmd = cmd_lst->cmd;
+	if (!ft_strcmp(cmd[0], "export"))
+		data->exit_stat = export(data, cmd_lst);
+	else if (!ft_strcmp(cmd[0], "unset"))
+		data->exit_stat = unset(data, cmd_lst);
+	else if (!ft_strcmp(cmd[0], "echo"))
+		data->exit_stat = my_echo(data, cmd_lst);
+	else if (!ft_strcmp(cmd[0], "pwd"))
+		data->exit_stat = my_pwd(data, data->lst_cmd);
+	else if (!ft_strcmp(cmd[0], "env"))
+		my_env(data, data->lst_cmd);
+	else if (!ft_strcmp(cmd[0], "exit"))
+	{
+		data->exit_stat = my_exit(data, cmd_lst);
+		if (data->exit_stat != 1)
+			exit(data->exit_stat);
+	}
+	else
+		return (-42);
+	return (data->exit_stat);
+}
 
 int	nofork_list(t_data *data, t_cmd *cmd)
 {
@@ -38,7 +64,7 @@ int	nofork_list(t_data *data, t_cmd *cmd)
 int	check_nonfork(t_data *data, t_cmd *cmd)
 {
 	data->fork_flag = 0;
-	if (heredoc_exec(data, cmd) && cmd->her_doc_num)
+	if (cmd->her_doc_num && heredoc_exec(data, cmd))
 	{
 		if (cmd->her_in)
 		{

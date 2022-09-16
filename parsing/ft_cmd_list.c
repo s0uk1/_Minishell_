@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:17:01 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/05 13:29:21 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:06:44 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	*ft_fill_command(t_data *data)
 	lexer_clone = data->lst_lexer;
 	while (lexer_clone && lexer_clone->type != PIPE)
 	{
-		command = ft_strjoin(command, lexer_clone->value);
+		command = ft_strjoin(command, lexer_clone->val);
 		command = ft_strjoin(command, " ");
 		lexer_clone = lexer_clone->next;
 	}

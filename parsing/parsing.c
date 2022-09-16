@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:17:19 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/15 13:38:14 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:06:36 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_check_still_redirection(t_data *data)
 	while (lexer_clone && lexer_clone->type != PIPE)
 	{
 		if (lexer_clone->type == REDIRECTION
-			&& ft_strcmp(lexer_clone->value, "<<"))
+			&& ft_strcmp(lexer_clone->val, "<<"))
 			return (1);
 		lexer_clone = lexer_clone->next;
 	}
@@ -57,10 +57,10 @@ void	ft_add_normal_command(t_data *data, char *new, int *fd, int *red)
 	while (lexer_clone && lexer_clone->type != PIPE)
 	{
 		if (lexer_clone->type == REDIRECTION
-			&& ft_strcmp(lexer_clone->value, "<<"))
+			&& ft_strcmp(lexer_clone->val, "<<"))
 		{
 			lexer_clone = lexer_clone->next;
-			new = ft_new(lexer_clone->value);
+			new = ft_new(lexer_clone->val);
 			fd[i] = ft_fill_fd(data, new, red[i]);
 			free(new);
 			i++;
@@ -90,7 +90,7 @@ void	ft_parsing(t_data *data)
 
 	lexer_clone = data->lst_lexer;
 	ft_change_exit_status(data);
-	ft_handle_herdoc(data, lexer_clone);
+	ft_handle_herdoc(data, lexer_clone, 0);
 	ft_add_command_pipe(data);
 	ft_delete_quotes(data);
 }
