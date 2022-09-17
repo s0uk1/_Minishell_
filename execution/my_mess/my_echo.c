@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 10:42:26 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/15 14:01:58 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/17 18:54:50 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,10 @@ int	my_echo(t_data *data, t_cmd *cmd_lst)
 	if (!cmd[1])
 		printf("\n");
 	if (cmd[1][0] != '-' && cmd[1][1] != 'n')
+	{
 		print_rest(cmd, 0, 1);
+		return (0);
+	}
 	idx = start_index(cmd);
 	print_rest(cmd, idx, 0);
 	return (0);

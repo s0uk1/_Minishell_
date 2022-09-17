@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 10:37:19 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/17 11:46:11 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/17 18:57:00 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ int	ft_sub_main(t_data *data)
 		{
 			ft_lexer(data);
 			data->exit_stat = ft_syntax_analyzer(data);
-			// ft_free_lexer(data->lst_lexer);
-			// exit(1);
 			if (data->exit_stat)
 			{
 				ft_free_lexer(data->lst_lexer);
