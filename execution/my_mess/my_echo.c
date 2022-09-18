@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 10:42:26 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/17 18:54:50 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/18 14:12:37 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@
 void	print_rest(char **cmd, int i, int flag)
 {
 	char	*echo;
+	char 	*free_echo;
 
 	if (flag)
 	{
 		echo = join_cmd(cmd, count_cmds(cmd), 1);
+		free_echo = echo;
 		echo = ft_substr(echo, 0, ft_strlen(echo) - 1);
 		printf("%s", echo);
 		printf("\n");
@@ -26,9 +28,11 @@ void	print_rest(char **cmd, int i, int flag)
 	if (!flag)
 	{
 		echo = join_cmd(cmd, count_cmds(cmd), i);
+		free_echo = echo;
 		echo = ft_substr(echo, 0, ft_strlen(echo) - 1);
 		printf("%s", echo);
 	}
+	free(free_echo);
 }
 
 int	start_index(char **cmd)

@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:16:26 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/15 18:08:28 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/18 16:19:30 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,24 @@ int	ft_value_var(t_data *data, int i, char *value)
 	return (i);
 }
 
+char 	*generate_nv(char *lexer_val)
+{
+	char	*temp;
+	char	*n_v;
+		
+	temp = NULL;
+	n_v = NULL;
+	temp = ft_substr(lexer_val, 0, ft_len_before(lexer_val));
+	n_v = ft_strjoin(n_v, temp);
+	return (n_v);
+}
+
 void	ft_real_expanding(t_data *data, t_lexer *lexer, char *var, char *n_v)
 {
 	int		i;
-	char	*temp;
-
-	temp = NULL;
+	
 	i = 0;
-	temp = ft_substr(lexer->val, 0, ft_len_before(lexer->val));
-	n_v = ft_strjoin(n_v, temp);
-	free(temp);
+	n_v = generate_nv(lexer->val);
 	i = ft_value_before(data, i, lexer->val);
 	if (lexer->val[i] && lexer->val[i + 1])
 		var = ft_substr(lexer->val, i + 1, ft_len_var(lexer->val));
@@ -70,8 +78,8 @@ void	ft_expanding(t_data *data)
 {
 	t_lexer	*lexer_clone;
 	t_env	*env_clone;
-	char	*new_var;
 	char	*var;
+	char	*new_var;
 
 	lexer_clone = data->lst_lexer;
 	while (ft_check_still_dollar(data))
@@ -86,7 +94,6 @@ void	ft_expanding(t_data *data)
 					lexer_clone = lexer_clone->next;
 			}
 			var = NULL;
-			new_var = NULL;
 			if (lexer_clone->type == WORD)
 				ft_real_expanding(data, lexer_clone, var, new_var);
 			if (lexer_clone)
