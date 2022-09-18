@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:53:10 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/17 11:48:21 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/18 17:12:31 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	dup_and_close(t_data *data, t_cmd *cmd)
 	dup2(cmd->fd_out, 1);
 	close_all(cmd, data->pipes, data->general.count);
 	data->exit_stat = check_builtins(data, cmd);
-	if (data->exit_stat == -42)
+	if (data->exit_stat == NO_BUILT)
 		data->exit_stat = execution_2(data, cmd);
 	return (data->exit_stat);
 }

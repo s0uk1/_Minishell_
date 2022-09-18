@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:50:24 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/16 10:44:23 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/18 17:29:34 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	check_builtins(t_data *data, t_cmd *cmd_lst)
 			exit(data->exit_stat);
 	}
 	else
-		return (-42);
+		return (NO_BUILT);
 	return (data->exit_stat);
 }
 
@@ -52,6 +52,8 @@ int	nofork_list(t_data *data, t_cmd *cmd)
 		data->exit_stat = unset(data, cmd);
 	else if (!ft_strcmp(cmd->cmd[0], "exit") && !cmd->next)
 	{
+		if (cmd->prev)
+			return (0);
 		data->exit_stat = my_exit(data, cmd);
 		if (data->exit_stat != 1)
 			exit(data->exit_stat);

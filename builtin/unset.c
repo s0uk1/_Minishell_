@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 17:56:39 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/03 17:14:18 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/18 17:47:19 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,17 @@ void	ft_free_this(t_env *env_clone)
 	free(env_clone->name);
 	free(env_clone->value);
 	free(env_clone);
+}
+
+int	valid_name(char *name, t_data **data)
+{
+	if ((name[0] > 32 && name[0] < 65) || name[0] == '\0')
+	{
+		printf("bash: export: `%s': not a valid identifier\n", name);
+		(*data)->exit_stat = 1;
+		return (0);
+	}
+	return (1);
 }
 
 int	unset(t_data *data, t_cmd *lst_cmd)
@@ -31,6 +42,7 @@ int	unset(t_data *data, t_cmd *lst_cmd)
 		return (1);
 	while (env_clone)
 	{
+		valid_name(env_clone->name);
 		if (!ft_strcmp(lst_cmd->cmd[idx], env_clone->name))
 		{
 			if (env_clone->next)

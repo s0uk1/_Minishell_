@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 17:56:29 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/15 13:32:46 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/18 17:46:34 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_print_export(t_data *data)
 
 int	valid_name(char *name, t_data **data)
 {
-	if (name[0] >= '0' && name[0] <= '9')
+	if ((name[0] > 32 && name[0] < 65) || name[0] == '\0')
 	{
 		printf("bash: export: `%s': not a valid identifier\n", name);
 		(*data)->exit_stat = 1;
@@ -39,7 +39,7 @@ int	valid_name(char *name, t_data **data)
 	return (1);
 }
 
-void	ft_export_arg(t_data *data, t_cmd *lst_cmd, char *name, char *value)
+int	ft_export_arg(t_data *data, t_cmd *lst_cmd, char *name, char *value)
 {
 	int		i;
 
@@ -55,14 +55,18 @@ void	ft_export_arg(t_data *data, t_cmd *lst_cmd, char *name, char *value)
 				ft_add_new_env(data, name, value);
 				if (!data->first_export)
 					data->first_export = ft_substr(name, 0, ft_strlen(name));
+				free(name);
+				free(value);
 			}
 			else
+			{
+				return (1);
 				break ;
+			}
 		}
-		free(name);
-		free(value);
 		i++;
 	}
+	return (0);
 }
 
 int	export(t_data *data, t_cmd *lst_cmd)
@@ -79,7 +83,7 @@ int	export(t_data *data, t_cmd *lst_cmd)
 	{
 		name = ft_get_name_exp(lst_cmd->cmd[1]);
 		value = ft_get_value_exp(lst_cmd->cmd[1]);
-		ft_export_arg(data, lst_cmd, name, value);
+		return(ft_export_arg(data, lst_cmd, name, value));
 	}
 	return (0);
 }

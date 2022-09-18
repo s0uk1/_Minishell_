@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:37:28 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/16 13:58:02 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/18 17:12:07 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define AND 6
 # define SEMI 7
 # define TERM_OWNER 130
+# define NO_BUILT 4242
 
 int					g_where_ami;
 

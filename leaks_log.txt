@@ -1,0 +1,3 @@
+-export "" test=a  // fixed
+-pointer being free was not allocated , getting rid of 
+the frees in ft_export_arg gets rid of the error
