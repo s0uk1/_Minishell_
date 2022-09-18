@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 17:56:29 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/18 17:46:34 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/18 18:18:35 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,7 @@ int	ft_export_arg(t_data *data, t_cmd *lst_cmd, char *name, char *value)
 				free(value);
 			}
 			else
-			{
 				return (1);
-				break ;
-			}
 		}
 		i++;
 	}
@@ -83,7 +80,7 @@ int	export(t_data *data, t_cmd *lst_cmd)
 	{
 		name = ft_get_name_exp(lst_cmd->cmd[1]);
 		value = ft_get_value_exp(lst_cmd->cmd[1]);
-		return(ft_export_arg(data, lst_cmd, name, value));
+		return (ft_export_arg(data, lst_cmd, name, value));
 	}
 	return (0);
 }

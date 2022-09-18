@@ -6,11 +6,21 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:55:18 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/17 16:04:32 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/18 18:19:53 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+t_data	*update_pwd(t_data *data, char *cwd)
+{
+	char	new_pwd[256];
+
+	getcwd(new_pwd, sizeof(new_pwd));
+	update_env(data, "OLDPWD", cwd);
+	update_env(data, "PWD", new_pwd);
+	return (data);
+}
 
 char	*update_env(t_data *data, char *env, char *upd)
 {
@@ -25,7 +35,7 @@ char	*update_env(t_data *data, char *env, char *upd)
 			free_val = lst->value;
 			lst->value = ft_strdup(upd);
 			free(free_val);
-			break;
+			break ;
 		}
 		lst = lst->next;
 	}
@@ -62,14 +72,14 @@ char	*cd_strjoin(char *s1, char *s2)
 	{
 		s1 = (char *)malloc(1 * sizeof(char));
 		if (!s1)
-			exit (1);
+			exit(1);
 		s1[0] = '\0';
 	}
 	if (!s2)
 		return (s1);
 	str = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!str)
-		exit (1);
+		exit(1);
 	i = -1;
 	j = 0;
 	while (s1[++i])

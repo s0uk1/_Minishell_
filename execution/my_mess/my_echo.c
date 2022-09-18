@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 10:42:26 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/18 14:12:37 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/18 18:07:15 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	print_rest(char **cmd, int i, int flag)
 {
 	char	*echo;
-	char 	*free_echo;
+	char	*free_echo;
 
 	if (flag)
 	{

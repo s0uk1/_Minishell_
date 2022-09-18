@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:15:23 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/17 18:57:17 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/18 18:06:35 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	my_pwd(t_data *data, t_cmd *lst_cmd)
 	{
 		cwd = getcwd(NULL, 256);
 		if (cwd == NULL)
-			printf("%s\n",custom_getenv("PWD", data->lst_env));
+			printf("%s\n", custom_getenv("PWD", data->lst_env));
 		else
 		{
 			printf("%s\n", cwd);

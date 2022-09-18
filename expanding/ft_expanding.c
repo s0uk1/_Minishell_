@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:16:26 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/18 16:19:30 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/18 18:06:11 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ int	ft_value_var(t_data *data, int i, char *value)
 	return (i);
 }
 
-char 	*generate_nv(char *lexer_val)
+char	*generate_nv(char *lexer_val)
 {
 	char	*temp;
 	char	*n_v;
-		
+
 	temp = NULL;
 	n_v = NULL;
 	temp = ft_substr(lexer_val, 0, ft_len_before(lexer_val));
@@ -52,7 +52,7 @@ char 	*generate_nv(char *lexer_val)
 void	ft_real_expanding(t_data *data, t_lexer *lexer, char *var, char *n_v)
 {
 	int		i;
-	
+
 	i = 0;
 	n_v = generate_nv(lexer->val);
 	i = ft_value_before(data, i, lexer->val);

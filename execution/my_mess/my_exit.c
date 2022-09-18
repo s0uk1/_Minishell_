@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 10:52:05 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/18 17:27:48 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/18 18:06:57 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int	my_exit(t_data *data, t_cmd *lst_cmd)
 	char	**cmd;
 
 	cmd = lst_cmd->cmd;
-
 	if (!lst_cmd->next)
 	{
 		printf("exit\n");
