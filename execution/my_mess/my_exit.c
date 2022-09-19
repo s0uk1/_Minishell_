@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 10:52:05 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/18 18:06:57 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/19 16:33:35 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ft_isdigit(char *num)
 	return (0);
 }
 
-int	my_exit(t_data *data, t_cmd *lst_cmd)
+int	my_exit(t_cmd *lst_cmd)
 {
 	char	**cmd;
 

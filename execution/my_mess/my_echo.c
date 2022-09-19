@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 10:42:26 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/18 18:07:15 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/19 16:33:09 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	start_index(char **cmd)
 	return (idx);
 }
 
-int	my_echo(t_data *data, t_cmd *cmd_lst)
+int	my_echo(t_cmd *cmd_lst)
 {
 	char	**cmd;
 	int		idx;

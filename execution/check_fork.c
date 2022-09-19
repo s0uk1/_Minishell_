@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:50:24 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/18 17:29:34 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/19 16:33:58 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ int	check_builtins(t_data *data, t_cmd *cmd_lst)
 	else if (!ft_strcmp(cmd[0], "unset"))
 		data->exit_stat = unset(data, cmd_lst);
 	else if (!ft_strcmp(cmd[0], "echo"))
-		data->exit_stat = my_echo(data, cmd_lst);
+		data->exit_stat = my_echo(cmd_lst);
 	else if (!ft_strcmp(cmd[0], "pwd"))
 		data->exit_stat = my_pwd(data, data->lst_cmd);
 	else if (!ft_strcmp(cmd[0], "env"))
 		my_env(data, data->lst_cmd);
 	else if (!ft_strcmp(cmd[0], "exit"))
 	{
-		data->exit_stat = my_exit(data, cmd_lst);
+		data->exit_stat = my_exit(cmd_lst);
 		if (data->exit_stat != 1)
 			exit(data->exit_stat);
 	}
@@ -54,7 +54,7 @@ int	nofork_list(t_data *data, t_cmd *cmd)
 	{
 		if (cmd->prev)
 			return (0);
-		data->exit_stat = my_exit(data, cmd);
+		data->exit_stat = my_exit(cmd);
 		if (data->exit_stat != 1)
 			exit(data->exit_stat);
 	}

@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:55:18 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/18 18:19:53 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/19 18:30:59 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_data	*update_pwd(t_data *data, char *cwd)
 	return (data);
 }
 
-char	*update_env(t_data *data, char *env, char *upd)
+void	update_env(t_data *data, char *env, char *upd)
 {
 	t_env	*lst;
 	char	*free_val;
@@ -32,14 +32,12 @@ char	*update_env(t_data *data, char *env, char *upd)
 	{
 		if (!ft_strcmp(lst->name, env))
 		{
-			free_val = lst->value;
+			free(lst->value);
 			lst->value = ft_strdup(upd);
-			free(free_val);
 			break ;
 		}
 		lst = lst->next;
 	}
-	return (NULL);
 }
 
 char	*custom_getenv(char *env_var, t_env *env_lst)
@@ -53,7 +51,7 @@ char	*custom_getenv(char *env_var, t_env *env_lst)
 	{
 		if (!ft_strcmp(tmp->name, env_var))
 		{
-			pwd = tmp->value;
+			pwd = ft_strdup(tmp->value);
 			break ;
 		}
 		else

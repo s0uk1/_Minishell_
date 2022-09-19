@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:16:59 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/15 18:07:22 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/19 16:28:20 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ char	*ft_allocate(char *exit, char *value)
 
 char	*ft_new_value(t_data *data, char *value)
 {
-	char	*exit_s;
 	char	*new_value;
 	int		i;
 	int		j;

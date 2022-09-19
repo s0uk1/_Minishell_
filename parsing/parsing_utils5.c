@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:17:17 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/15 18:08:28 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/19 16:29:22 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void	ft_delete_red_norme(t_data *data, int position, int flag)
 void	ft_delete_redirections(t_data *data)
 {
 	t_lexer	*lexer_clone;
-	t_lexer	*lexer_clone2;
 	int		position;
 
 	while (ft_check_still_redirection(data))

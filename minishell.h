@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:37:28 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/18 18:32:08 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/19 17:09:18 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,15 +103,15 @@ typedef struct s_data
 
 //--------------------execution soukaina--------------------//
 int					ft_builtins(t_data *data);
-int					my_exit(t_data *data, t_cmd *lst_cmd);
+int					my_exit(t_cmd *lst_cmd);
 int					my_pwd(t_data *data, t_cmd *lst_cmd);
 int					my_cd(t_data *data, t_cmd *lst_cmd);
 int					my_env(t_data *data, t_cmd *lst_cmd);
-int					my_echo(t_data *data, t_cmd *lst_cmd);
+int					my_echo(t_cmd *lst_cmd);
 t_data				*my_export(t_data *data, t_cmd *lst_cmd);
 int					execution_2(t_data *data, t_cmd *cmd);
 int					check_access(t_data *data, char **cmd, int i, int flag);
-char				*update_env(t_data *data, char *env, char *upd);
+void				update_env(t_data *data, char *env, char *upd);
 char				*custom_getenv(char *env_var, t_env *env_lst);
 int					**initialize_pipes(t_data *data);
 int					my_strchr(char *s, int c);
@@ -129,7 +129,6 @@ int					nofork_list(t_data *data, t_cmd *cmd);
 int					check_nonfork(t_data *data, t_cmd *cmd);
 int					check_fork(int *pid, t_data *data);
 char				*ft_strncpy(char *dest, char *src, unsigned int n);
-char				*update_env(t_data *data, char *env, char *upd);
 char				*custom_getenv(char *env_var, t_env *env_lst);
 char				*join_cmd(char **argv, int argc, int i);
 int					check_valid(char *cmd);
@@ -212,8 +211,7 @@ char				*ft_new(char *old);
 int					unset(t_data *data, t_cmd *lst_cmd);
 int					export(t_data *data, t_cmd *lst_cmd);
 int					ft_env_built(t_data *data, int fd);
-int					ft_change_env_value(t_data *data, char *name, char *value,
-						int size);
+int					ft_change_env_value(t_data *data, char *name, char *value);
 void				ft_add_new_env(t_data *data, char *name, char *value);
 void				ft_sort_env(t_data *data);
 char				*ft_get_value_exp(char *value);

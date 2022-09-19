@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:17:12 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/15 18:08:28 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/19 16:29:08 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	ft_delete_command(t_data *data)
 	}
 }
 
-char	**ft_get_new(t_data *data, t_cmd *cmd)
+char	**ft_get_new(t_cmd *cmd)
 {
 	int		i;
 	char	**new_cmd;
@@ -116,7 +116,6 @@ void	ft_delete_herdoc(t_data *data)
 {
 	t_cmd	*cmd_clone;
 	char	**new_cmd;
-	int		len;
 	int		i;
 
 	cmd_clone = data->lst_cmd;
@@ -124,7 +123,7 @@ void	ft_delete_herdoc(t_data *data)
 		cmd_clone = cmd_clone->next;
 	if (cmd_clone && cmd_clone->her_doc_num)
 	{
-		new_cmd = ft_get_new(data, cmd_clone);
+		new_cmd = ft_get_new(cmd_clone);
 		free_split(cmd_clone->cmd);
 		i = 0;
 		while (new_cmd && new_cmd[i])

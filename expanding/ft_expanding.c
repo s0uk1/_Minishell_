@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:16:26 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/18 18:06:11 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/19 16:31:42 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_value_before(t_data *data, int i, char *value)
 	return (i);
 }
 
-int	ft_value_var(t_data *data, int i, char *value)
+int	ft_value_var(int i, char *value)
 {
 	while (value[i] && value[i] != ' ' && value[i] != '$'
 		&& value[i] != '\\' && value[i] != '"'
@@ -64,7 +64,7 @@ void	ft_real_expanding(t_data *data, t_lexer *lexer, char *var, char *n_v)
 		{
 			n_v = ft_strjoin(n_v, ft_get_value(data, var));
 			i++;
-			i = ft_value_var(data, i, lexer->val);
+			i = ft_value_var(i, lexer->val);
 			if (lexer->val[i])
 				n_v = ft_fix_norme(n_v, lexer->val, i);
 		}
@@ -77,10 +77,10 @@ void	ft_real_expanding(t_data *data, t_lexer *lexer, char *var, char *n_v)
 void	ft_expanding(t_data *data)
 {
 	t_lexer	*lexer_clone;
-	t_env	*env_clone;
 	char	*var;
 	char	*new_var;
 
+	new_var = NULL;
 	lexer_clone = data->lst_lexer;
 	while (ft_check_still_dollar(data))
 	{

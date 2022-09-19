@@ -11,7 +11,7 @@ INCLUDESS        =  ${CPPFLAGS}
 
 LIBRARIESS        = ${LDFLAGS} -lreadline
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g
 
 SRC = main.c ft_free.c ft_main.c \
 

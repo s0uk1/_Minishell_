@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 17:56:29 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/18 18:18:35 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/19 16:30:25 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_export_arg(t_data *data, t_cmd *lst_cmd, char *name, char *value)
 	while (lst_cmd->cmd[i])
 	{
 		if (ft_name_exists(data, name))
-			ft_change_env_value(data, name, value, ft_strlen(value));
+			ft_change_env_value(data, name, value);
 		else
 		{
 			if (valid_name(name, &data))

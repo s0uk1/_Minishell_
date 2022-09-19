@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yabtaour <yabtaour@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 17:56:24 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/07/27 17:56:25 by yabtaour         ###   ########.fr       */
+/*   Updated: 2022/09/19 16:30:50 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,6 @@ void	ft_sort_env(t_data *data)
 	t_env	*env_clone;
 	char	*name_tmp;
 	char	*value_tmp;
-	t_env	*env_clone2;
-	t_env	*env_tmp;
 
 	name_tmp = NULL;
 	value_tmp = NULL;

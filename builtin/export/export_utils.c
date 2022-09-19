@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yabtaour <yabtaour@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 17:56:21 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/07/27 17:56:22 by yabtaour         ###   ########.fr       */
+/*   Updated: 2022/09/19 16:30:06 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	ft_change_env_value(t_data *data, char *name, char *value, int size)
+int	ft_change_env_value(t_data *data, char *name, char *value)
 {
 	t_env	*env_clone;
 

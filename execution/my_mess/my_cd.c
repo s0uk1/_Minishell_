@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 15:42:55 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/18 18:11:48 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/19 18:32:22 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	find_dir(t_data *data, char *pwd, char *upd)
 	char	*test_pwd;
 
 	i = 0;
+	test_pwd = NULL;
 	while (pwd[i])
 		i++;
 	while (pwd[i] != '/')
@@ -46,28 +47,56 @@ void	find_dir(t_data *data, char *pwd, char *upd)
 		my_chdir(data, test_pwd, upd);
 	free(test_pwd);
 }
+// int	catch_error(t_data *data)
+// {
+// 	char	*old_pwd;
+// 	char	*new_pwd;
+// 	char	*free_pwd;
+// 	char	*free_join;
 
+// 	old_pwd = custom_getenv("PWD", data->lst_env);
+// 	printf("|||||%s||||||\n",old_pwd);
+// 	printf("cd: error retrieving current directory:");
+// 	printf("getcwd:cannot access parent directories:");
+// 	printf(" No such file or directory\n");
+// 	free_join = cd_strjoin(old_pwd, "/..");
+// 	printf("|||||%s||||||\n",old_pwd);
+// 	update_env(data, "PWD", free_join);
+// 	printf("|||||%s||||||\n",old_pwd);
+// 	update_env(data, "OLDPWD", old_pwd);
+// 	printf("|||||%s||||||\n",old_pwd);
+// 	printf("|||||%s||||||\n",old_pwd);
+// 	free_pwd = ft_strdup(old_pwd);
+// 	printf("|||||%s||||||\n",old_pwd);
+// 	old_pwd = cd_strjoin(free_pwd, "/..");
+// 	printf("|||||%s||||||\n",old_pwd);
+// 	data->exit_stat = chdir(old_pwd);
+// 	if (data->exit_stat)
+// 		find_dir(data, old_pwd, old_pwd);
+// 	free(free_pwd);
+// 	free(old_pwd);
+// 	return (data->exit_stat);
+// }
 int	catch_error(t_data *data)
 {
 	char	*old_pwd;
 	char	*new_pwd;
 	char	*free_pwd;
-	char	*free_join;
+	char	*join_pwd;
 
 	old_pwd = custom_getenv("PWD", data->lst_env);
 	printf("cd: error retrieving current directory:");
 	printf("getcwd:cannot access parent directories:");
 	printf(" No such file or directory\n");
-	free_join = cd_strjoin(old_pwd, "/..");
-	update_env(data, "PWD", free_join);
-	free(free_join);
+	join_pwd = cd_strjoin(old_pwd, "/..");
+	update_env(data, "PWD", join_pwd);
 	update_env(data, "OLDPWD", old_pwd);
-	free_pwd = old_pwd;
-	old_pwd = cd_strjoin(old_pwd, "/..");
-	free(free_pwd);
+	free_pwd = ft_strdup(old_pwd);
+	old_pwd = cd_strjoin(free_pwd, "/..");
 	data->exit_stat = chdir(old_pwd);
 	if (data->exit_stat)
 		find_dir(data, old_pwd, old_pwd);
+	free(free_pwd);
 	free(old_pwd);
 	return (data->exit_stat);
 }

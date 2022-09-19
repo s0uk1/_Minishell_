@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yabtaour <yabtaour@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:16:16 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/07/27 17:39:10 by yabtaour         ###   ########.fr       */
+/*   Updated: 2022/09/19 13:02:04 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	ft_create_my_env(t_data *data)
 
 	value = "PWD=/Users/yabtaour/Desktop/my_minishell";
 	data->env = malloc (sizeof(char *) * 4);
+	if (!data->env)
+		exit(1);
 	data->env[0] = ft_substr(value, 0, ft_strlen(value));
 	value = "SHLVL=1";
 	data->env[1] = ft_substr(value, 0, ft_strlen(value));

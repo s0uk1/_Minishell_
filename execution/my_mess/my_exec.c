@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:10:11 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/16 15:03:57 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/19 16:32:23 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	check_path(t_env *lst_env)
 	return (0);
 }
 
-int	check_nonabs(t_data *data, t_cmd *lst_cmd, char **cmd)
+int	check_nonabs(t_data *data, char **cmd)
 {
 	int	ret;
 	int	i;
@@ -101,7 +101,7 @@ int	execution_2(t_data *data, t_cmd *lst_cmd)
 	cmd = lst_cmd->cmd;
 	if (cmd[0][0] == '/')
 		check_access(data, cmd, 0, 1);
-	if (check_nonabs(data, lst_cmd, cmd))
+	if (check_nonabs(data, cmd))
 		data->exit_stat = 0;
 	else
 		data->exit_stat = 127;

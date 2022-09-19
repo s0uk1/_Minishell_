@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 17:56:39 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/18 18:32:48 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/19 16:29:50 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	unset(t_data *data, t_cmd *lst_cmd)
 {
 	int		idx;
 	t_env	*env_clone;
-	t_env	*tmp;
 
 	idx = 1;
 	env_clone = data->lst_env;

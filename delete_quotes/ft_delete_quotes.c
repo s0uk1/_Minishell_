@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:16:08 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/05 13:28:39 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/19 16:28:07 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ char	*ft_delete(char *cmd)
 	int		r;
 	char	*new_cmd;
 
+	i = 0;
 	index = ft_get_index(cmd, 1);
 	r = ft_real_len(cmd);
 	len = 0;

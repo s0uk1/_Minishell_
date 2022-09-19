@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:55:59 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/17 12:08:32 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/19 13:01:12 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ char	*ft_strncpy(char *dest, char *src, unsigned int n)
 	unsigned int	i;
 
 	i = 0;
-	dest = (char *)malloc(sizeof(char) * n + 1);
+	dest = (char *)ft_calloc(sizeof(char) , n + 1);
+	if (!dest)
+		return (NULL);
 	while ((src[i] != '\0') && (i < n))
 	{
 		dest[i] = src[i];

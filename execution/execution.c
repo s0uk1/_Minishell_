@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:53:10 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/18 17:12:31 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/19 16:31:51 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ int	execution(t_data *data)
 int	pre_execution(t_data *data)
 {
 	int		pid;
-	t_cmd	*cmd;
 
 	pid = 0;
 	data->paths = ft_split(custom_getenv("PATH", data->lst_env), ':');
