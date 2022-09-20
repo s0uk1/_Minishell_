@@ -1,2 +1,6 @@
--fix unset norm 
-- fix cd ../../f , not allocated error
+-when is forked 
+    -execution2 | builtin : 1 
+    -only execution2 : 1
+    - heredoc | exec2  : 1
+    - builtin heredoc : 1
+    - 

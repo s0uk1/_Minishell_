@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:53:10 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/19 16:31:51 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/20 15:57:32 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int	execution(t_data *data)
 	close_all(data->lst_cmd, data->pipes, data->general.count);
 	if (fork_c)
 		data->exit_stat = terminate_pid(fork_c);
+	printf("|||%d|||\n", fork_c);
 	return (data->exit_stat);
 }
 
