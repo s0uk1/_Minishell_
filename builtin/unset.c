@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 17:56:39 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/19 16:29:50 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/20 12:03:53 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,15 @@ void	ft_free_this(t_env *env_clone)
 	free(env_clone);
 }
 
-// int	valid_name(char *name, t_data **data)
-// {
-// 	if ((name[0] > 32 && name[0] < 65) || name[0] == '\0')
-// 	{
-// 		printf("bash: export: `%s': not a valid identifier\n", name);
-// 		(*data)->exit_stat = 1;
-// 		return (0);
-// 	}
-// 	return (1);
-// }
-
-int	unset(t_data *data, t_cmd *lst_cmd)
+int	unset_helper(t_env *env_clone, t_data *data, t_cmd *lst_cmd)
 {
-	int		idx;
-	t_env	*env_clone;
+	int	idx;
 
 	idx = 1;
-	env_clone = data->lst_env;
-	if (!lst_cmd->cmd[1])
-		return (1);
 	while (env_clone)
 	{
-		// valid_name(env_clone->name, &data);
+		if (!valid_name(env_clone->name, &data))
+			return (1);
 		if (!ft_strcmp(lst_cmd->cmd[idx], env_clone->name))
 		{
 			if (env_clone->next)
@@ -56,5 +42,19 @@ int	unset(t_data *data, t_cmd *lst_cmd)
 		if (env_clone)
 			env_clone = env_clone->next;
 	}
+	return (0);
+}
+
+int	unset(t_data *data, t_cmd *lst_cmd)
+{
+	t_env	*env_clone;
+
+	env_clone = data->lst_env;
+	if (!lst_cmd->cmd[1])
+		return (1);
+	if (!unset_helper(env_clone, data, lst_cmd))
+		return (0);
+	else
+		return (1);
 	return (0);
 }
