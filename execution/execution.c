@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:53:10 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/20 15:57:32 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/20 19:48:33 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	execution(t_data *data)
 	while (cmd)
 	{
 		data->exit_stat = check_nonfork(data, cmd);
-		fork_c = check_fork(&pid, data);
+		fork_c += check_fork(&pid, data);
 		if (pid == 0 && !data->rerror_f)
 		{
 			g_where_ami = 0;
@@ -75,20 +75,22 @@ int	execution(t_data *data)
 	close_all(data->lst_cmd, data->pipes, data->general.count);
 	if (fork_c)
 		data->exit_stat = terminate_pid(fork_c);
-	printf("|||%d|||\n", fork_c);
 	return (data->exit_stat);
 }
 
 int	pre_execution(t_data *data)
 {
 	int		pid;
+	char	*path;
 
 	pid = 0;
-	data->paths = ft_split(custom_getenv("PATH", data->lst_env), ':');
+	path = custom_getenv("PATH", data->lst_env);
+	data->paths = ft_split(path, ':');
 	if (data->lst_cmd)
 	{
 		data->pipes = initialize_pipes(data);
 		execution(data);
 	}
+	free(path);
 	return (0);
 }
