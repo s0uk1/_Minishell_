@@ -30,7 +30,7 @@ int	ft_value_before(t_data *data, int i, char *value)
 
 int	ft_value_var(int i, char *value)
 {
-	while (value[i] && value[i] != ' ' && value[i] != '$'
+	while (value[i] && !ft_isspace(value[i]) && value[i] != '$'
 		&& value[i] != '\\' && value[i] != '"'
 		&& value[i] != '\'' && value[i] != '=')
 		i++;

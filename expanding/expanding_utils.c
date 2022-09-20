@@ -69,7 +69,7 @@ char	*ft_delete_var(t_data *data, char *var)
 	if (data->flag_s == 0 && var[i] && var[i] == '$')
 	{
 		i++;
-		while (var[i] && var[i] != ' ' && var[i] != '$'
+		while (var[i] && !ft_isspace(var[i]) && var[i] != '$'
 			&& var[i] != '\\' && var[i] != '"' && var[i] != '=')
 			i++;
 		if (var[i])

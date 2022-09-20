@@ -19,7 +19,6 @@ void	ft_initialize2(t_data *data)
 	data->lst_lexer = NULL;
 	data->exit_stat = 0;
 	data->her_doc = 0;
-	data->general.index = 0;
 	rl_catch_signals = 0;
 	signal(SIGINT, sig_handler);
 	signal(SIGQUIT, sig_handler);
