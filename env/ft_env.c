@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:16:16 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/19 13:02:04 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/21 16:10:39 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_create_my_env(t_data *data)
 {
 	char	*value;
 
-	value = "PWD=/Users/yabtaour/Desktop/my_minishell";
+	value = "PWD=/Users/ssabbaji/Desktop/minishell_2";
 	data->env = malloc (sizeof(char *) * 4);
 	if (!data->env)
 		exit(1);
@@ -34,7 +34,10 @@ void	ft_create_env_list(t_env **envi, char **env)
 
 	i = 0;
 	while (env[i])
-		*envi = ft_add_to_env_back(*envi, env[i++]);
+	{
+		*envi = ft_add_to_env_back(*envi, env[i]);
+		i++;
+	}
 }
 
 void	ft_env(t_data *data)

@@ -6,13 +6,13 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 13:29:59 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/17 11:27:23 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/21 18:16:50 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_initialize1(t_data *data, int argc, char **env)
+int	ft_initialize1(t_data *data, int argc, char **env)
 {
 	data->ac = argc;
 	data->first_export = NULL;
@@ -20,15 +20,20 @@ void	ft_initialize1(t_data *data, int argc, char **env)
 	if (env[0])
 		data->env = env;
 	else
-		ft_create_my_env(data);
+	{
+		printf("uwu where's your env anon\n");
+		return (0);
+	}
 	ft_env(data);
+	return (1);
 }
 
 int	main(int argc, char **argv, char **env)
 {
 	t_data	data;
 
-	ft_initialize1(&data, argc, env);
+	if (!ft_initialize1(&data, argc, env))
+		exit(1);
 	if (!ft_sub_main(&data))
 		return (0);
 }

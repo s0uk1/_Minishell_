@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:37:28 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/20 12:00:26 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/21 18:18:03 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ int					pre_execution(t_data *data);
 void				fork_func(t_data *data);
 int					close_all(t_cmd *lst_cmd, int **pipes, int count);
 void				sig_handler(int num);
-int					heredoc_exec(t_data *data, t_cmd *cmd_lst);
+int					heredoc_exec(t_data *data, t_cmd *cmd_lst, int idx);
 int					nofork_list(t_data *data, t_cmd *cmd);
 int					check_nonfork(t_data *data, t_cmd *cmd);
 int					check_fork(int *pid, t_data *data);
@@ -136,6 +136,7 @@ int					check_builtins(t_data *data, t_cmd *cmd_lst);
 char				*cd_strjoin(char *s1, char *s2);
 t_data				*update_pwd(t_data *data, char *cwd);
 int					valid_name(char *name, t_data **data);
+int					check_delim_idx(t_data *data, t_cmd *cmd);
 //-----------------env--------------------------//
 void				ft_create_env_list(t_env **envi, char **env);
 void				ft_env(t_data *data);

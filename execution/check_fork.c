@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:50:24 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/20 16:10:00 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/21 19:57:13 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ int	nofork_list(t_data *data, t_cmd *cmd)
 		data->exit_stat = my_cd(data, cmd);
 	else if (!ft_strcmp(cmd->cmd[0], "export") && !cmd->next)
 		data->exit_stat = export(data, cmd);
-	else if ((!ft_strcmp(cmd->cmd[0], "env") || !ft_strcmp(cmd->cmd[0],
-				"/usr/bin/env")) && !cmd->next)
+	else if ((!ft_strcmp(cmd->cmd[0], "env")) && !cmd->next)
 		my_env(data, cmd);
 	else if (!ft_strcmp(cmd->cmd[0], "unset") && !cmd->next)
 		data->exit_stat = unset(data, cmd);
@@ -63,8 +62,11 @@ int	nofork_list(t_data *data, t_cmd *cmd)
 
 int	check_nonfork(t_data *data, t_cmd *cmd)
 {
+	int	idx;
+
+	idx = check_delim_idx(data, cmd);
 	data->fork_flag = 0;
-	if (cmd->her_doc_num && heredoc_exec(data, cmd))
+	if (cmd->her_doc_num && heredoc_exec(data, cmd, idx))
 	{
 		if (cmd->her_in)
 		{
@@ -72,7 +74,7 @@ int	check_nonfork(t_data *data, t_cmd *cmd)
 			data->fork_flag = 1;
 		}
 	}
-	if (cmd->cmd[0])
+	if (cmd->cmd && cmd->cmd[0])
 		return (nofork_list(data, cmd));
 	return (data->exit_stat);
 }

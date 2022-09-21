@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:53:10 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/20 19:48:33 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/21 18:20:31 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,16 +81,13 @@ int	execution(t_data *data)
 int	pre_execution(t_data *data)
 {
 	int		pid;
-	char	*path;
+	int		delim_idx;
 
 	pid = 0;
-	path = custom_getenv("PATH", data->lst_env);
-	data->paths = ft_split(path, ':');
 	if (data->lst_cmd)
 	{
 		data->pipes = initialize_pipes(data);
 		execution(data);
 	}
-	free(path);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:55:18 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/20 16:28:08 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/21 18:17:23 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ t_data	*update_pwd(t_data *data, char *cwd)
 void	update_env(t_data *data, char *env, char *upd)
 {
 	t_env	*lst;
-	char	*free_val;
 
 	lst = data->lst_env;
 	while (lst)
@@ -47,11 +46,17 @@ char	*custom_getenv(char *env_var, t_env *env_lst)
 
 	tmp = env_lst;
 	pwd = NULL;
+	if (!ft_strcmp("PWD", env_var))
+	{
+		pwd = getcwd(NULL, 256);
+		return (pwd);
+	}
 	while (tmp)
 	{
 		if (!ft_strcmp(tmp->name, env_var))
 		{
 			pwd = ft_strdup(tmp->value);
+			pwd = tmp->value;
 			break ;
 		}
 		else
