@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:37:28 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/21 18:18:03 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/21 20:15:42 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int					g_where_ami;
 
 typedef struct s_gen
 {
+	int				index;
 	int				count;
 	int				old_error;
 }					t_gen;
