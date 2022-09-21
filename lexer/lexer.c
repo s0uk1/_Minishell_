@@ -12,6 +12,15 @@
 
 #include "../minishell.h"
 
+int	ft_isspace(char c)
+{
+	if (c == '\t' || c == '\n'
+		|| c == '\r' || c == '\v'
+		|| c == ' ' || c == '\f')
+		return (1);
+	return (0);
+}
+
 void	ft_lexer(t_data *data)
 {
 	int		i;
@@ -21,7 +30,7 @@ void	ft_lexer(t_data *data)
 	add_history(data->cmd);
 	while (data->cmd[i])
 	{
-		while (data->cmd[i] == ' ')
+		while (ft_isspace(data->cmd[i]))
 			i++;
 		if (data->cmd[i] != '&' && data->cmd[i] != '|'
 			&& !ft_is_redirection(data->cmd[i]))

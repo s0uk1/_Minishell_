@@ -12,7 +12,7 @@
 
 #include "../minishell.h"
 
-void	ft_for_norme(t_data *data, char *value)
+void	ft_output_err(t_data *data, char *value)
 {
 	data->exit_stat = 258;
 	printf("Syntax error near unexpected token `%s'\n", value);
@@ -37,7 +37,7 @@ static int	ft_check_red(t_data *data)
 		if (lexer_clone->type == REDIRECTION
 			&& ft_strlen(lexer_clone->val) > 2)
 		{
-			ft_for_norme(data, lexer_clone->val);
+			ft_output_err(data, lexer_clone->val);
 			return (data->exit_stat);
 		}
 		lexer_clone = lexer_clone->next;
@@ -66,7 +66,7 @@ static int	ft_check_after_red(t_data *data)
 			{
 				if (ft_check_type(lexer_clone->type))
 				{
-					ft_for_norme(data, lexer_clone->val);
+					ft_output_err(data, lexer_clone->val);
 					return (data->exit_stat);
 				}
 				else

@@ -36,7 +36,6 @@ int					g_where_ami;
 
 typedef struct s_gen
 {
-	int				index;
 	int				count;
 	int				old_error;
 }					t_gen;
@@ -159,6 +158,7 @@ int					ft_add_semi(t_data *data, int i);
 int					ft_is_word(char c);
 int					ft_is_parenth(char c);
 int					ft_is_redirection(char c);
+int					ft_isspace(char c);
 //------------Syntax analyzer-----------------//
 int					ft_syntax_analyzer(t_data *data);
 int					ft_check_redirection(t_data *data);
