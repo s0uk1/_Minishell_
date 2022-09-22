@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 17:56:29 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/20 16:28:43 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/22 12:02:24 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	ft_export_arg(t_data *data, t_cmd *lst_cmd, char *name, char *value)
 		name = ft_get_name_exp(lst_cmd->cmd[i]);
 		value = ft_get_value_exp(lst_cmd->cmd[i]);
 		if (!ft_check_name(data, name, value))
-			break;
+			break ;
 		i++;
 	}
 	return (0);

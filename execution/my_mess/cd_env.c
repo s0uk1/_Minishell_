@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:55:18 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/22 10:50:36 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/22 11:57:34 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,6 @@ char	*custom_getenv(char *env_var, t_env *env_lst)
 
 	tmp = env_lst;
 	pwd = NULL;
-	if (!ft_strcmp("PWD", env_var))
-	{
-		pwd = getcwd(NULL, 256);
-		return (pwd);
-	}
 	while (tmp)
 	{
 		if (!ft_strcmp("HOME", env_var) && !ft_strcmp(tmp->name, env_var))
