@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 15:42:55 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/20 19:51:07 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/22 11:17:34 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,21 @@ int	my_chdir(t_data *data, char *cmd, char *cwd)
 {
 	char	*new_pwd;
 
-	data->exit_stat = chdir(cmd);
+	new_pwd = cmd;
+	if (!ft_strcmp(cmd, "-"))
+	{
+		data->exit_stat = chdir(getenv("OLDPWD")); 	
+		printf("%s\n", getenv("PWD"));
+	}
+	else	
+		data->exit_stat = chdir(new_pwd);
 	if (data->exit_stat)
 		return (perror("chdir() error:"), 1);
 	else
 	{
-		new_pwd = getcwd(NULL, 256);
-		update_env(data, "OLDPWD", cwd);
-		update_env(data, "PWD", new_pwd);
+			new_pwd = getcwd(NULL, 256);
+			update_env(data, "OLDPWD", cwd);
+			update_env(data, "PWD", new_pwd);
 	}
 	free(new_pwd);
 	return (data->exit_stat);
@@ -95,7 +102,7 @@ int	my_cd(t_data *data, t_cmd *lst_cmd)
 		if (exit_stat)
 		{
 			free(cwd);
-			return (perror("chdir() error:"), 1);
+			return (perror("HOME not set"), 1);
 		}
 		update_pwd(data, cwd);
 	}
