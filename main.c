@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 13:29:59 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/21 18:16:50 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/22 13:49:01 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	ft_initialize1(t_data *data, int argc, char **env)
 	data->ac = argc;
 	data->first_export = NULL;
 	data->general.old_error = 0;
+	data->general.index = 0;
 	if (env[0])
 		data->env = env;
 	else

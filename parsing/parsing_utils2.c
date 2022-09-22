@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:17:10 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/15 18:08:28 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/22 13:33:50 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,12 @@ int	ft_fill_fd(t_data *data, char *name, int red)
 	int	fd;
 
 	if (red == 1)
-		fd = open(name, O_RDWR | O_CREAT | O_TRUNC, 0664);
+		fd = open(name, O_RDWR | O_CREAT | O_TRUNC | O_CLOEXEC, 0664);
 	if (red == 2)
-		fd = open(name, O_RDWR | O_CREAT | O_APPEND, 0664);
+		fd = open(name, O_RDWR | O_CREAT | O_APPEND | O_CLOEXEC, 0664);
 	if (red == 3)
 	{
-		fd = open(name, O_RDONLY, 0777);
+		fd = open(name, O_RDONLY | O_CLOEXEC, 0777);
 		if (fd == -1)
 		{
 			printf("No such file or directory\n");

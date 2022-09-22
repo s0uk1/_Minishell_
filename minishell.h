@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:37:28 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/21 20:15:42 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/22 12:52:52 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,8 @@ char				*cd_strjoin(char *s1, char *s2);
 t_data				*update_pwd(t_data *data, char *cwd);
 int					valid_name(char *name, t_data **data);
 int					check_delim_idx(t_data *data, t_cmd *cmd);
+int					close_pipes(int **pip, int lent);
+int					close_fds(t_cmd *lst_cmd);
 //-----------------env--------------------------//
 void				ft_create_env_list(t_env **envi, char **env);
 void				ft_env(t_data *data);

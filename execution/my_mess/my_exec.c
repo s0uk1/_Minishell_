@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:10:11 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/19 16:32:23 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/22 13:08:15 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,10 @@ int	check_access(t_data *data, char **cmd, int i, int flag)
 		return (0);
 	else
 	{
+		if (data->lst_cmd->fd_in != 0)
+			close(data->lst_cmd->fd_in);
+		if (data->lst_cmd->fd_out != 1)
+			close(data->lst_cmd->fd_out);
 		execve(path, cmd, data->env);
 		perror("execve() error");
 	}

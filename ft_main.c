@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 10:37:19 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/17 18:57:00 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/22 13:49:36 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_initialize2(t_data *data)
 	data->lst_lexer = NULL;
 	data->exit_stat = 0;
 	data->her_doc = 0;
+	data->general.index = 0;
 	rl_catch_signals = 0;
 	signal(SIGINT, sig_handler);
 	signal(SIGQUIT, sig_handler);

@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 13:15:29 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/21 18:17:12 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/22 13:52:23 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	check_delims(t_data *data, t_cmd *cmd, int idx)
 		here_buff = readline("> ");
 		if (here_buff == NULL)
 			exit(1);
-		if (!ft_strcmp(data->eof[idx], here_buff))
+		if (here_buff[0] != '\0' && !ft_strcmp(data->eof[idx], here_buff))
 		{
 			i++;
 			idx++;
@@ -59,9 +59,10 @@ int	heredoc_exec(t_data *data, t_cmd *cmd_lst, int idx)
 	{
 		rl_catch_signals = 1;
 		check_delims(data, cmd, idx);
-		close_all(cmd, data->pipes, data->general.count);
 		close(cmd->fd_in);
 		close(cmd->her_in);
+		close_fds(cmd);
+		close_pipes(data->pipes, data->general.count);
 		exit(0);
 	}
 	waitpid(pid, 0, 0);
