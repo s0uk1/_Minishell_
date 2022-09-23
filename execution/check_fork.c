@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:50:24 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/22 13:05:00 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/23 16:52:53 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	check_builtins(t_data *data, t_cmd *cmd_lst)
 		my_env(data, data->lst_cmd);
 	else if (!ft_strcmp(cmd[0], "exit"))
 	{
-		data->exit_stat = my_exit(cmd_lst);
+		data->exit_stat = my_exit(cmd_lst, data);
 		exit(data->exit_stat);
 	}
 	else
@@ -52,7 +52,7 @@ int	nofork_list(t_data *data, t_cmd *cmd)
 	{
 		if (cmd->prev)
 			return (0);
-		data->exit_stat = my_exit(cmd);
+		data->exit_stat = my_exit(cmd, data);
 		exit(data->exit_stat);
 	}
 	else
