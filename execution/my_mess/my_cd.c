@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 15:42:55 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/22 12:02:08 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/23 10:42:06 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	find_dir(t_data *data, char *pwd, char *upd)
 int	catch_error(t_data *data)
 {
 	char	*old_pwd;
-	char	*new_pwd;
 	char	*free_pwd;
 	char	*join_pwd;
 

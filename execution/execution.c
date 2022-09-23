@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:53:10 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/22 12:51:42 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/23 10:41:47 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ int	execution(t_data *data)
 int	pre_execution(t_data *data)
 {
 	int		pid;
-	int		delim_idx;
 
 	pid = 0;
 	if (data->lst_cmd)

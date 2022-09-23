@@ -58,7 +58,7 @@ FILES = $(SRC) $(PARSING) $(LEXER) $(ENV) $(SYNTAX) $(BUILTIN) $(UTILS) $(EXPAND
 
 OBJ = ${FILES:.c=.o}
  
-%.o: %.c minishel.h
+%.o: %.c minishell.h
 	$(CC) $(FLAGS) -c $< ${INCLUDESS} -o $@
 
 all: ${NAME}

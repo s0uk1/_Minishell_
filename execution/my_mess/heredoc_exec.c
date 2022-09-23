@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 13:15:29 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/22 13:52:23 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/23 10:41:58 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	print_her_in(t_cmd *cmd, char *here_buff)
 void	check_delims(t_data *data, t_cmd *cmd, int idx)
 {
 	char	*here_buff;
-	int		delim_idx;
 	int		i;
 
 	i = 0;
