@@ -21,7 +21,7 @@ void	ft_print_export(t_data *data)
 	{
 		printf("declare -x ");
 		printf("%s", env_clone->name);
-		if (env_clone->value && ft_strlen(env_clone->value))
+		if (env_clone->value)
 			printf("=\"%s\"", env_clone->value);
 		printf("\n");
 		env_clone = env_clone->next;
@@ -47,11 +47,13 @@ int	ft_check_name(t_data *data, char *name, char *value)
 	{
 		if (valid_name(name, &data))
 		{
+			printf("|%s|\n", value);
 			ft_add_new_env(data, name, value);
 			if (!data->first_export)
 					data->first_export = ft_substr(name, 0, ft_strlen(name));
 			free(name);
-			free(value);
+			if (value)
+				free(value);
 		}
 		else
 			return (0);
@@ -80,16 +82,14 @@ int	export(t_data *data, t_cmd *lst_cmd)
 	char	*name;
 	char	*value;
 
+	name = NULL;
+	value = NULL;
 	if (lst_cmd && !lst_cmd->cmd[1])
 	{
 		ft_sort_env(data);
 		ft_print_export(data);
 	}
 	else
-	{
-		name = ft_get_name_exp(lst_cmd->cmd[1]);
-		value = ft_get_value_exp(lst_cmd->cmd[1]);
 		return (ft_export_arg(data, lst_cmd, name, value));
-	}
 	return (0);
 }

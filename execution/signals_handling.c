@@ -17,7 +17,7 @@ void	sig_handler(int num)
 	if (num == SIGINT && g_where_ami)
 	{
 		write(1, "\n", 1);
-		rl_replace_line("", 0);
+		// rl_replace_line("", 0);
 		rl_on_new_line();
 		rl_redisplay();
 	}

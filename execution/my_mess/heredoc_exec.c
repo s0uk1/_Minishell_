@@ -56,7 +56,7 @@ int	heredoc_exec(t_data *data, t_cmd *cmd_lst, int idx)
 	pid = fork();
 	if (pid == 0)
 	{
-		rl_catch_signals = 1;
+		// rl_catch_signals = 1;
 		check_delims(data, cmd, idx);
 		close(cmd->fd_in);
 		close(cmd->her_in);

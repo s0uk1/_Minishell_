@@ -20,7 +20,7 @@ void	ft_initialize2(t_data *data)
 	data->exit_stat = 0;
 	data->her_doc = 0;
 	data->general.index = 0;
-	rl_catch_signals = 0;
+	// rl_catch_signals = 0;
 	signal(SIGINT, sig_handler);
 	signal(SIGQUIT, sig_handler);
 }
@@ -65,7 +65,7 @@ int	ft_sub_main(t_data *data)
 		}
 		data->general.old_error = data->exit_stat;
 	}
-	rl_clear_history();
+	// rl_clear_history();
 	ft_free_env(data, data->lst_env);
 	return (0);
 }
