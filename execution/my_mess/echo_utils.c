@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 14:02:01 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/20 16:28:21 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/23 14:39:09 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,17 @@ int	check_valid(char *cmd)
 	char	*tmp;
 	int		i;
 
-	i = 1;
+	if (cmd[0] == '-')
+		i = 1;
+	else
+		i = 0;
 	tmp = cmd;
 	while (tmp[i])
 	{
 		if (tmp[i] != 'n')
+		{
 			return (0);
+		}
 		i++;
 	}
 	return (1);
