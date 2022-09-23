@@ -32,7 +32,11 @@ int	ft_value_var(int i, char *value)
 {
 	while (value[i] && !ft_isspace(value[i]) && value[i] != '$'
 		&& value[i] != '\\' && value[i] != '"'
-		&& value[i] != '\'' && value[i] != '=')
+		&& value[i] != '\'' && value[i] != '='
+		&& value[i] != '+'
+		&& value[i] != '-'
+		&& value[i] != '/'
+		&& value[i] != '%')
 		i++;
 	return (i);
 }

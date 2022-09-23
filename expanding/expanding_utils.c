@@ -70,8 +70,13 @@ char	*ft_delete_var(t_data *data, char *var)
 	{
 		i++;
 		while (var[i] && !ft_isspace(var[i]) && var[i] != '$'
-			&& var[i] != '\\' && var[i] != '"' && var[i] != '=')
+			&& var[i] != '\\' && var[i] != '"' && var[i] != '='
+			&& var[i] != '\'')
+		{
 			i++;
+			if (var[i] >= '0' && var[i] <= '9')
+				break ;
+		}
 		if (var[i])
 			new_var = ft_substr(var, i, ft_len_after(var));
 	}

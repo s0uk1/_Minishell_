@@ -169,6 +169,7 @@ int					ft_check_between_pipes(t_data *data);
 int					ft_check_quotes(t_data *data);
 //-------------Expanding------------------------//
 void				ft_expanding(t_data *data);
+int					ft_skip(char *value, int i);
 int					ft_change_flag(int flag);
 char				*ft_get_value(t_data *data, char *var);
 int					ft_check_var_env(t_data *data, char *var);

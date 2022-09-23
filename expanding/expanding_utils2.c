@@ -21,7 +21,12 @@ int	ft_check_for_norme(t_data *data, char *value, int i)
 	if (data->flag_s == 0 && value[i] == '$'
 		&& value[i + 1]
 		&& value[i + 1] != '"'
-		&& value[i + 1] != '?')
+		&& value[i + 1] != '\''
+		&& value[i + 1] != '?'
+		&& value[i + 1] != '+'
+		&& value[i + 1] != '-'
+		&& value[i + 1] != '/'
+		&& value[i + 1] != '%')
 		return (1);
 	return (0);
 }

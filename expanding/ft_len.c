@@ -38,7 +38,11 @@ int	ft_skip(char *value, int i)
 	while (value[i] && !ft_isspace(value[i]) && value[i] != '$'
 		&& value[i] != '\\' && value[i] != '\''
 		&& value[i] != '"' && value[i] != '=')
-		i++;
+		{
+			i++;
+			if (value[i] >= '0' && value[i] <= '9')
+				break ;
+		}
 	return (i);
 }
 
@@ -78,10 +82,16 @@ int	ft_calculate_len(char *value, int i)
 	i++;
 	while (value[i] && !ft_isspace(value[i]) && value[i] != '$'
 		&& value[i] != '\\' && value[i] != '\''
-		&& value[i] != '"' && value[i] != '=')
+		&& value[i] != '"' && value[i] != '='
+		&& value[i] != '+'
+		&& value[i] != '-'
+		&& value[i] != '/'
+		&& value[i] != '%')
 	{
 		i++;
 		len++;
+		if (value[i] >= '0' && value[i] <= '9')
+			break ;
 	}
 	return (len);
 }
