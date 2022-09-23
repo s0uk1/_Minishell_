@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 13:29:59 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/23 10:41:21 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/23 16:37:01 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	ft_initialize1(t_data *data, int argc, char **env)
 int	main(int argc, char **argv, char **env)
 {
 	t_data	data;
-
 
 	(void)argv;
 	if (!ft_initialize1(&data, argc, env))

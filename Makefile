@@ -47,7 +47,7 @@ UTILS= ./utils/ft_putstr_fd.c ./utils/ft_get_env.c ./utils/ft_itoa.c \
 
 EXECUT= ./execution/execution.c ./execution/my_mess/cd_env.c\
 		./execution/my_mess/pipes.c ./execution/check_fork.c\
-		./execution/close_all.c ./execution/my_mess/pwd.c \
+		./execution/close_all.c ./execution/my_mess/pwd.c ./execution/my_mess/cd_back.c\
 		./execution/signals_handling.c ./execution/my_mess/heredoc_exec.c\
 		./execution/my_mess/counting_funcs.c ./execution/my_mess/echo_utils.c\
 		./execution/my_mess/my_exec.c ./execution/my_mess/my_cd.c\
