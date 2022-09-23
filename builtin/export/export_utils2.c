@@ -15,17 +15,16 @@
 void	ft_swap_name(t_env *clone1, t_env *clone2)
 {
 	char	*name_tmp;
-	int		len;
 
-	len = ft_strlen(clone1->name);
-	name_tmp = ft_substr(clone1->name, 0, len);
-	free(clone1->name);
-	len = ft_strlen(clone2->name);
-	clone1->name = ft_substr(clone2->name, 0, len);
-	free(clone2->name);
-	len = ft_strlen(name_tmp);
-	clone2->name = ft_substr(name_tmp, 0, len);
-	free(name_tmp);
+	name_tmp = ft_substr(clone1->name, 0, ft_strlen(clone1->name));
+	if (clone1->name)
+		free(clone1->name);
+	clone1->name = ft_substr(clone2->name, 0, ft_strlen(clone2->name));
+	if (clone2->name)
+		free(clone2->name);
+	clone2->name = ft_substr(name_tmp, 0, ft_strlen(name_tmp));
+	if (name_tmp)
+		free(name_tmp);
 }
 
 void	ft_swap_value(t_env *clone1, t_env *clone2)
@@ -35,13 +34,16 @@ void	ft_swap_value(t_env *clone1, t_env *clone2)
 
 	len = ft_strlen(clone1->value);
 	value_tmp = ft_substr(clone1->value, 0, len);
-	free(clone1->value);
+	if (clone1->value)
+		free(clone1->value);
 	len = ft_strlen(clone2->value);
 	clone1->value = ft_substr(clone2->value, 0, len);
-	free(clone2->value);
+	if (clone2->value)
+		free(clone2->value);
 	len = ft_strlen(value_tmp);
 	clone2->value = ft_substr(value_tmp, 0, len);
-	free(value_tmp);
+	if (value_tmp)
+		free(value_tmp);
 }
 
 void	ft_sort_original(t_data *data)

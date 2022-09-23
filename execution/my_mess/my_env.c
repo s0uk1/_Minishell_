@@ -28,7 +28,7 @@ int	my_env(t_data *data, t_cmd *lst_cmd)
 	{
 		while (env)
 		{
-			if (env->value && ft_strlen(env->value))
+			if (env->value)
 				printf("%s=%s\n", env->name, env->value);
 			env = env->next;
 		}

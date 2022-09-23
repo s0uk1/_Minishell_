@@ -21,14 +21,17 @@ int	ft_change_env_value(t_data *data, char *name, char *value)
 	{
 		if (ft_strcmp(name, env_clone->name) == 0)
 		{
-			free(env_clone->value);
-			if (!value || !ft_strlen(value))
+			if (value)
 			{
-				env_clone->value = malloc (1);
-				env_clone->value[0] = '\0';
+				free(env_clone->value);
+				if (value[0] == '\0')
+				{
+					env_clone->value = malloc (1);
+					env_clone->value[0] = '\0';
+				}
+				else
+					env_clone->value = ft_substr(value, 0, ft_strlen(value));
 			}
-			else
-				env_clone->value = ft_substr(value, 0, ft_strlen(value));
 		}
 		env_clone = env_clone->next;
 	}
@@ -83,6 +86,12 @@ char	*ft_get_value_exp(char *value)
 	if (value[i])
 	{
 		origin = i + 1;
+		if (value[origin] == '\0')
+		{
+			new_value = malloc(sizeof(char) * 1);
+			new_value[0] = '\0';
+			return (new_value);
+		}
 		while (value[++i])
 			j++;
 		new_value = ft_substr(value, origin, j);
