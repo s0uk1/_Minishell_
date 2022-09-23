@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 15:42:55 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/23 10:42:06 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/23 15:20:51 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,13 @@ void	find_dir(t_data *data, char *pwd, char *upd)
 	free(test_pwd);
 }
 
+void	print_error()
+{
+	printf("cd: error retrieving current directory:");
+	printf("getcwd:cannot access parent directories:");
+	printf(" No such file or directory\n");
+}
+
 int	catch_error(t_data *data)
 {
 	char	*old_pwd;
@@ -62,9 +69,7 @@ int	catch_error(t_data *data)
 	char	*join_pwd;
 
 	old_pwd = custom_getenv("PWD", data->lst_env);
-	printf("cd: error retrieving current directory:");
-	printf("getcwd:cannot access parent directories:");
-	printf(" No such file or directory\n");
+	print_error();
 	join_pwd = cd_strjoin(old_pwd, "/..");
 	update_env(data, "PWD", join_pwd);
 	update_env(data, "OLDPWD", old_pwd);
