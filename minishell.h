@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:37:28 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/23 17:29:07 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/23 18:44:47 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,13 @@
 # define TERM_OWNER 130
 # define NO_BUILT 4242
 
-
 typedef struct s_gvar
 {
 	int	g_where_ami;
 	int	g_exit_stat;
-} t_gvar;
+}	t_gvar;
 
-t_gvar g_vars;
+t_gvar	g_vars;
 
 typedef struct s_gen
 {

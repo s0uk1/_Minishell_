@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 17:56:29 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/23 15:11:14 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/23 18:41:54 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int	ft_check_name(t_data *data, char *name, char *value)
 	{
 		if (valid_name(name, &data))
 		{
-			printf("|%s|\n", value);
 			ft_add_new_env(data, name, value);
 			if (!data->first_export)
 					data->first_export = ft_substr(name, 0, ft_strlen(name));

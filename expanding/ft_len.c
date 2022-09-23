@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:16:28 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/23 16:37:38 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/23 18:43:26 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_skip(char *value, int i)
 	{
 		i++;
 		if (value[i] >= '0' && value[i] <= '9')
-		break ;
+			break ;
 	}
 	return (i);
 }

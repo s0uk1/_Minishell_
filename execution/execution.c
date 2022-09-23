@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:53:10 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/23 17:43:30 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/23 18:01:51 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,7 @@ int	dup_and_close(t_data *data, t_cmd *cmd)
 	close_pipes(data->pipes, data->general.count);
 	g_vars.g_exit_stat = check_builtins(data, cmd);
 	if (g_vars.g_exit_stat == NO_BUILT)
-	{
-		printf(" * %d *\n",g_vars.g_exit_stat);
 		g_vars.g_exit_stat = execution_2(data, cmd);
-		printf(" * %d *\n",g_vars.g_exit_stat);
-	}
 	return (g_vars.g_exit_stat);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 10:52:05 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/23 17:31:37 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/23 18:43:42 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,11 @@ int	my_exit(t_cmd *lst_cmd)
 
 	exit_stat = g_vars.g_exit_stat;
 	cmd = lst_cmd->cmd;
-	printf("%d", g_vars.g_exit_stat);
 	printf("exit\n");
 	if (cmd[1])
 	{
 		if (cmd[2])
-			return(printf("bash: exit: too many arguments\n"), 1);
+			return (printf("bash: exit: too many arguments\n"), 1);
 		else if (ft_isdigit(cmd[1]))
 			exit_stat = ft_atoi(cmd[1]);
 		else

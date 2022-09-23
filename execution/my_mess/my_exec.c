@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:10:11 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/23 17:39:07 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/23 18:46:01 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int	check_nonabs(t_data *data, char **cmd)
 int	execution_2(t_data *data, t_cmd *lst_cmd)
 {
 	char	**cmd;
-	
+
 	data->paths = NULL;
 	cmd = lst_cmd->cmd;
 	if (cmd[0][0] == '/' || cmd[0][0] == '.')
