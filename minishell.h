@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:37:28 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/23 16:52:01 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/23 17:29:07 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,14 @@
 # define TERM_OWNER 130
 # define NO_BUILT 4242
 
-int					g_where_ami;
+
+typedef struct s_gvar
+{
+	int	g_where_ami;
+	int	g_exit_stat;
+} t_gvar;
+
+t_gvar g_vars;
 
 typedef struct s_gen
 {
@@ -103,7 +110,7 @@ typedef struct s_data
 
 //--------------------execution soukaina--------------------//
 int					ft_builtins(t_data *data);
-int					my_exit(t_cmd *lst_cmd, t_data *data);
+int					my_exit(t_cmd *lst_cmd);
 int					my_pwd(t_data *data, t_cmd *lst_cmd);
 int					my_cd(t_data *data, t_cmd *lst_cmd);
 int					my_env(t_data *data, t_cmd *lst_cmd);

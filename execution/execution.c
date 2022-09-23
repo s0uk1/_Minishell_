@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:53:10 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/23 10:41:47 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/23 17:43:30 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,14 @@ int	dup_and_close(t_data *data, t_cmd *cmd)
 		close(cmd->fd_out);
 	close_fds(cmd);
 	close_pipes(data->pipes, data->general.count);
-	data->exit_stat = check_builtins(data, cmd);
-	if (data->exit_stat == NO_BUILT)
-		data->exit_stat = execution_2(data, cmd);
-	return (data->exit_stat);
+	g_vars.g_exit_stat = check_builtins(data, cmd);
+	if (g_vars.g_exit_stat == NO_BUILT)
+	{
+		printf(" * %d *\n",g_vars.g_exit_stat);
+		g_vars.g_exit_stat = execution_2(data, cmd);
+		printf(" * %d *\n",g_vars.g_exit_stat);
+	}
+	return (g_vars.g_exit_stat);
 }
 
 int	execution(t_data *data)
@@ -67,20 +71,20 @@ int	execution(t_data *data)
 	data->general.count = c_lstcmd(data);
 	while (cmd)
 	{
-		data->exit_stat = check_nonfork(data, cmd);
+		g_vars.g_exit_stat = check_nonfork(data, cmd);
 		fork_c += check_fork(&pid, data);
 		if (pid == 0 && !data->rerror_f)
 		{
-			g_where_ami = 0;
-			data->exit_stat = dup_and_close(data, cmd);
-			exit(data->exit_stat);
+			g_vars.g_where_ami = 0;
+			g_vars.g_exit_stat = dup_and_close(data, cmd);
+			exit(g_vars.g_exit_stat);
 		}
 		cmd = cmd->next;
 	}
 	close_all(data->lst_cmd, data->pipes, data->general.count);
 	if (fork_c)
-		data->exit_stat = terminate_pid(fork_c);
-	return (data->exit_stat);
+		g_vars.g_exit_stat = terminate_pid(fork_c);
+	return (g_vars.g_exit_stat);
 }
 
 int	pre_execution(t_data *data)

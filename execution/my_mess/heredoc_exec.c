@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 13:15:29 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/23 16:38:26 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/23 17:17:55 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	heredoc_exec(t_data *data, t_cmd *cmd_lst, int idx)
 	t_cmd	*cmd;
 
 	cmd = cmd_lst;
-	g_where_ami = 0;
+	g_vars.g_where_ami = 0;
 	pid = fork();
 	if (pid == 0)
 	{

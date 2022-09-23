@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 15:42:55 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/23 16:38:09 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/23 17:19:27 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ int	my_chdir(t_data *data, char *cmd, char *cwd)
 
 	new_pwd = cmd;
 	if (!ft_strcmp(cmd, "-"))
-		data->exit_stat = go_back_minus(data);
+		g_vars.g_exit_stat = go_back_minus(data);
 	else
-		data->exit_stat = chdir(new_pwd);
-	if (data->exit_stat)
+		g_vars.g_exit_stat = chdir(new_pwd);
+	if (g_vars.g_exit_stat)
 		return (perror("chdir() error:"), 1);
 	else
 	{
@@ -30,7 +30,7 @@ int	my_chdir(t_data *data, char *cmd, char *cwd)
 		update_env(data, "PWD", new_pwd);
 	}
 	free(new_pwd);
-	return (data->exit_stat);
+	return (g_vars.g_exit_stat);
 }
 
 void	find_dir(t_data *data, char *pwd, char *upd)
@@ -66,13 +66,13 @@ int	catch_error(t_data *data)
 	free_pwd = ft_strdup(old_pwd);
 	free(old_pwd);
 	old_pwd = cd_strjoin(free_pwd, "/..");
-	data->exit_stat = chdir(old_pwd);
-	if (data->exit_stat)
+	g_vars.g_exit_stat = chdir(old_pwd);
+	if (g_vars.g_exit_stat)
 		find_dir(data, old_pwd, old_pwd);
 	free(free_pwd);
 	free(old_pwd);
 	free(join_pwd);
-	return (data->exit_stat);
+	return (g_vars.g_exit_stat);
 }
 
 int	my_cd(t_data *data, t_cmd *lst_cmd)

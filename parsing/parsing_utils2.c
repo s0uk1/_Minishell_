@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:17:10 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/22 13:33:50 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/23 17:19:27 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	ft_fill_fd(t_data *data, char *name, int red)
 		if (fd == -1)
 		{
 			printf("No such file or directory\n");
-			data->exit_stat = 1;
+			g_vars.g_exit_stat = 1;
 			data->rerror_f = 1;
 		}
 	}

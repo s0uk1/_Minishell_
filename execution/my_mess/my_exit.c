@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 10:52:05 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/23 16:51:33 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/23 17:31:37 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,28 +50,26 @@ int	ft_isdigit(char *num)
 	return (0);
 }
 
-int	my_exit(t_cmd *lst_cmd, t_data *data)
+int	my_exit(t_cmd *lst_cmd)
 {
 	char	**cmd;
+	int		exit_stat;
 
+	exit_stat = g_vars.g_exit_stat;
 	cmd = lst_cmd->cmd;
-	if (!lst_cmd->next)
+	printf("%d", g_vars.g_exit_stat);
+	printf("exit\n");
+	if (cmd[1])
 	{
-		printf("exit\n");
-		if (cmd[1])
-		{
-			if (cmd[2])
-				printf("bash: exit: too many arguments\n");
-			else if (ft_isdigit(cmd[1]))
-				return (ft_atoi(cmd[1]));
-			else
-			{
-				printf("bash: exit: %s :numeric argument required\n", cmd[1]);
-				return (255);
-			}
-		}
+		if (cmd[2])
+			return(printf("bash: exit: too many arguments\n"), 1);
+		else if (ft_isdigit(cmd[1]))
+			exit_stat = ft_atoi(cmd[1]);
 		else
-			return (data->exit_stat);
+		{
+			printf("bash: exit: %s :numeric argument required\n", cmd[1]);
+			exit_stat = 255;
+		}
 	}
-	return (0);
+	exit (exit_stat);
 }
