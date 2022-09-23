@@ -6,11 +6,24 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 15:42:55 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/23 15:20:51 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/23 16:15:15 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+int	go_back_minus(t_data *data)
+{
+	int	exit_stat;
+	
+	exit_stat = chdir(getenv("OLDPWD"));
+	if (exit_stat)
+		exit_stat = chdir(custom_getenv("OLDPWD", data->lst_env));
+	if (exit_stat)
+		return (perror("chdir() error:"), 1);
+	printf("%s\n", getenv("OLDPWD"));
+	return (exit_stat);
+}
 
 int	my_chdir(t_data *data, char *cmd, char *cwd)
 {
@@ -18,10 +31,7 @@ int	my_chdir(t_data *data, char *cmd, char *cwd)
 
 	new_pwd = cmd;
 	if (!ft_strcmp(cmd, "-"))
-	{
-		data->exit_stat = chdir(getenv("OLDPWD"));
-		printf("%s\n", getenv("PWD"));
-	}
+		data->exit_stat = go_back_minus(data);
 	else
 		data->exit_stat = chdir(new_pwd);
 	if (data->exit_stat)
@@ -85,6 +95,26 @@ int	catch_error(t_data *data)
 	return (data->exit_stat);
 }
 
+int	go_home(t_data *data, char *cwd)
+{
+	int	exit_stat;
+	
+	exit_stat = chdir(getenv("HOME"));
+	if (exit_stat)
+		exit_stat = chdir(custom_getenv("HOME", data->lst_env));
+	if (exit_stat)
+	{
+		free(cwd);
+		cwd = NULL;
+		perror("HOME not set");
+		return (1);
+	}
+		update_pwd(data, cwd);	
+	free(cwd);
+	cwd = NULL;
+	return (exit_stat);
+}
+
 int	my_cd(t_data *data, t_cmd *lst_cmd)
 {
 	char	*cwd;
@@ -101,15 +131,7 @@ int	my_cd(t_data *data, t_cmd *lst_cmd)
 			exit_stat = my_chdir(data, cmd[1], cwd);
 	}
 	else
-	{
-		exit_stat = chdir(custom_getenv("HOME", data->lst_env));
-		if (exit_stat)
-		{
-			free(cwd);
-			return (perror("HOME not set"), 1);
-		}
-		update_pwd(data, cwd);
-	}
+		return(go_home(data, cwd));
 	free(cwd);
 	return (exit_stat);
 }
