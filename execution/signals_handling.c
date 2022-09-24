@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 13:44:37 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/23 18:36:34 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/24 17:28:01 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	sig_handler(int num)
 {
 	if (num == SIGINT && g_vars.g_where_ami)
 	{
-		g_vars.g_exit_stat = 1;
+		// g_vars._stat = 1;
 		write(1, "\n", 1);
 		rl_replace_line("", 0);
 		rl_on_new_line();

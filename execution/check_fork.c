@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:50:24 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/24 12:46:47 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/24 16:43:18 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,17 +74,18 @@ int	check_nonfork(t_data *data, t_cmd *cmd)
 	return (g_vars.g_exit_stat);
 }
 
-int	check_fork(int *pid, t_data *data)
+int	check_fork(t_data *data)
 {
 	int	i;
 
 	i = 0;
-	if (*pid != 0 && data->fork_flag)
+	if (data->general.pid != 0 && data->fork_flag)
 	{
-		*pid = fork();
-		if (*pid < 0)
-			perror("fork() error");
 		i++;
+		g_vars.g_where_ami = 0;
+		data->general.pid = fork();
+		if (data->general.pid < 0)
+			perror("fork() error");
 	}
 	return (i);
 }
