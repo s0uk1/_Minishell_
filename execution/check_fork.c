@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:50:24 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/23 17:30:36 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/24 12:46:47 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	check_builtins(t_data *data, t_cmd *cmd_lst)
 	else if (!ft_strcmp(cmd[0], "env"))
 		my_env(data, data->lst_cmd);
 	else if (!ft_strcmp(cmd[0], "exit"))
-		g_vars.g_exit_stat = my_exit(cmd_lst);
+		g_vars.g_exit_stat = my_exit(cmd_lst, data->general.old_error);
 	else
 		return (NO_BUILT);
 	return (g_vars.g_exit_stat);
@@ -49,7 +49,7 @@ int	nofork_list(t_data *data, t_cmd *cmd)
 	{
 		if (cmd->prev)
 			return (0);
-		g_vars.g_exit_stat = my_exit(cmd);
+		g_vars.g_exit_stat = my_exit(cmd, data->general.old_error);
 	}
 	else
 		data->fork_flag = 1;
