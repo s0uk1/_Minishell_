@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 13:15:29 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/23 18:02:35 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/25 16:55:08 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,15 @@ void	check_delims(t_data *data, t_cmd *cmd, int idx)
 			print_her_in(cmd, here_buff);
 	}
 }
+void	handler(int num)
+{
+	if (num == SIGINT && g_vars.g_where_ami)
+	{
+		if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
+			perror("signal(): error");
+	}
+}
+
 
 int	heredoc_exec(t_data *data, t_cmd *cmd_lst, int idx)
 {
@@ -56,6 +65,7 @@ int	heredoc_exec(t_data *data, t_cmd *cmd_lst, int idx)
 	pid = fork();
 	if (pid == 0)
 	{
+		signal(SIGINT, handler);
 		rl_catch_signals = 1;
 		check_delims(data, cmd, idx);
 		close(cmd->fd_in);

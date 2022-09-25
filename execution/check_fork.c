@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:50:24 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/24 12:46:47 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/25 16:18:43 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	check_builtins(t_data *data, t_cmd *cmd_lst)
 int	nofork_list(t_data *data, t_cmd *cmd)
 {
 	data->fork_flag = 0;
-	if (!ft_strcmp(cmd->cmd[0], "cd"))
+	if (!ft_strcmp(cmd->cmd[0], "cd") && !cmd->next)
 		g_vars.g_exit_stat = my_cd(data, cmd);
 	else if (!ft_strcmp(cmd->cmd[0], "export") && !cmd->next)
 		g_vars.g_exit_stat = export(data, cmd);

@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:17:27 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/23 17:20:32 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/25 17:05:16 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	ft_check_red(t_data *data)
 	{
 		g_vars.g_exit_stat = 258;
 		printf("Syntax error near unexpected token `newline'\n");
-		return (g_vars.g_exit_stat);
+		return (255);
 	}
 	lexer_clone = data->lst_lexer;
 	while (lexer_clone)

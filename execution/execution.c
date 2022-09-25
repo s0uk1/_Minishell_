@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:53:10 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/24 13:01:54 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/25 17:26:59 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,29 @@ int	wait_p(pid_t *p, int *status)
 	return (*p);
 }
 
-int	terminate_pid(int count)
+int	terminate_pid(int count, pid_t lastchild)
 {
-	pid_t	p;
+	// pid_t	p;
 	int		status;
-	int		res;
+	count = 1;
+	// int		res;
 
-	p = 0;
-	while (count)
-	{
-		while (wait_p(&p, &status) > 0)
-		{
-			if (WIFEXITED(status))
-				res = kill(p, SIGKILL);
-			else
-			{
-				return (TERM_OWNER);
-			}
-		}
-		count--;
-	}
+	// p = 0;
+	waitpid(lastchild, &status, 0);
+	while (wait(NULL) != -1);
+	// while (count)
+	// {
+	// 	while (wait_p(&p, &status) > 0)
+	// 	{
+	// 		if (WIFEXITED(status))
+	// 			res = kill(p, SIGKILL);
+	// 		else
+	// 		{
+	// 			return (TERM_OWNER);
+	// 		}
+	// 	}
+	// 	count--;
+	// }
 	return (WEXITSTATUS(status));
 }
 
@@ -81,7 +84,7 @@ int	execution(t_data *data)
 	}
 	close_all(data->lst_cmd, data->pipes, data->general.count);
 	if (fork_c)
-		g_vars.g_exit_stat = terminate_pid(fork_c);
+		g_vars.g_exit_stat = terminate_pid(fork_c, pid);
 	return (g_vars.g_exit_stat);
 }
 

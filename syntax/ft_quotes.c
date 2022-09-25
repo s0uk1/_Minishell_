@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:17:25 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/23 17:19:27 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/25 17:03:29 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int	ft_check_the_quotes(t_data *data)
 
 int	ft_check_quotes(t_data *data)
 {
-	g_vars.g_exit_stat = ft_check_the_quotes(data);
-	return (g_vars.g_exit_stat);
+	int	quotes_f;
+	quotes_f = ft_check_the_quotes(data);
+	return (quotes_f);
 }

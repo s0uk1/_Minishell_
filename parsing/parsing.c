@@ -6,25 +6,11 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:17:19 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/23 10:41:34 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/25 17:02:01 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-// static int	ft_check_pipe(t_data *data)
-// {
-// 	t_lexer	*lexer_clone;
-
-// 	lexer_clone = data->lst_lexer;
-// 	while (lexer_clone)
-// 	{
-// 		if (lexer_clone->type == PIPE)
-// 			return (1);
-// 		lexer_clone = lexer_clone->next;
-// 	}
-// 	return (0);
-// }
 
 int	ft_check_still_redirection(t_data *data)
 {
