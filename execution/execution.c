@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:53:10 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/24 13:01:54 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/24 17:56:59 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,26 @@ int	wait_p(pid_t *p, int *status)
 int	terminate_pid(int count)
 {
 	pid_t	p;
-	int		status;
-	int		res;
+	// int		status;
+	// int		res;
 
 	p = 0;
 	while (count)
 	{
-		while (wait_p(&p, &status) > 0)
-		{
-			if (WIFEXITED(status))
-				res = kill(p, SIGKILL);
-			else
-			{
-				return (TERM_OWNER);
-			}
-		}
+		wait(NULL);
+		// while (wait_p(&p, &status) > 0)
+		// {
+		// 	if (WIFEXITED(status))
+		// 		res = kill(p, SIGKILL);
+		// 	else
+		// 	{
+		// 		return (TERM_OWNER);
+		// 	}
+		// }
 		count--;
 	}
-	return (WEXITSTATUS(status));
+	// return (WEXITSTATUS(status));
+	return (0);
 }
 
 int	dup_and_close(t_data *data, t_cmd *cmd)
@@ -61,7 +63,6 @@ int	dup_and_close(t_data *data, t_cmd *cmd)
 int	execution(t_data *data)
 {
 	t_cmd	*cmd;
-	int		pid;
 	int		fork_c;
 
 	cmd = data->lst_cmd;
@@ -70,8 +71,8 @@ int	execution(t_data *data)
 	while (cmd)
 	{
 		g_vars.g_exit_stat = check_nonfork(data, cmd);
-		fork_c += check_fork(&pid, data);
-		if (pid == 0 && !data->rerror_f)
+		fork_c += check_fork(data);
+		if (data->general.pid == 0 && !data->rerror_f)
 		{
 			g_vars.g_where_ami = 0;
 			g_vars.g_exit_stat = dup_and_close(data, cmd);
@@ -87,9 +88,7 @@ int	execution(t_data *data)
 
 int	pre_execution(t_data *data)
 {
-	int		pid;
-
-	pid = 0;
+	data->general.pid = PID_INIT;
 	if (data->lst_cmd)
 	{
 		data->pipes = initialize_pipes(data);

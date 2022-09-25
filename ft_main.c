@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 10:37:19 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/23 18:43:13 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/24 17:34:26 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 
 void	ft_initialize2(t_data *data)
 {
+	rl_catch_signals = 0;
 	g_vars.g_where_ami = 1;
 	data->lst_cmd = NULL;
 	data->lst_lexer = NULL;
 	g_vars.g_exit_stat = 0;
 	data->her_doc = 0;
 	data->general.index = 0;
-	rl_catch_signals = 0;
 	signal(SIGINT, sig_handler);
 	signal(SIGQUIT, sig_handler);
+	// printf("1|%d|\n", g_vars.g_exit_stat);
+
 }
 
 void	ft_free_norme(t_data *data)
@@ -45,6 +47,7 @@ void	ft_start(t_data *data)
 
 int	ft_sub_main(t_data *data)
 {
+
 	while (42)
 	{
 		ft_initialize2(data);
