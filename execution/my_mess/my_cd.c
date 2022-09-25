@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 15:42:55 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/23 17:19:27 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/25 14:40:54 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	my_chdir(t_data *data, char *cmd, char *cwd)
 
 	new_pwd = cmd;
 	if (!ft_strcmp(cmd, "-"))
-		g_vars.g_exit_stat = go_back_minus(data);
+		return(go_back_minus(data));
 	else
 		g_vars.g_exit_stat = chdir(new_pwd);
 	if (g_vars.g_exit_stat)

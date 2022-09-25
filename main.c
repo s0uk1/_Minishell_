@@ -6,11 +6,31 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 13:29:59 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/23 16:37:01 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/25 13:35:52 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	ft_export_arg_2(t_data *data, char	**env)
+{
+	int		i;
+	char	*name;
+	char	*value;
+
+	i = 1;
+	name = NULL;
+	value = NULL;
+	while (env[i])
+	{
+		name = ft_get_name_exp(env[i]);
+		value = ft_get_value_exp(env[i]);
+		if (!ft_check_name(data, name, value))
+			break ;
+		i++;
+	}
+	return (0);
+}
 
 int	ft_initialize1(t_data *data, int argc, char **env)
 {
@@ -22,8 +42,15 @@ int	ft_initialize1(t_data *data, int argc, char **env)
 		data->env = env;
 	else
 	{
-		printf("uwu where's your env anon\n");
-		return (0);
+		printf("%s\n", env[0]);
+		data->env = malloc (sizeof(char *) * 5);
+		data->env[0] = ft_strdup("SHLVL=1");
+		data->env[1] = ft_strdup("PWD=/Users/ssabbaji/Desktop/workingms");
+		data->env[2] = ft_strdup("OLDPWD=");
+		data->env[3] = ft_strdup("_=/usr/bin/env");
+		data->env[4] = NULL;
+		// ft_export_arg_2(data, data->env);
+		// return (0);
 	}
 	ft_env(data);
 	return (1);
