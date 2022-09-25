@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:16:08 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/24 15:54:45 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/19 16:28:07 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,9 @@ void	ft_delete_quotes(t_data *data)
 {
 	t_cmd	*cmd_clone;
 	char	*temp;
-	char	*temp_2;
 	int		i;
 	int		len;
-	
+
 	cmd_clone = data->lst_cmd;
 	temp = NULL;
 	while (cmd_clone && cmd_clone->cmd)
@@ -89,11 +88,9 @@ void	ft_delete_quotes(t_data *data)
 				len = ft_strlen(cmd_clone->cmd[i]);
 				temp = ft_substr(cmd_clone->cmd[i], 0, len);
 				free(cmd_clone->cmd[i]);
-				temp_2 = ft_delete(temp);
-				cmd_clone->cmd[i] = ft_substr(temp_2,
+				cmd_clone->cmd[i] = ft_substr(ft_delete(temp),
 						0, ft_strlen(temp));
 				free(temp);
-				free(temp_2);
 			}
 			i++;
 		}

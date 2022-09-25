@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:37:28 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/24 16:42:59 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/24 12:46:56 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,17 @@
 # define SEMI 7
 # define TERM_OWNER 130
 # define NO_BUILT 4242
-# define PID_INIT 69
+
 typedef struct s_gvar
 {
 	int	g_where_ami;
-	volatile int	g_exit_stat;
+	int	g_exit_stat;
 }	t_gvar;
 
 t_gvar	g_vars;
 
 typedef struct s_gen
 {
-	int				pid;
 	int				index;
 	int				count;
 	int				old_error;
@@ -134,7 +133,7 @@ void				sig_handler(int num);
 int					heredoc_exec(t_data *data, t_cmd *cmd_lst, int idx);
 int					nofork_list(t_data *data, t_cmd *cmd);
 int					check_nonfork(t_data *data, t_cmd *cmd);
-int					check_fork(t_data *data);
+int					check_fork(int *pid, t_data *data);
 char				*ft_strncpy(char *dest, char *src, unsigned int n);
 char				*custom_getenv(char *env_var, t_env *env_lst);
 char				*join_cmd(char **argv, int argc, int i);
