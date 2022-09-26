@@ -6,17 +6,17 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 10:52:05 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/24 13:01:39 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/26 19:00:53 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
-	int	i;
-	int	n;
-	int	res;
+	int		i;
+	int		n;
+	long	res;
 
 	i = 0;
 	res = 0;
@@ -50,6 +50,35 @@ int	ft_isdigit(char *num)
 	return (0);
 }
 
+int	is_long(char	*cmd)
+{
+	int		i;
+	char	*str;
+
+	i = 0;
+	str = (char *)malloc(sizeof(char *) * 19);
+	str = ft_strdup("9223372036854775807");
+	if (strlen(cmd) == 19)
+	{
+		while(str[i])
+		{
+			if(str[i] == cmd[i])
+				i++;
+			else 
+				return (0);
+			if (i == 19)
+				return (1);
+		}
+		if(!ft_strcmp(cmd, str) || ft_strcmp(cmd, str) > 0)
+		{
+			free(str);
+			return (1);
+		}
+	}
+	else
+		return (0);
+}
+
 int	my_exit(t_cmd *lst_cmd, int old_error)
 {
 	char	**cmd;
@@ -63,8 +92,16 @@ int	my_exit(t_cmd *lst_cmd, int old_error)
 		if (cmd[2])
 			return (printf("bash: exit: too many arguments\n"), 1);
 		else if (ft_isdigit(cmd[1]))
-			exit_stat = ft_atoi(cmd[1]);
-		else
+		{
+			if (is_long(cmd[1]))
+			{
+				printf("bash: exit: %s :numeric argument required\n", cmd[1]);
+				exit_stat = 255;
+			}
+			else 
+				exit_stat = ft_atoi(cmd[1]);	
+		}
+		else 
 		{
 			printf("bash: exit: %s :numeric argument required\n", cmd[1]);
 			exit_stat = 255;

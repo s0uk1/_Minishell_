@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 13:15:29 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/25 16:55:08 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/26 15:50:21 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,13 @@ void	check_delims(t_data *data, t_cmd *cmd, int idx)
 }
 void	handler(int num)
 {
-	if (num == SIGINT && g_vars.g_where_ami)
+	if (num == SIGINT)
 	{
-		if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
-			perror("signal(): error");
+		write(1, "\n", 1);
+		rl_on_new_line(); 
+    	rl_replace_line("", 0);
+    	rl_redisplay();
+		exit(0);
 	}
 }
 
@@ -62,11 +65,12 @@ int	heredoc_exec(t_data *data, t_cmd *cmd_lst, int idx)
 
 	cmd = cmd_lst;
 	g_vars.g_where_ami = 0;
+	g_vars.g_ctrl = 0;
 	pid = fork();
 	if (pid == 0)
 	{
+		rl_clear_signals();
 		signal(SIGINT, handler);
-		rl_catch_signals = 1;
 		check_delims(data, cmd, idx);
 		close(cmd->fd_in);
 		close(cmd->her_in);

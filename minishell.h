@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:37:28 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/25 17:18:37 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/26 17:06:03 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int					my_strchr(char *s, int c);
 char				*ft_strcat(char *dest, char *src);
 char				*ft_strdup(char *src);
 int					count_cmds(char **cmd);
-int					ft_atoi(const char *str);
+long				ft_atoi(const char *str);
 int					c_lstcmd(t_data *data);
 int					pre_execution(t_data *data);
 void				fork_func(t_data *data);
