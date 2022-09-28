@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 10:42:26 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/28 11:49:27 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/28 16:08:53 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	print_rest(char **cmd, int i, int flag)
 
 	if (flag)
 	{
-		echo = join_cmd(cmd, count_cmds(cmd), 1);
+		echo = join_cmd(cmd, count_cmds(cmd), i);
 		free_echo = echo;
 		echo = ft_substr(echo, 0, ft_strlen(echo) - 1);
 		printf("%s", echo);
@@ -35,76 +35,62 @@ void	print_rest(char **cmd, int i, int flag)
 	free(free_echo);
 }
 
+int check_valid_(char *cmd)
+{
+    int i;
+
+    i = 1;
+    if(cmd[0] == '-')
+    {
+       if(!cmd[1])
+	   		return(0);
+        while (cmd[i])
+        {
+            if(cmd[i] != 'n')
+			{
+				// printf("char : %c\n", cmd[i]);
+                return (0);
+			}
+            i++;
+        }
+    }
+    else 
+        return (0);
+    return (1);
+}
+
 int	start_index(char **cmd)
 {
-	int	i;
-	int	idx;
+	int     idx;
+    int     i;
 
-	idx = 0;
-	i = 1;
-	while (cmd[i] != NULL)
-	{
-		if (cmd[i][0] == '-')
-		{
-			if (!check_valid(cmd[i]))
-			{
-				idx = i;
-				break ;
-			}
-			else 
-				i++;
-		}
-		else if (!check_valid(cmd[i]))
-		{
-			idx = i;
-			break ;
-		}
-		idx = i;
-		i++;
-	}
-	printf("%d\n", idx);
-	printf("%d\n", i);
-	if (cmd[i] == NULL && check_valid(cmd[i - 1]) && check_valid(cmd[i]))
-		return (0);
-	return (idx);
+    i = 1;
+    idx = 0;
+    while(cmd[i])
+    {
+        if (!check_valid_(cmd[i]))
+            return (i);
+        i++;
+    }
+	return (0);
 }
 
 
-//printf("||||||||");
-int	my_echo(t_cmd *cmd_lst)
+int my_echo(t_cmd *cmd_lst)
 {
-	char	**cmd;
+    char    **cmd;
 	int		idx;
 
+	idx = 0;
 	cmd = cmd_lst->cmd;
 	if (!cmd[1])
-	{
-		printf("here\n");
-		printf("\n");
-	}
-	if (cmd[1][0] != '-' && cmd[1][1] != 'n')
-	{
-		printf("1 ||||||||\n");
-		print_rest(cmd, 0, 1);
-		return (0);
-	}
+		write(1, "\n", 1);
 	idx = start_index(cmd);
-	printf("%d\n", idx);
-	if (idx == 1)
-	{
-		printf("2 ||||||||\n");
-		print_rest(cmd, idx, 1);
-	}
-	if (idx == 0)
-	{
-		printf("3 ||||||||\n");
+	if (!idx)
 		return (0);
-	}
+	if (idx == 1)
+		print_rest(cmd, idx , 1);
 	else
-	{
-		printf("4 ||||||||\n");
-		print_rest(cmd, idx, 0);
-	}
-	// printf("here\n");
+		print_rest(cmd, idx , 0);
 	return (0);
 }
