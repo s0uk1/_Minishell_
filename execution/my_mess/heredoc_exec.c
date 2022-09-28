@@ -72,7 +72,7 @@ int	heredoc_exec(t_data *data, t_cmd *cmd_lst, int idx)
 	status = 0;
 	if (pid == 0)
 	{
-		rl_clear_signals();
+		// rl_clear_signals();
 		g_vars.g_has_child = 1;
 		signal(SIGINT, &hand);
 		check_delims(data, cmd, idx);

@@ -11,51 +11,56 @@
 /* ************************************************************************** */
 
 #include "../minishell.h"
-void    ft_free_this(t_env *env_clone)
+
+
+void free_env_node(t_env *env)
 {
-    if (env_clone->next)
-        env_clone->next->prev = env_clone->prev;
-    if (env_clone->prev)
-        env_clone->prev->next = env_clone->next;
-    free(env_clone->name);
-    free(env_clone->value);
-    free(env_clone);
+	if (env)
+	{
+		if (env->name)
+			free(env->name);
+		if (env->value)
+			free(env->value);
+		free(env);
+	}
 }
 
-int    unset_helper(t_env *env_clone, t_data *data, t_cmd *lst_cmd)
+void	ft_my_unset(t_data *data, char **cmd)
 {
-    int        idx;
-    // t_env    *env_clone;
+	int		idx;
+	t_env	*env;
 
-    idx = 1;
-    while (lst_cmd->cmd[idx])
-    {
-        env_clone = data->lst_env;
-        while (env_clone)
-        {
-            if (!ft_strcmp(lst_cmd->cmd[idx], env_clone->name))
-            {
-                ft_free_this(env_clone);
-                break ;
-            }
-            env_clone = env_clone->next;
-        }
-        idx++;
-    }
-    return (0);
+	if (!data->lst_env)
+		return ;
+	if (ft_strcmp(cmd[1], data->lst_env->name) == 0)
+	{
+		env = data->lst_env;
+		data->lst_env = data->lst_env->next;
+		free_env_node(env);
+		return ;
+	}
+	idx = 1;
+	while (cmd[idx])
+	{
+		env = data->lst_env;
+		while (env)
+		{
+			if (!ft_strcmp(cmd[idx], env->name))
+				break ;
+			env = env->next;
+		}
+		if (!env)
+			return ;
+		env->prev->next = env->next;
+		free_env_node(env);
+		idx++;
+	}
 }
 
-int    unset(t_data *data, t_cmd *lst_cmd)
+int unset(t_data *data, t_cmd *cmd)
 {
-    t_env    *env_clone;
-
-    env_clone = data->lst_env;
-    if (!lst_cmd->cmd[1])
-        return (1);
-    if (!unset_helper(env_clone, data, lst_cmd))
-        return (0);
-    else
-        return (1);
-    return (0);
+	if (!cmd->cmd[1])
+		return (1);
+	ft_my_unset(data, cmd->cmd);
+	return (0);
 }
-

@@ -25,7 +25,9 @@ t_env	*ft_new_env_node(char *value)
 	while (value[i] != '=')
 		i++;
 	node->name = ft_substr(value, 0, i);
-	node->value = ft_substr(value, i + 1, ft_strlen(value) - i);
+	i++;
+	if (value[i])
+		node->value = ft_substr(value, i, ft_strlen(value) - i);
 	node->next = NULL;
 	node->prev = NULL;
 	return (node);
