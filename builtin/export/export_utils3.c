@@ -46,9 +46,15 @@ void	ft_add_new_env(t_data *data, char *name, char *value)
 	t_env	*new_node;
 
 	env_clone = data->lst_env;
+	new_node = ft_new_node(name, value);
+	if (!env_clone)
+	{
+		if (new_node)
+			data->lst_env = new_node;
+		return ;
+	}
 	while (env_clone->next)
 		env_clone = env_clone->next;
-	new_node = ft_new_node(name, value);
 	if (new_node)
 	{
 		env_clone->next = new_node;

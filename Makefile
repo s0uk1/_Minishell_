@@ -2,7 +2,7 @@ NAME = minishell
 
 YBA = minishell
 
-CC = gcc
+CC = cc
 
 LDFLAGS = "-L/Users/ssabbaji/.brew/opt/readline/lib"
 CPPFLAGS = "-I/Users/ssabbaji/.brew/opt/readline/include"
@@ -11,7 +11,7 @@ INCLUDESS        =  ${CPPFLAGS}
 
 LIBRARIESS        = ${LDFLAGS} -lreadline
 
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror -g 
 
 SRC = main.c ft_free.c ft_main.c \
 
@@ -64,7 +64,7 @@ OBJ = ${FILES:.c=.o}
 all: ${NAME}
 
 ${NAME}: ${OBJ}
-	$(CC) ${LIBRARIESS} $(OBJ) -o ${NAME}
+	$(CC) ${LIBRARIESS} $(OBJ) -o ${NAME} # -fsanitize=address
 
 clean:
 	rm -rf $(OBJ)
