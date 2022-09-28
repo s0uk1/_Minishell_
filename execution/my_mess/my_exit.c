@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 10:52:05 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/26 19:00:53 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/27 13:20:48 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ int	is_long(char	*cmd)
 			return (1);
 		}
 	}
-	else
-		return (0);
+	free(str);
+	return (0);
 }
 
 int	my_exit(t_cmd *lst_cmd, int old_error)

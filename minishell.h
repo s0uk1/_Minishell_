@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:37:28 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/26 17:06:03 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/28 10:53:57 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,17 @@
 # define TERM_OWNER 130
 # define NO_BUILT 4242
 
+typedef struct s_data t_data;
+typedef struct s_cmd t_cmd;
 typedef struct s_gvar
 {
 	int	g_where_ami;
 	int	g_exit_stat;
-	int	g_found_doll;
-	int	g_ctrl;
+	int	g_has_child;
+	int	g_is_heredoc;
+	int	g_her_in;
+	t_cmd *cmd;
+	t_data *data;
 }	t_gvar;
 
 t_gvar	g_vars;
@@ -110,6 +115,7 @@ typedef struct s_data
 }					t_data;
 
 //--------------------execution soukaina--------------------//
+int					ft_statushundling(int status);
 int					ft_builtins(t_data *data);
 int					my_exit(t_cmd *lst_cmd, int old_error);
 int					my_pwd(t_data *data, t_cmd *lst_cmd);
@@ -159,6 +165,7 @@ void				ft_print_env(t_env *env, int flag, int fd);
 t_env				*ft_add_to_env_back(t_env *envi, char *value);
 void				free_split(char **arguments);
 void				ft_create_my_env(t_data *data);
+t_env				*ft_new_env_node(char *value);
 //-----------------Lexer------------------------//
 void				ft_lexer(t_data *data);
 t_lexer				*ft_add_lexer_back(t_lexer *lexer, char *str, int type);

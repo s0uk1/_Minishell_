@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 13:15:29 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/26 15:50:21 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/28 10:47:02 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,32 +45,36 @@ void	check_delims(t_data *data, t_cmd *cmd, int idx)
 			print_her_in(cmd, here_buff);
 	}
 }
-void	handler(int num)
+
+void	hand(int num)
 {
 	if (num == SIGINT)
 	{
-		write(1, "\n", 1);
-		rl_on_new_line(); 
-    	rl_replace_line("", 0);
-    	rl_redisplay();
-		exit(0);
+		exit(100);
 	}
 }
+
 
 
 int	heredoc_exec(t_data *data, t_cmd *cmd_lst, int idx)
 {
 	int		pid;
+	int		status;
 	t_cmd	*cmd;
 
 	cmd = cmd_lst;
 	g_vars.g_where_ami = 0;
-	g_vars.g_ctrl = 0;
+	g_vars.g_is_heredoc = 1;
+	g_vars.cmd = cmd;
+	g_vars.g_her_in = cmd->her_in;
+	g_vars.data = data;
 	pid = fork();
+	status = 0;
 	if (pid == 0)
 	{
 		rl_clear_signals();
-		signal(SIGINT, handler);
+		g_vars.g_has_child = 1;
+		signal(SIGINT, &hand);
 		check_delims(data, cmd, idx);
 		close(cmd->fd_in);
 		close(cmd->her_in);
@@ -78,7 +82,19 @@ int	heredoc_exec(t_data *data, t_cmd *cmd_lst, int idx)
 		close_pipes(data->pipes, data->general.count);
 		exit(0);
 	}
-	waitpid(pid, 0, 0);
-	kill(pid, SIGKILL);
+	waitpid(pid, &status, 0);
+	if (ft_statushundling(status) == 100)
+	{
+	// 	// 		close(cmd->fd_in);
+	// 	// close_fds(cmd);
+	// 	close_pipes(data->pipes, data->general.count);
+	// 	// write(1 ,"\n", 1);
+	// 	// rl_replace_line("", 0);
+	// 	// rl_on_new_line(); 
+    // 	// rl_redisplay();
+		g_vars.g_exit_stat  = 9;
+	// 	// dup2(0, in);
+		return (0);
+	}
 	return (1);
 }

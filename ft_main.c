@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 10:37:19 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/25 17:20:54 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/28 11:04:20 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,9 @@ void	ft_initialize2(t_data *data)
 	g_vars.g_where_ami = 1;
 	data->lst_cmd = NULL;
 	data->lst_lexer = NULL;
-	g_vars.g_exit_stat = 0;
-	g_vars.g_found_doll = 0;
-	g_vars.g_ctrl = 0;
 	data->her_doc = 0;
 	data->general.index = 0;
-	rl_catch_signals = 0;
-	signal(SIGINT, sig_handler);
-	signal(SIGQUIT, sig_handler);
+	g_vars.g_exit_stat = 0;
 }
 
 void	ft_free_norme(t_data *data)
@@ -44,20 +39,28 @@ void	ft_start(t_data *data)
 	pre_execution(data);
 	ft_free_norme(data);
 }
+void	init_sig(void)
+{
+	rl_catch_signals = 0;
+	signal(SIGINT, sig_handler);
+	signal(SIGQUIT, sig_handler);
+}
 
 int	ft_sub_main(t_data *data)
 {
+	init_sig();
 	while (42)
 	{
 		ft_initialize2(data);
 		data->cmd = readline("minishell-1.0> ");
+		g_vars.g_where_ami = 0;
 		if (!data->cmd)
 			break ;
 		if (data->cmd && data->cmd[0] != '\0')
 		{
 			ft_lexer(data);
 			g_vars.g_exit_stat = ft_syntax_analyzer(data);
-			if (g_vars.g_exit_stat)
+			if (g_vars.g_exit_stat == 258)
 			{
 				ft_free_lexer(data->lst_lexer);
 				data->general.old_error = g_vars.g_exit_stat;

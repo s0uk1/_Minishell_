@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:53:10 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/25 17:26:59 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/28 10:46:15 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,30 +19,27 @@ int	wait_p(pid_t *p, int *status)
 	return (*p);
 }
 
-int	terminate_pid(int count, pid_t lastchild)
+int	ft_statushundling(int status)
 {
-	// pid_t	p;
-	int		status;
-	count = 1;
-	// int		res;
+	if (WIFSIGNALED(status))
+	{
+		if (WTERMSIG(status) == 3)
+			write(2, "Quit: 3\n", 8);
+		if (WTERMSIG(status) == 2)
+			write(2, "\n", 1);
+		return (128 + WTERMSIG(status));
+	}
+	else if (WIFEXITED(status))
+		return (WEXITSTATUS(status));
+	return (1);
+}
 
-	// p = 0;
+int	terminate_pid(pid_t lastchild)
+{
+	int		status;
 	waitpid(lastchild, &status, 0);
 	while (wait(NULL) != -1);
-	// while (count)
-	// {
-	// 	while (wait_p(&p, &status) > 0)
-	// 	{
-	// 		if (WIFEXITED(status))
-	// 			res = kill(p, SIGKILL);
-	// 		else
-	// 		{
-	// 			return (TERM_OWNER);
-	// 		}
-	// 	}
-	// 	count--;
-	// }
-	return (WEXITSTATUS(status));
+	return (ft_statushundling(status));
 }
 
 int	dup_and_close(t_data *data, t_cmd *cmd)
@@ -69,10 +66,13 @@ int	execution(t_data *data)
 
 	cmd = data->lst_cmd;
 	fork_c = 0;
+	pid = 1;
 	data->general.count = c_lstcmd(data);
 	while (cmd)
 	{
 		g_vars.g_exit_stat = check_nonfork(data, cmd);
+		if (g_vars.g_exit_stat == 9)
+			break;
 		fork_c += check_fork(&pid, data);
 		if (pid == 0 && !data->rerror_f)
 		{
@@ -84,7 +84,7 @@ int	execution(t_data *data)
 	}
 	close_all(data->lst_cmd, data->pipes, data->general.count);
 	if (fork_c)
-		g_vars.g_exit_stat = terminate_pid(fork_c, pid);
+		g_vars.g_exit_stat = terminate_pid(pid);
 	return (g_vars.g_exit_stat);
 }
 

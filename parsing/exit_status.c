@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:16:59 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/25 17:19:44 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/27 16:43:07 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ char	*ft_new_value(t_data *data, char *value)
 			new_value = ft_strjoin(new_value, ft_itoa(data->general.old_error));
 			j += ft_strlen(ft_itoa(data->general.old_error));
 			i += 2;
-			g_vars.g_found_doll = 1;
 		}
 		else
 		{
