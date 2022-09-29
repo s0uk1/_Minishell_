@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 13:15:29 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/28 10:47:02 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/29 11:11:36 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,16 @@ int	heredoc_exec(t_data *data, t_cmd *cmd_lst, int idx)
 
 	cmd = cmd_lst;
 	g_vars.g_where_ami = 0;
-	g_vars.g_is_heredoc = 1;
-	g_vars.cmd = cmd;
-	g_vars.g_her_in = cmd->her_in;
-	g_vars.data = data;
+	// g_vars.g_is_heredoc = 1;
+	// g_vars.cmd = cmd;
+	// g_vars.g_her_in = cmd->her_in;
+	// g_vars.data = data;
 	pid = fork();
 	status = 0;
 	if (pid == 0)
 	{
-		// rl_clear_signals();
-		g_vars.g_has_child = 1;
+		rl_clear_signals();
+		// g_vars.g_has_child = 1;
 		signal(SIGINT, &hand);
 		check_delims(data, cmd, idx);
 		close(cmd->fd_in);
