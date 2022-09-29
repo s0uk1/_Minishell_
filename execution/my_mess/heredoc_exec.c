@@ -6,32 +6,48 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 13:15:29 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/29 11:11:36 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/29 18:56:29 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	check_delim_idx(t_data *data, t_cmd *cmd)
+int check_delim_idx(t_data *data, t_cmd *cmd)
 {
 	if (cmd->prev)
 		data->general.index += cmd->prev->her_doc_num;
 	return (data->general.index);
 }
 
-void	print_her_in(t_cmd *cmd, char *here_buff)
+void print_her_in(t_cmd *cmd, char *here_buff)
 {
 	ft_putstr_fd(here_buff, cmd->her_in);
 	ft_putstr_fd("\n", cmd->her_in);
 }
 
-void	check_delims(t_data *data, t_cmd *cmd, int idx)
+void hand(int num)
 {
-	char	*here_buff;
-	int		i;
+	int	fd[2];
+	
+	(void)num;
+	rl_done = true;
+	g_vars.g_heredoc = 0;
+	pipe(fd);
+	dup2(fd[0], 0);
+	write(fd[1],"\n", 1);
+}
 
+void check_delims(t_data *data, t_cmd *cmd, int idx)
+{
+	char *here_buff;
+	int i;
+	int	tmp;
+	
 	i = 0;
-	while (1 && i < cmd->her_doc_num)
+	tmp = dup(0);
+	g_vars.g_heredoc = 1;
+	signal(SIGINT, &hand);
+	while (g_vars.g_heredoc && i < cmd->her_doc_num)
 	{
 		here_buff = readline("> ");
 		if (here_buff == NULL)
@@ -44,37 +60,29 @@ void	check_delims(t_data *data, t_cmd *cmd, int idx)
 		else
 			print_her_in(cmd, here_buff);
 	}
-}
-
-void	hand(int num)
-{
-	if (num == SIGINT)
-	{
-		exit(100);
-	}
+	dup2(tmp, 0);
 }
 
 
 
-int	heredoc_exec(t_data *data, t_cmd *cmd_lst, int idx)
+int event(void)
 {
-	int		pid;
-	int		status;
-	t_cmd	*cmd;
+	return (0);
+}
+
+int heredoc_exec(t_data *data, t_cmd *cmd_lst, int idx)
+{
+	int pid;
+	int status;
+	t_cmd *cmd;
 
 	cmd = cmd_lst;
 	g_vars.g_where_ami = 0;
-	// g_vars.g_is_heredoc = 1;
-	// g_vars.cmd = cmd;
-	// g_vars.g_her_in = cmd->her_in;
-	// g_vars.data = data;
 	pid = fork();
 	status = 0;
+	
 	if (pid == 0)
 	{
-		rl_clear_signals();
-		// g_vars.g_has_child = 1;
-		signal(SIGINT, &hand);
 		check_delims(data, cmd, idx);
 		close(cmd->fd_in);
 		close(cmd->her_in);
@@ -83,18 +91,5 @@ int	heredoc_exec(t_data *data, t_cmd *cmd_lst, int idx)
 		exit(0);
 	}
 	waitpid(pid, &status, 0);
-	if (ft_statushundling(status) == 100)
-	{
-	// 	// 		close(cmd->fd_in);
-	// 	// close_fds(cmd);
-	// 	close_pipes(data->pipes, data->general.count);
-	// 	// write(1 ,"\n", 1);
-	// 	// rl_replace_line("", 0);
-	// 	// rl_on_new_line(); 
-    // 	// rl_redisplay();
-		g_vars.g_exit_stat  = 9;
-	// 	// dup2(0, in);
-		return (0);
-	}
 	return (1);
 }

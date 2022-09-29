@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:16:26 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/29 15:11:01 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/29 17:36:19 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ char	*generate_nv(char *lexer_val)
 void	ft_real_expanding(t_data *data, t_lexer *lexer, char *var, char *n_v)
 {
 	int		i;
+	char	*temp;
 
 	i = 0;
 	n_v = generate_nv(lexer->val);
@@ -65,17 +66,19 @@ void	ft_real_expanding(t_data *data, t_lexer *lexer, char *var, char *n_v)
 		var = ft_substr(lexer->val, i + 1, ft_len_var(lexer->val));
 	if (var)
 	{
+		temp = n_v;
 		if (ft_check_var_env(data, var))
 		{
-			n_v = ft_strjoin(n_v, ft_get_value(data, var));
+			n_v = ft_strjoin(temp, ft_get_value(data, var));
 			i++;
 			i = ft_value_var(i, lexer->val);
 			if (lexer->val[i])
 				n_v = ft_fix_norme(n_v, lexer->val, i);
 		}
 		else
-			n_v = ft_strjoin(n_v, ft_delete_var(data, lexer->val));
+			n_v = ft_strjoin(temp, ft_delete_var(data, lexer->val));
 		lexer->val = ft_change_nd_free(lexer->val, var, n_v);
+		free(temp);
 	}
 }
 
