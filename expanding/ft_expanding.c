@@ -49,9 +49,9 @@ char	*generate_nv(char *lexer_val)
 	n_v = NULL;
 	temp = NULL;
 	temp = ft_substr(lexer_val, 0, ft_len_before(lexer_val));
-	n_v = ft_strjoin(n_v, temp);
-	free(temp);
-	return (n_v);
+	// n_v = ft_strjoin(n_v, temp);
+	// free(temp);
+	return (temp);
 }
 
 void	ft_real_expanding(t_data *data, t_lexer *lexer, char *var, char *n_v)
