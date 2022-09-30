@@ -35,6 +35,9 @@ int	ft_change_env_value(t_data *data, char *name, char *value)
 		}
 		env_clone = env_clone->next;
 	}
+	free(name);
+	if (value)
+		free(value);
 	return (0);
 }
 

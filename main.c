@@ -12,25 +12,25 @@
 
 #include "minishell.h"
 
-int	ft_export_arg_2(t_data *data, char	**env)
-{
-	int		i;
-	char	*name;
-	char	*value;
+// int	ft_export_arg_2(t_data *data, char	**env)
+// {
+// 	int		i;
+// 	char	*name;
+// 	char	*value;
 
-	i = 1;
-	name = NULL;
-	value = NULL;
-	while (env[i])
-	{
-		name = ft_get_name_exp(env[i]);
-		value = ft_get_value_exp(env[i]);
-		if (!ft_check_name(data, name, value))
-			break ;
-		i++;
-	}
-	return (0);
-}
+// 	i = 1;
+// 	name = NULL;
+// 	value = NULL;
+// 	while (env[i])
+// 	{
+// 		name = ft_get_name_exp(env[i]);
+// 		value = ft_get_value_exp(env[i]);
+// 		if (!ft_check_name(data, name, value))
+// 			break ;
+// 		i++;
+// 	}
+// 	return (0);
+// }
 
 int	ft_initialize1(t_data *data, int argc, char **env)
 {

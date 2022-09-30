@@ -39,25 +39,66 @@ int	valid_name(char *name, t_data **data)
 	return (1);
 }
 
-int	ft_check_name(t_data *data, char *name, char *value)
+void	ft_normal_export(t_data *data, char *name, char *value)
 {
 	if (ft_name_exists(data, name))
 		ft_change_env_value(data, name, value);
 	else
 	{
-		if (valid_name(name, &data))
-		{
-			ft_add_new_env(data, name, value);
-			if (!data->first_export)
-					data->first_export = ft_substr(name, 0, ft_strlen(name));
-			free(name);
-			if (value)
-				free(value);
-		}
-		else
-			return (0);
+		ft_add_new_env(data, name, value);
+		if (!data->first_export)
+				data->first_export = ft_substr(name, 0, ft_strlen(name));
+		free(name);
+		if (value)
+			free(value);
 	}
-	return (1);
+}
+
+int	ft_check_concate(char *name)
+{
+	char	*temp;
+
+	if (name[ft_strlen(name) - 1] == '+')
+	{
+		temp = ft_substr(name, 0, ft_strlen(name) - 1);
+		free(name);
+		name = ft_strdup(temp);
+		free(temp);
+		return (1);
+	}
+	return (0);
+}
+
+void	ft_concatenate(t_data *data, char *name, char *value)
+{
+	char	*temp;
+	t_env	*env_clone;
+
+	env_clone = data->lst_env;
+	if (ft_name_exists(data, name))
+	{
+		while (env_clone)
+		{
+			if (!ft_strcmp(env_clone->name, name))
+			{
+				temp = env_clone->value;
+				if (env_clone->value)
+					free(env_clone->value);
+				env_clone->value = ft_strjoin(temp, value);
+				break ;
+			}
+			env_clone = env_clone->next;
+		}
+	}
+	else
+	{
+		ft_add_new_env(data, name, value);
+		if (!data->first_export)
+				data->first_export = ft_substr(name, 0, ft_strlen(name));
+		free(name);
+		if (value)
+			free(value);		
+	}
 }
 
 int	ft_export_arg(t_data *data, t_cmd *lst_cmd, char *name, char *value)
@@ -69,8 +110,13 @@ int	ft_export_arg(t_data *data, t_cmd *lst_cmd, char *name, char *value)
 	{
 		name = ft_get_name_exp(lst_cmd->cmd[i]);
 		value = ft_get_value_exp(lst_cmd->cmd[i]);
-		if (!ft_check_name(data, name, value))
-			break ;
+		if (valid_name(name, &data))
+		{
+			if (ft_check_concate(name))
+				ft_concatenate(data, name, value);
+			else 
+				ft_normal_export(data, name, value);
+		}
 		i++;
 	}
 	return (0);
