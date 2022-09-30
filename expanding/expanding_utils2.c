@@ -61,14 +61,21 @@ int	ft_check_still_dollar(t_data *data)
 
 char	*ft_fix_norme(char *n_v, char *value, int i)
 {
-	return (ft_strjoin(n_v, ft_substr(value, i, ft_strlen(value))));
+	char	*after;
+	char	*new;
+
+	after = ft_substr(value, i, ft_strlen(value));
+	new = ft_strjoin(n_v, after);
+	free(after);
+	return (new);
 }
 
-char	*ft_change_nd_free(char *value, char *var, char *n_v)
+char	*ft_change_nd_free(char *var, char *n_v)
 {
-	free(value);
-	value = ft_substr(n_v, 0, ft_strlen(n_v));
+	char	*new;
+
+	new = ft_substr(n_v, 0, ft_strlen(n_v));
 	free(var);
 	free(n_v);
-	return (value);
+	return (new);
 }

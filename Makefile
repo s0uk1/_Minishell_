@@ -64,7 +64,7 @@ OBJ = ${FILES:.c=.o}
 all: ${NAME}
 
 ${NAME}: ${OBJ}
-	$(CC) ${LIBRARIESS} $(OBJ) -o ${NAME} # -fsanitize=address
+	$(CC) ${LIBRARIESS} $(OBJ) -o ${NAME} #-fsanitize=address
 
 clean:
 	rm -rf $(OBJ)

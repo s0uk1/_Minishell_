@@ -41,25 +41,18 @@ int	ft_value_var(int i, char *value)
 	return (i);
 }
 
-char	*generate_nv(char *lexer_val)
-{
-	char	*temp;
-	char	*n_v;
-
-	n_v = NULL;
-	temp = NULL;
-	temp = ft_substr(lexer_val, 0, ft_len_before(lexer_val));
-	// n_v = ft_strjoin(n_v, temp);
-	// free(temp);
-	return (temp);
-}
-
-void	ft_real_expanding(t_data *data, t_lexer *lexer, char *var, char *n_v)
+void	ft_real_expanding(t_data *data, t_lexer *lexer)
 {
 	int		i;
+	char	*n_v;
+	char	*var;
+	char	*temp1;
 
 	i = 0;
-	n_v = generate_nv(lexer->val);
+	n_v = NULL;
+	var = NULL;
+	temp1 = ft_strdup(lexer->val);
+	n_v = ft_substr(lexer->val, 0, ft_len_before(lexer->val));
 	i = ft_value_before(data, i, lexer->val);
 	if (lexer->val[i] && lexer->val[i + 1])
 		var = ft_substr(lexer->val, i + 1, ft_len_var(lexer->val));
@@ -75,17 +68,41 @@ void	ft_real_expanding(t_data *data, t_lexer *lexer, char *var, char *n_v)
 		}
 		else
 			n_v = ft_strjoin(n_v, ft_delete_var(data, lexer->val));
-		lexer->val = ft_change_nd_free(lexer->val, var, n_v);
+		free(lexer->val);
+		lexer->val = ft_change_nd_free(var, n_v);
 	}
+}
+
+int	ft_has_var(t_data *data, char *value)
+{
+	int	i;
+
+	i = 0;
+	while (value && value[i])
+	{
+		if (value[i] == '"' && data->flag_s == 0)
+			data->flag_d = ft_change_flag(data->flag_d);
+		if (value[i] == '\'' && data->flag_d == 0)
+			data->flag_s = ft_change_flag(data->flag_s);
+		if (data->flag_s == 0 && value[i] == '$'
+			&& value[i + 1]
+			&& value[i + 1] != '"'
+			&& value[i + 1] != '\''
+			&& value[i + 1] != '?'
+			&& value[i + 1] != '+'
+			&& value[i + 1] != '-'
+			&& value[i + 1] != '/'
+			&& value[i + 1] != '%')		
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
 void	ft_expanding(t_data *data)
 {
 	t_lexer	*lexer_clone;
-	char	*var;
-	char	*new_var;
 
-	new_var = NULL;
 	lexer_clone = data->lst_lexer;
 	while (ft_check_still_dollar(data))
 	{
@@ -98,9 +115,8 @@ void	ft_expanding(t_data *data)
 				if (lexer_clone)
 					lexer_clone = lexer_clone->next;
 			}
-			var = NULL;
-			if (lexer_clone->type == WORD)
-				ft_real_expanding(data, lexer_clone, var, new_var);
+			if (lexer_clone->type == WORD && ft_has_var(data, lexer_clone->val))
+				ft_real_expanding(data, lexer_clone);
 			if (lexer_clone)
 				lexer_clone = lexer_clone->next;
 		}

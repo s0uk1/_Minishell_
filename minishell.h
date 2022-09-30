@@ -198,7 +198,7 @@ int					ft_len_after(char *var);
 int					ft_len_var(char *var);
 int					ft_check_still_dollar(t_data *data);
 char				*ft_fix_norme(char *n_v, char *value, int i);
-char				*ft_change_nd_free(char *value, char *var, char *n_v);
+char				*ft_change_nd_free(char *var, char *n_v);
 //----------------parsing----------------------//
 void				ft_parsing(t_data *data);
 char				*ft_strjoin(char *s1, char *s2);
