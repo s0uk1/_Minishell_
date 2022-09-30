@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 10:42:26 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/28 16:08:53 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/28 17:26:59 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,30 +35,6 @@ void	print_rest(char **cmd, int i, int flag)
 	free(free_echo);
 }
 
-int check_valid_(char *cmd)
-{
-    int i;
-
-    i = 1;
-    if(cmd[0] == '-')
-    {
-       if(!cmd[1])
-	   		return(0);
-        while (cmd[i])
-        {
-            if(cmd[i] != 'n')
-			{
-				// printf("char : %c\n", cmd[i]);
-                return (0);
-			}
-            i++;
-        }
-    }
-    else 
-        return (0);
-    return (1);
-}
-
 int	start_index(char **cmd)
 {
 	int     idx;
@@ -68,13 +44,12 @@ int	start_index(char **cmd)
     idx = 0;
     while(cmd[i])
     {
-        if (!check_valid_(cmd[i]))
+        if (!check_valid(cmd[i]))
             return (i);
         i++;
     }
 	return (0);
 }
-
 
 int my_echo(t_cmd *cmd_lst)
 {

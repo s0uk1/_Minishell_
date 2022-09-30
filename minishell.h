@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:37:28 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/28 10:53:57 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/29 18:41:51 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <string.h>
 # include <termios.h>
 # include <unistd.h>
+# include <stdbool.h>
 # define WORD 1
 # define PIPE 2
 # define PARENTHESIS 4
@@ -32,17 +33,11 @@
 # define TERM_OWNER 130
 # define NO_BUILT 4242
 
-typedef struct s_data t_data;
-typedef struct s_cmd t_cmd;
 typedef struct s_gvar
 {
 	int	g_where_ami;
 	int	g_exit_stat;
-	int	g_has_child;
-	int	g_is_heredoc;
-	int	g_her_in;
-	t_cmd *cmd;
-	t_data *data;
+	int	g_heredoc;
 }	t_gvar;
 
 t_gvar	g_vars;
