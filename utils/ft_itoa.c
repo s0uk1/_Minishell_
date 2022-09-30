@@ -47,8 +47,8 @@ char	*ft_itoa(int n)
 	sign = 1;
 	len = ft_len(n);
 	x = (char *)malloc(sizeof(char) * (len + 1));
-	if (!x)
-		exit (1);
+	if (!(x))
+		return (NULL);
 	x[len--] = '\0';
 	if (n == 0)
 		x[0] = '0';

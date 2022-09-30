@@ -29,16 +29,18 @@ char	*ft_new_value(t_data *data, char *value)
 	char	*new_value;
 	int		i;
 	int		j;
+	char	*temp;
 
 	j = 0;
 	i = 0;
-	new_value = ft_allocate(ft_itoa(data->general.old_error), value);
+	temp = ft_itoa(data->general.old_error);
+	new_value = ft_allocate(temp, value);
 	while (value[i])
 	{
 		if (value[i] == '$' && value[i + 1] == '?')
 		{
-			new_value = ft_strjoin(new_value, ft_itoa(data->general.old_error));
-			j += ft_strlen(ft_itoa(data->general.old_error));
+			new_value = ft_strjoin(new_value, temp);
+			j += ft_strlen(temp);
 			i += 2;
 		}
 		else
@@ -48,6 +50,7 @@ char	*ft_new_value(t_data *data, char *value)
 			i++;
 		}
 	}
+	free(temp);
 	new_value[j] = '\0';
 	return (new_value);
 }
