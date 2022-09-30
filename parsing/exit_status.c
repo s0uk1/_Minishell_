@@ -18,7 +18,7 @@ char	*ft_allocate(char *exit, char *value)
 	char	*new;
 
 	len = ft_strlen(exit) + ft_strlen(value) - 2;
-	new = malloc(sizeof(char) * len - 1);
+	new = malloc(sizeof(char) * len + 1);
 	if (!new)
 		return (NULL);
 	return (new);
@@ -33,12 +33,19 @@ char	*ft_new_value(t_data *data, char *value)
 
 	j = 0;
 	i = 0;
+	data->flag_d = 0;
+	data->flag_s = 0;
 	temp = ft_itoa(data->general.old_error);
 	new_value = ft_allocate(temp, value);
 	while (value[i])
 	{
-		if (value[i] == '$' && value[i + 1] == '?')
+		if (value[i] == '"' && data->flag_s == 0)
+			ft_change_flag(data->flag_d);
+		if (value[i] == '\'' && data->flag_d == 0)
+			ft_change_flag(data->flag_s);
+		if (data->flag_s == 0 && value[i] == '$' && value[i + 1] == '?')
 		{
+			new_value[j] = '\0';
 			new_value = ft_strjoin(new_value, temp);
 			j += ft_strlen(temp);
 			i += 2;
