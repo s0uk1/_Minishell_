@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:55:18 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/25 14:31:36 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/30 16:56:26 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,6 @@ char	*custom_getenv(char *env_var, t_env *env_lst)
 	pwd = NULL;
 	while (tmp)
 	{
-		// if (!ft_strcmp("HOME", env_var) && !ft_strcmp(tmp->name, env_var))
-		// {
-		// 	if (tmp->value[0] == '\0')
-		// 	pwd = ".";
-		// 	return (pwd);
-		// }
 		if (!ft_strcmp(tmp->name, env_var))
 		{
 			pwd = ft_strdup(tmp->value);

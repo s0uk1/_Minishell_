@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 10:42:26 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/28 17:26:59 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/30 16:52:10 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,23 @@ void	print_rest(char **cmd, int i, int flag)
 
 int	start_index(char **cmd)
 {
-	int     idx;
-    int     i;
+	int	idx;
+	int	i;
 
-    i = 1;
-    idx = 0;
-    while(cmd[i])
-    {
-        if (!check_valid(cmd[i]))
-            return (i);
-        i++;
-    }
+	i = 1;
+	idx = 0;
+	while (cmd[i])
+	{
+		if (!check_valid(cmd[i]))
+			return (i);
+		i++;
+	}
 	return (0);
 }
 
-int my_echo(t_cmd *cmd_lst)
+int	my_echo(t_cmd *cmd_lst)
 {
-    char    **cmd;
+	char	**cmd;
 	int		idx;
 
 	idx = 0;
@@ -64,8 +64,8 @@ int my_echo(t_cmd *cmd_lst)
 	if (!idx)
 		return (0);
 	if (idx == 1)
-		print_rest(cmd, idx , 1);
+		print_rest(cmd, idx, 1);
 	else
-		print_rest(cmd, idx , 0);
+		print_rest(cmd, idx, 0);
 	return (0);
 }

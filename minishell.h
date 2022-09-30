@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:37:28 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/29 18:41:51 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/30 16:40:46 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define SEMI 7
 # define TERM_OWNER 130
 # define NO_BUILT 4242
+# define HEREDOC_EXE 42424242
 
 typedef struct s_gvar
 {

@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:53:10 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/30 14:23:53 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/30 16:58:06 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,11 @@ int	ft_statushundling(int status)
 
 int	terminate_pid(pid_t lastchild)
 {
-	int		status;
+	int	status;
+
 	waitpid(lastchild, &status, 0);
-	while (wait(NULL) != -1);
+	while (wait(NULL) != -1)
+		;
 	return (ft_statushundling(status));
 }
 
@@ -72,7 +74,7 @@ int	execution(t_data *data)
 	{
 		g_vars.g_exit_stat = check_nonfork(data, cmd);
 		if (g_vars.g_heredoc == 0)
-			return 10;
+			return (HEREDOC_EXE);
 		fork_c += check_fork(&pid, data);
 		if (pid == 0 && !data->rerror_f)
 		{
@@ -90,13 +92,14 @@ int	execution(t_data *data)
 
 int	pre_execution(t_data *data)
 {
-	int		pid;
+	int	pid;
 
 	pid = 0;
 	if (data->lst_cmd)
 	{
 		data->pipes = initialize_pipes(data);
-		execution(data);
+		if (execution(data) == HEREDOC_EXE)
+			g_vars.g_exit_stat = 1;
 	}
 	return (0);
 }

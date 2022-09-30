@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 14:02:01 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/28 17:26:47 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/30 16:56:01 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,23 @@ char	*join_cmd(char **argv, int argc, int i)
 	return (args);
 }
 
-int check_valid(char *cmd)
+int	check_valid(char *cmd)
 {
-    int i;
+	int i;
 
-    i = 1;
-    if(cmd[0] == '-')
-    {
-       if(!cmd[1])
-	   		return(0);
-        while (cmd[i])
-        {
-            if(cmd[i] != 'n')
-                return (0);
-            i++;
-        }
-    }
-    else 
-        return (0);
-    return (1);
+	i = 1;
+	if (cmd[0] == '-')
+	{
+		if (!cmd[1])
+			return (0);
+		while (cmd[i])
+		{
+			if (cmd[i] != 'n')
+				return (0);
+			i++;
+		}
+	}
+	else
+		return (0);
+	return (1);
 }
