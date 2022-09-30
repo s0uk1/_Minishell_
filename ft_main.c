@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 10:37:19 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/29 11:05:01 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/30 14:24:35 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,10 @@ void	init_sig(void)
 
 int	ft_sub_main(t_data *data)
 {
-	init_sig();
 	while (42)
 	{
+		g_vars.g_heredoc = 1;
+		init_sig();
 		ft_initialize2(data);
 		data->cmd = readline("minishell-1.0> ");
 		g_vars.g_where_ami = 0;

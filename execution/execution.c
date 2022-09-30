@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:53:10 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/29 18:56:25 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/30 14:23:53 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ int	execution(t_data *data)
 	while (cmd)
 	{
 		g_vars.g_exit_stat = check_nonfork(data, cmd);
+		if (g_vars.g_heredoc == 0)
+			return 10;
 		fork_c += check_fork(&pid, data);
 		if (pid == 0 && !data->rerror_f)
 		{
