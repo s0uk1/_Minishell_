@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 13:15:29 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/29 18:56:29 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/30 14:21:37 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,25 @@ void hand(int num)
 	int	fd[2];
 	
 	(void)num;
-	rl_done = true;
+	rl_done = 1;
 	g_vars.g_heredoc = 0;
 	pipe(fd);
 	dup2(fd[0], 0);
 	write(fd[1],"\n", 1);
 }
 
+// int event(void)
+// {
+// 	return (0);
+// }
+
 void check_delims(t_data *data, t_cmd *cmd, int idx)
 {
 	char *here_buff;
 	int i;
-	int	tmp;
 	
 	i = 0;
-	tmp = dup(0);
-	g_vars.g_heredoc = 1;
+	// rl_event_hook = event;
 	signal(SIGINT, &hand);
 	while (g_vars.g_heredoc && i < cmd->her_doc_num)
 	{
@@ -60,36 +63,41 @@ void check_delims(t_data *data, t_cmd *cmd, int idx)
 		else
 			print_her_in(cmd, here_buff);
 	}
-	dup2(tmp, 0);
+	// if (!g_vars.g_heredoc)
+	// 	return ;
+	dup2(cmd->her_in, STDIN_FILENO);
+	
 }
 
 
 
-int event(void)
-{
-	return (0);
-}
 
 int heredoc_exec(t_data *data, t_cmd *cmd_lst, int idx)
 {
-	int pid;
-	int status;
+	// int pid;
+	int	tmp;
+	// int status;
 	t_cmd *cmd;
 
 	cmd = cmd_lst;
 	g_vars.g_where_ami = 0;
-	pid = fork();
-	status = 0;
-	
-	if (pid == 0)
-	{
+	// pid = fork();
+	// status = 0;
+	tmp = dup(0);
+	g_vars.g_heredoc = 1;
+	// if (pid == 0)
+	// {
+		// signal(SIGINT, &hand);
 		check_delims(data, cmd, idx);
 		close(cmd->fd_in);
 		close(cmd->her_in);
 		close_fds(cmd);
-		close_pipes(data->pipes, data->general.count);
-		exit(0);
-	}
-	waitpid(pid, &status, 0);
+		// close_pipes(data->pipes, data->general.count);
+		// exit(0);
+	// }
+	dup2(tmp, 0);
+	close(tmp);
+	// waitpid(pid, 0, 0);
+	// kill(pid, SIGKILL);
 	return (1);
 }
