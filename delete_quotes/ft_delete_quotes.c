@@ -77,8 +77,6 @@ void	ft_delete_quotes(t_data *data)
 	char	*temp1;
 
 	cmd_clone = data->lst_cmd;
-	temp = NULL;
-	temp1 = NULL;
 	while (cmd_clone && cmd_clone->cmd)
 	{
 		i = 0;
