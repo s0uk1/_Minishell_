@@ -48,7 +48,6 @@ void	ft_real_expanding(t_data *data, t_lexer *lexer)
 	char	*var;
 
 	i = 0;
-	n_v = NULL;
 	var = NULL;
 	n_v = ft_substr(lexer->val, 0, ft_len_before(lexer->val));
 	i = ft_value_before(data, i, lexer->val);
@@ -59,13 +58,10 @@ void	ft_real_expanding(t_data *data, t_lexer *lexer)
 		if (ft_check_var_env(data, var))
 		{
 			n_v = ft_strjoin(n_v, ft_get_value(data, var));
-			i++;
-			i = ft_value_var(i, lexer->val);
-			if (lexer->val[i])
-				n_v = ft_fix_norme(n_v, lexer->val, i);
+			n_v = ft_get_expand_value(n_v, i, lexer->val);
 		}
 		else
-			n_v = ft_strjoin(n_v, ft_delete_var(data, lexer->val));
+			n_v = ft_var_isnt(data, lexer->val, n_v);
 		free(lexer->val);
 		lexer->val = ft_change_nd_free(var, n_v);
 	}

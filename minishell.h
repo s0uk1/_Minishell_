@@ -192,9 +192,12 @@ char				*ft_delete_var(t_data *data, char *var);
 int					ft_len_before(char *var);
 int					ft_len_after(char *var);
 int					ft_len_var(char *var);
+char			*ft_var_isnt(t_data *data, char *lexer, char *n_v);
+int					ft_value_var(int i, char *value);
 int					ft_check_still_dollar(t_data *data);
 char				*ft_fix_norme(char *n_v, char *value, int i);
 char				*ft_change_nd_free(char *var, char *n_v);
+char				*ft_get_expand_value(char *n_v, int i, char *lexer);
 //----------------parsing----------------------//
 void				ft_parsing(t_data *data);
 char				*ft_strjoin(char *s1, char *s2);

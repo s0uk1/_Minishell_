@@ -31,6 +31,15 @@ int	ft_check_for_norme(t_data *data, char *value, int i)
 	return (0);
 }
 
+char	*ft_get_expand_value(char *n_v, int i, char *lexer)
+{
+	i++;
+	i = ft_value_var(i, lexer);
+	if (lexer[i])
+		n_v = ft_fix_norme(n_v, lexer, i);
+	return (n_v);
+}
+
 int	ft_check_still_dollar(t_data *data)
 {
 	t_lexer	*lexer_clone;
