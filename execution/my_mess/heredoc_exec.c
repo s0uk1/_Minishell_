@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 13:15:29 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/30 16:54:31 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/10/01 19:32:59 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	hand(int num)
 	int	fd[2];
 
 	(void)num;
-	// rl_done = 1;
+	rl_done = 1;
 	g_vars.g_heredoc = 0;
 	pipe(fd);
 	dup2(fd[0], 0);

@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 13:44:37 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/30 17:17:53 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/10/01 19:33:34 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	sig_handler(int num)
 	{
 		// g_vars.g_exit_stat = 1;
 		write(1, "\n", 1);
-		// rl_replace_line("", 0);
+		rl_replace_line("", 0);
 		rl_on_new_line();
 		rl_redisplay();
 	}
