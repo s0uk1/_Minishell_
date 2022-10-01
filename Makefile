@@ -36,7 +36,7 @@ LEXER = ./lexer/lexer.c ./lexer/lexer_utils.c \
 SYNTAX = ./syntax/syntax_analyzer.c ./syntax/ft_pipe.c \
 	 	 ./syntax/ft_redirection.c ./syntax/ft_quotes.c \
 
-BUILTIN= ./builtin/unset.c \
+BUILTIN= ./builtin/unset.c ./builtin/export/export_utils4.c \
 		 ./builtin/export/export.c ./builtin/export/export_utils.c \
 		 ./builtin/export/export_utils2.c ./builtin/export/export_utils3.c \
 		 

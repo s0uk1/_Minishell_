@@ -153,6 +153,8 @@ int					go_back_minus(t_data *data);
 void				print_error(void);
 int					go_home(t_data *data, char *cwd);
 int					ft_check_name(t_data *data, char *name, char *value);
+void				ft_concatenate(t_data *data, char *name, char *value);
+int					ft_check_concate(char *name);
 //-----------------env--------------------------//
 void				ft_create_env_list(t_env **envi, char **env);
 void				ft_env(t_data *data);
@@ -199,10 +201,8 @@ char				*ft_change_nd_free(char *var, char *n_v);
 void				ft_parsing(t_data *data);
 char				*ft_strjoin(char *s1, char *s2);
 void				ft_add_command_pipe(t_data *data);
-t_cmd				*ft_add_back_cmd(t_data *data, int *fd, int *red,
-						int red_num);
-void				ft_add_normal_command(t_data *data, char *new, int *fd,
-						int *red);
+t_cmd				*ft_add_back_cmd(t_data *data, int *fd, int *red, int red_num);
+void				ft_add_normal_command(t_data *data, char *new, int *fd, int *red);
 char				**ft_split(char *s, char c);
 char				*ft_join_args(char *s1, char *s2);
 void				free_split(char **arguments);
