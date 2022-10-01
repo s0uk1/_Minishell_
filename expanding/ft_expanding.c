@@ -90,7 +90,7 @@ int	ft_has_var(t_data *data, char *value)
 			&& value[i + 1] != '+'
 			&& value[i + 1] != '-'
 			&& value[i + 1] != '/'
-			&& value[i + 1] != '%')		
+			&& value[i + 1] != '%')
 			return (1);
 		i++;
 	}

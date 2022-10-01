@@ -66,16 +66,13 @@ char	*ft_strjoin(char *s1, char *s2)
 	int		i;
 	int		j;
 	char	*str;
-	int		flag;
 
-	flag = 0;
 	if (!s1)
 	{
 		s1 = (char *)malloc(1 * sizeof(char));
 		if (!s1)
 			exit (1);
 		s1[0] = '\0';
-		flag = 1;
 	}
 	if (!s2)
 		return (s1);

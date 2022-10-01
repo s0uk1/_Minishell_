@@ -27,7 +27,7 @@ char	*join_cmd(char **argv, int argc, int i)
 
 int	check_valid(char *cmd)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	if (cmd[0] == '-')

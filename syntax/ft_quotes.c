@@ -79,7 +79,7 @@ int	ft_check_the_quotes(t_data *data)
 int	ft_check_quotes(t_data *data)
 {
 	int	quotes_f;
-	
+
 	quotes_f = ft_check_the_quotes(data);
 	return (quotes_f);
 }

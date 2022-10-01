@@ -90,12 +90,11 @@ void	ft_concatenate(t_data *data, char *name, char *value)
 	}
 	else
 	{
-
 		ft_add_new_env(data, name, value);
 		if (name)
 			free(name);
 		if (value)
-			free(value);		
+			free(value);
 	}
 }
 
@@ -112,7 +111,7 @@ int	ft_export_arg(t_data *data, t_cmd *lst_cmd, char *name, char *value)
 		{
 			if (ft_check_concate(name))
 				ft_concatenate(data, name, value);
-			else 
+			else
 				ft_normal_export(data, name, value);
 		}
 		else

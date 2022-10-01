@@ -18,7 +18,7 @@ int	my_chdir(t_data *data, char *cmd, char *cwd)
 
 	new_pwd = cmd;
 	if (!ft_strcmp(cmd, "-"))
-		return(go_back_minus(data));
+		return (go_back_minus(data));
 	else
 		g_vars.g_exit_stat = chdir(new_pwd);
 	if (g_vars.g_exit_stat)
