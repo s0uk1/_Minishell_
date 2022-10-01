@@ -30,7 +30,7 @@ void	hand(int num)
 	int	fd[2];
 
 	(void)num;
-	rl_done = 1;
+	// rl_done = 1;
 	g_vars.g_heredoc = 0;
 	pipe(fd);
 	dup2(fd[0], 0);

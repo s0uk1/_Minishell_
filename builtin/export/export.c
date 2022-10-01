@@ -82,13 +82,13 @@ void	ft_concatenate(t_data *data, char *name, char *value)
 			if (!ft_strcmp(env_clone->name, name))
 			{
 				temp = env_clone->value;
-				if (env_clone->value)
-					free(env_clone->value);
 				env_clone->value = ft_strjoin(temp, value);
 				break ;
 			}
 			env_clone = env_clone->next;
 		}
+		free(name);
+		free(value);
 	}
 	else
 	{
@@ -116,6 +116,13 @@ int	ft_export_arg(t_data *data, t_cmd *lst_cmd, char *name, char *value)
 				ft_concatenate(data, name, value);
 			else 
 				ft_normal_export(data, name, value);
+		}
+		else
+		{
+			if (name)
+				free(name);
+			if (value)
+				free(value);
 		}
 		i++;
 	}
