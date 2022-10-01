@@ -12,56 +12,50 @@
 
 #include "../minishell.h"
 
-void	free_env_node(t_env *env)
+void free_env_node(t_env *env)
 {
-	if (env)
-	{
-		if (env->name)
-			free(env->name);
-		if (env->value)
-			free(env->value);
-		free(env);
-	}
+    if (env)
+    {
+        if (env->name)
+            free(env->name);
+        if (env->value)
+            free(env->value);
+        free(env);
+    }
 }
 
-bool	remove_env_node(t_env **venv, char *name)
+void    ft_my_unset(t_data *data, char **cmd)
 {
-	t_env	*env;
+    int		idx;
+    t_env	*env;
 
-	if (!*venv)
-		return (false);
-	if (ft_strcmp(name, (*venv)->name) == 0)
-	{
-		env = *venv;
-		*venv = (*venv)->next;
-		free_env_node(env);
-		return (true);
-	}
-	env = *venv;
-	while (env)
-	{
-		if (!ft_strcmp(name, env->name))
-			break ;
-		env = env->next;
-	}
-	if (!env)
-		return (false);
-	env->prev->next = env->next;
-	free_env_node(env);
-	return (true);
-}
-
-void	ft_my_unset(t_data *data, char **cmd)
-{
-	int	idx;
-
-	idx = 1;
-	while (cmd[idx])
-	{
-		remove_env_node(&data->lst_env, cmd[idx]);
-		idx++;
-	}
-	printf("%p\n", data->lst_env);
+    if (!data->lst_env)
+        return ;
+    if (ft_strcmp(cmd[1], data->lst_env->name) == 0)
+    {
+        env = data->lst_env;
+        data->lst_env = data->lst_env->next;
+        free_env_node(env);
+        return ;
+    }
+    idx = 1;
+    while (cmd[idx])
+    {
+        env = data->lst_env;
+        while (env)
+        {
+            if (!ft_strcmp(cmd[idx], env->name))
+                break ;
+            env = env->next;
+        }
+        if (!env)
+            return ;
+        env->prev->next = env->next;
+		if (env->next)
+			env->next->prev = env->prev;
+        free_env_node(env);
+        idx++;
+    }
 }
 
 int	unset(t_data *data, t_cmd *cmd)

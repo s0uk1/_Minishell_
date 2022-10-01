@@ -46,8 +46,6 @@ void	ft_normal_export(t_data *data, char *name, char *value)
 	else
 	{
 		ft_add_new_env(data, name, value);
-		if (!data->first_export)
-				data->first_export = ft_substr(name, 0, ft_strlen(name));
 		free(name);
 		if (value)
 			free(value);
@@ -56,14 +54,8 @@ void	ft_normal_export(t_data *data, char *name, char *value)
 
 int	ft_check_concate(char *name)
 {
-	char	*temp;
-
 	if (name[ft_strlen(name) - 1] == '+')
 	{
-		temp = ft_substr(name, 0, ft_strlen(name) - 1);
-		free(name);
-		name = ft_strdup(temp);
-		free(temp);
 		return (1);
 	}
 	return (0);
@@ -73,8 +65,14 @@ void	ft_concatenate(t_data *data, char *name, char *value)
 {
 	char	*temp;
 	t_env	*env_clone;
+	char	*temp1;
 
 	env_clone = data->lst_env;
+	temp1 = ft_substr(name, 0, ft_strlen(name) - 1);
+	free(name);
+	name = NULL;
+	name = ft_strdup(temp1);
+	free(temp1);
 	if (ft_name_exists(data, name))
 	{
 		while (env_clone)
@@ -92,10 +90,10 @@ void	ft_concatenate(t_data *data, char *name, char *value)
 	}
 	else
 	{
+
 		ft_add_new_env(data, name, value);
-		if (!data->first_export)
-				data->first_export = ft_substr(name, 0, ft_strlen(name));
-		free(name);
+		if (name)
+			free(name);
 		if (value)
 			free(value);		
 	}

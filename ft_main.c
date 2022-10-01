@@ -72,6 +72,6 @@ int	ft_sub_main(t_data *data)
 		data->general.old_error = g_vars.g_exit_stat;
 	}
 	// rl_clear_history();
-	ft_free_env(data, data->lst_env);
+	ft_free_env(data->lst_env);
 	return (0);
 }

@@ -156,7 +156,7 @@ int					ft_check_name(t_data *data, char *name, char *value);
 //-----------------env--------------------------//
 void				ft_create_env_list(t_env **envi, char **env);
 void				ft_env(t_data *data);
-void				ft_free_env(t_data *data, t_env *env);
+void				ft_free_env(t_env *env);
 void				ft_print_env(t_env *env, int flag, int fd);
 t_env				*ft_add_to_env_back(t_env *envi, char *value);
 void				free_split(char **arguments);

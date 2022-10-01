@@ -12,14 +12,12 @@
 
 #include "minishell.h"
 
-void	ft_free_env(t_data *data, t_env *env)
+void	ft_free_env(t_env *env)
 {
 	t_env	*env_current;
 	t_env	*env_next;
 
 	env_current = env;
-	if (data->first_export)
-		free(data->first_export);
 	while (env_current)
 	{
 		env_next = env_current->next;
