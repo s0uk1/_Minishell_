@@ -6,43 +6,11 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:53:10 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/30 16:58:06 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/10/01 10:37:42 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-#define TERM_OWNER 130
-
-int	wait_p(pid_t *p, int *status)
-{
-	*p = wait(status);
-	return (*p);
-}
-
-int	ft_statushundling(int status)
-{
-	if (WIFSIGNALED(status))
-	{
-		if (WTERMSIG(status) == 3)
-			write(2, "Quit: 3\n", 8);
-		if (WTERMSIG(status) == 2)
-			write(2, "\n", 1);
-		return (128 + WTERMSIG(status));
-	}
-	else if (WIFEXITED(status))
-		return (WEXITSTATUS(status));
-	return (1);
-}
-
-int	terminate_pid(pid_t lastchild)
-{
-	int	status;
-
-	waitpid(lastchild, &status, 0);
-	while (wait(NULL) != -1)
-		;
-	return (ft_statushundling(status));
-}
 
 int	dup_and_close(t_data *data, t_cmd *cmd)
 {
@@ -60,6 +28,18 @@ int	dup_and_close(t_data *data, t_cmd *cmd)
 	return (g_vars.g_exit_stat);
 }
 
+int	check_fork_c(t_data *data, t_cmd *cmd, int pid)
+{
+	int	fork_c;
+
+	fork_c = 0;
+	g_vars.g_exit_stat = check_nonfork(data, cmd);
+	if (g_vars.g_heredoc == 0)
+		return (HEREDOC_EXE);
+	fork_c += check_fork(&pid, data);
+	return (fork_c);
+}
+
 int	execution(t_data *data)
 {
 	t_cmd	*cmd;
@@ -72,10 +52,7 @@ int	execution(t_data *data)
 	data->general.count = c_lstcmd(data);
 	while (cmd)
 	{
-		g_vars.g_exit_stat = check_nonfork(data, cmd);
-		if (g_vars.g_heredoc == 0)
-			return (HEREDOC_EXE);
-		fork_c += check_fork(&pid, data);
+		fork_c = check_fork_c(data, cmd, pid);
 		if (pid == 0 && !data->rerror_f)
 		{
 			g_vars.g_where_ami = 0;

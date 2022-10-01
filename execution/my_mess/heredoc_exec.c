@@ -6,18 +6,11 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 13:15:29 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/30 16:54:31 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/10/01 14:23:53 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-int	check_delim_idx(t_data *data, t_cmd *cmd)
-{
-	if (cmd->prev)
-		data->general.index += cmd->prev->her_doc_num;
-	return (data->general.index);
-}
 
 void	print_her_in(t_cmd *cmd, char *here_buff)
 {
@@ -30,22 +23,11 @@ void	hand(int num)
 	int	fd[2];
 
 	(void)num;
-	// rl_done = 1;
+	rl_done = 1;
 	g_vars.g_heredoc = 0;
 	pipe(fd);
 	dup2(fd[0], 0);
 	write(fd[1], "\n", 1);
-}
-
-static void	suppress_output(void)
-{
-	struct termios	termios_p;
-
-	if (tcgetattr(0, &termios_p) != 0)
-		perror("Minishell: tcgetattr");
-	termios_p.c_lflag &= ~ECHOCTL;
-	if (tcsetattr(0, 0, &termios_p) != 0)
-		perror("Minishell: tcsetattr");
 }
 
 void	check_delims(t_data *data, t_cmd *cmd, int idx)

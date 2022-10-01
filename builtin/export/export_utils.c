@@ -72,6 +72,16 @@ char	*ft_get_name_exp(char *name)
 	return (new_name);
 }
 
+char	*ft_export_no_value(char *new, char *value, int index)
+{
+	if (value && value[index] == '\0')
+	{
+		new = malloc(sizeof(char) * 1);
+		new[0] = '\0';
+	}
+	return (new);
+}
+
 char	*ft_get_value_exp(char *value)
 {
 	int		i;
@@ -89,12 +99,8 @@ char	*ft_get_value_exp(char *value)
 	if (value[i])
 	{
 		origin = i + 1;
-		if (value[origin] == '\0')
-		{
-			new_value = malloc(sizeof(char) * 1);
-			new_value[0] = '\0';
-			return (new_value);
-		}
+		new_value = ft_export_no_value(new_value, value, origin);
+		return (new_value);
 		while (value[++i])
 			j++;
 		new_value = ft_substr(value, origin, j);
