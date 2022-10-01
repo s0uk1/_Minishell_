@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:37:28 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/10/01 10:53:00 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/10/01 14:39:54 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,13 +153,10 @@ int					go_back_minus(t_data *data);
 void				print_error(void);
 int					go_home(t_data *data, char *cwd);
 int					ft_check_name(t_data *data, char *name, char *value);
-<<<<<<< HEAD
-=======
 int					ft_statushandling(int status);
 int					terminate_pid(pid_t lastchild);
 void				suppress_output(void);
 int					check_delim_idx(t_data *data, t_cmd *cmd);
->>>>>>> be438513b3bef5bd251dac60cafd4b1cd1e99937
 void				ft_concatenate(t_data *data, char *name, char *value);
 int					ft_check_concate(char *name);
 //-----------------env--------------------------//
