@@ -24,36 +24,42 @@ void	free_env_node(t_env *env)
 	}
 }
 
-void	ft_my_unset(t_data *data, char **cmd)
+void	ft_my_unset(t_data *data, char *cmd)
 {
-	int		idx;
 	t_env	*env;
 
 	if (!data->lst_env)
 		return ;
-	if (ft_strcmp(cmd[1], data->lst_env->name) == 0)
+	if (!ft_strcmp(cmd, data->lst_env->name))
 	{
 		env = data->lst_env;
 		data->lst_env = data->lst_env->next;
 		free_env_node(env);
 		return ;
 	}
+	env = data->lst_env;
+	while (env)
+	{
+		if (!ft_strcmp(cmd, env->name))
+			break ;
+		env = env->next;
+	}
+	if (!env)
+		return ;
+	env->prev->next = env->next;
+	if (env->next)
+		env->next->prev = env->prev;
+	free_env_node(env);
+}
+
+void	ft_pre_unset(t_data *data, char **cmd)
+{
+	int	idx;
+
 	idx = 1;
 	while (cmd[idx])
 	{
-		env = data->lst_env;
-		while (env)
-		{
-			if (!ft_strcmp(cmd[idx], env->name))
-				break ;
-			env = env->next;
-		}
-		if (!env)
-			return ;
-		env->prev->next = env->next;
-		if (env->next)
-			env->next->prev = env->prev;
-		free_env_node(env);
+		ft_my_unset(data, cmd[idx]);
 		idx++;
 	}
 }
@@ -62,6 +68,6 @@ int	unset(t_data *data, t_cmd *cmd)
 {
 	if (!cmd->cmd[1])
 		return (1);
-	ft_my_unset(data, cmd->cmd);
+	ft_pre_unset(data, cmd->cmd);
 	return (0);
 }
