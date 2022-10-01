@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:17:08 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/29 17:31:59 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/10/01 11:12:18 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2[j])
 		str[i++] = s2[j++];
 	str[ft_strlen(s1) + ft_strlen(s2)] = '\0';
-	// if (flag)
+	if (flag)
 		free(s1);
 	return (str);
 }

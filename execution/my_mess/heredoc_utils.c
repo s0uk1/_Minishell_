@@ -1,47 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo_utils.c                                       :+:      :+:    :+:   */
+/*   heredoc_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/15 14:02:01 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/30 19:08:38 by ssabbaji         ###   ########.fr       */
+/*   Created: 2022/09/30 17:52:34 by ssabbaji          #+#    #+#             */
+/*   Updated: 2022/09/30 19:08:06 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-char	*join_cmd(char **argv, int argc, int i)
+void	suppress_output(void)
 {
-	char	*args;
+	struct termios	termios_p;
 
-	args = NULL;
-	while (i < argc)
-	{
-		args = ft_strjoin(args, argv[i++]);
-		args = ft_strjoin(args, " ");
-	}
-	return (args);
+	if (tcgetattr(0, &termios_p) != 0)
+		perror("Minishell: tcgetattr");
+	termios_p.c_lflag &= ~ECHOCTL;
+	if (tcsetattr(0, 0, &termios_p) != 0)
+		perror("Minishell: tcsetattr");
 }
 
-int	check_valid(char *cmd)
+int	check_delim_idx(t_data *data, t_cmd *cmd)
 {
-	int	i;
-
-	i = 1;
-	if (cmd[0] == '-')
-	{
-		if (!cmd[1])
-			return (0);
-		while (cmd[i])
-		{
-			if (cmd[i] != 'n')
-				return (0);
-			i++;
-		}
-	}
-	else
-		return (0);
-	return (1);
+	if (cmd->prev)
+		data->general.index += cmd->prev->her_doc_num;
+	return (data->general.index);
 }
