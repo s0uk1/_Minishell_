@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:17:25 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/09/29 11:02:57 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/10/01 13:12:11 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	ft_check_the_quotes(t_data *data)
 int	ft_check_quotes(t_data *data)
 {
 	int	quotes_f;
-	
+
 	quotes_f = ft_check_the_quotes(data);
 	return (quotes_f);
 }
