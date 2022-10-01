@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 10:37:19 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/10/01 10:54:05 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/10/01 14:24:28 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,6 @@ void	ft_start(t_data *data)
 	pre_execution(data);
 	ft_free_norme(data);
 }
-<<<<<<< HEAD
-=======
-void	init_sig(void)
-{
-	// rl_catch_signals = 0;
-	signal(SIGINT, sig_handler);
-	signal(SIGQUIT, sig_handler);
-}
->>>>>>> b01aafea2a20e3fefb9f4eec5d333ae4e60a5318
 
 int	ft_sub_main(t_data *data)
 {
@@ -81,7 +72,7 @@ int	ft_sub_main(t_data *data)
 		}
 		data->general.old_error = g_vars.g_exit_stat;
 	}
-	// rl_clear_history();
+	rl_clear_history();
 	ft_free_env(data, data->lst_env);
 	return (0);
 }

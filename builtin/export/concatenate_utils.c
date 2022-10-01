@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 10:50:50 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/10/01 13:03:47 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/10/01 14:32:26 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	ft_check_concate(char *name)
 
 void	ft_concatenate(t_data *data, char *name, char *value)
 {
-	char    *temp;
-	t_env   *env_clone;
+	char	*temp;
+	t_env	*env_clone;
 
 	env_clone = data->lst_env;
 	if (ft_name_exists(data, name))
@@ -54,7 +54,6 @@ void	ft_concatenate(t_data *data, char *name, char *value)
 		if (!data->first_export)
 			data->first_export = ft_substr(name, 0, ft_strlen(name));
 		free(name);
-		exit(1);
 		if (value)
 			free(value);
 	}
