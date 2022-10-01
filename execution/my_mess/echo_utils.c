@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 14:02:01 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/30 19:08:38 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/09/30 16:56:01 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*join_cmd(char **argv, int argc, int i)
 
 int	check_valid(char *cmd)
 {
-	int	i;
+	int i;
 
 	i = 1;
 	if (cmd[0] == '-')

@@ -6,27 +6,14 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 10:37:19 by yabtaour          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/10/01 15:44:06 by ssabbaji         ###   ########.fr       */
-=======
-/*   Updated: 2022/10/01 14:24:28 by ssabbaji         ###   ########.fr       */
->>>>>>> e1467d84f00a5a6f6e374ce9481e1bb740d7e7a9
+/*   Updated: 2022/09/30 17:02:49 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./minishell.h"
 
-void	init_sig(void)
-{
-	rl_catch_signals = 0;
-	signal(SIGINT, sig_handler);
-	signal(SIGQUIT, sig_handler);
-}
-
 void	ft_initialize2(t_data *data)
 {
-	g_vars.g_heredoc = 1;
-	init_sig();
 	g_vars.g_where_ami = 1;
 	data->lst_cmd = NULL;
 	data->lst_lexer = NULL;
@@ -52,11 +39,19 @@ void	ft_start(t_data *data)
 	pre_execution(data);
 	ft_free_norme(data);
 }
+void	init_sig(void)
+{
+	// rl_catch_signals = 0;
+	signal(SIGINT, sig_handler);
+	signal(SIGQUIT, sig_handler);
+}
 
 int	ft_sub_main(t_data *data)
 {
 	while (42)
 	{
+		g_vars.g_heredoc = 1;
+		init_sig();
 		ft_initialize2(data);
 		data->cmd = readline("minishell-1.0> ");
 		g_vars.g_where_ami = 0;
@@ -76,7 +71,7 @@ int	ft_sub_main(t_data *data)
 		}
 		data->general.old_error = g_vars.g_exit_stat;
 	}
-	rl_clear_history();
+	// rl_clear_history();
 	ft_free_env(data, data->lst_env);
 	return (0);
 }
