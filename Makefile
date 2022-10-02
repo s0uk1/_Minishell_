@@ -22,6 +22,7 @@ PARSING = ./parsing/parsing.c ./parsing/parsing_utils.c \
 		  ./delete_quotes/ft_delete_quotes.c ./delete_quotes/delete_quotes_utils.c \
 		  ./parsing/exit_status.c ./parsing/parsing_utils2.c ./parsing/parsing_utils3.c\
 		  ./parsing/parsing_utils4.c ./parsing/parsing_utils5.c \
+		  ./parsing/exit_status_utils.c \
 
 EXPANDING = ./expanding/ft_expanding.c ./expanding/expanding_utils.c \
 			./expanding/ft_len.c ./expanding/expanding_utils2.c \
