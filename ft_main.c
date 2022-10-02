@@ -41,7 +41,7 @@ int	ft_sub_main(t_data *data)
 		{
 			ft_lexer(data);
 			g_vars.g_exit_stat = ft_syntax_analyzer(data);
-			if (g_vars.g_exit_stat == 258)
+			if (g_vars.g_exit_stat)
 			{
 				ft_free_lexer(data->lst_lexer);
 				data->general.old_error = g_vars.g_exit_stat;
@@ -53,7 +53,7 @@ int	ft_sub_main(t_data *data)
 			break ;
 		data->general.old_error = g_vars.g_exit_stat;
 	}
-	rl_clear_history();
+	// rl_clear_history();
 	ft_free_env(data->lst_env);
 	return (0);
 }

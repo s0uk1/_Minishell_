@@ -30,7 +30,7 @@ static int	ft_check_red(t_data *data)
 	{
 		g_vars.g_exit_stat = 258;
 		printf("Syntax error near unexpected token `newline'\n");
-		return (255);
+		return (258);
 	}
 	lexer_clone = data->lst_lexer;
 	while (lexer_clone)

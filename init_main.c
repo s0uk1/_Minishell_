@@ -14,7 +14,7 @@
 
 void	init_sig(void)
 {
-	rl_catch_signals = 0;
+	// rl_catch_signals = 0;
 	signal(SIGINT, sig_handler);
 	signal(SIGQUIT, sig_handler);
 }
