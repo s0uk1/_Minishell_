@@ -6,24 +6,11 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 13:15:29 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/10/02 15:42:40 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/10/02 18:18:07 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-// int	check_delim_idx(t_data *data, t_cmd *cmd)
-// {
-// 	if (cmd->prev)
-// 		data->general.index += cmd->prev->her_doc_num;
-// 	return (data->general.index);
-// }
-
-// void	print_her_in(t_cmd *cmd, char *here_buff)
-// {
-// 	ft_putstr_fd(here_buff, cmd->her_in);
-// 	ft_putstr_fd("\n", cmd->her_in);
-// }
 
 void	hand(int num)
 {
@@ -82,9 +69,6 @@ int	heredoc_exec(t_data *data, t_cmd *cmd_lst, int idx)
 	tmp = dup(0);
 	g_vars.g_heredoc = 1;
 	check_delims(data, cmd, idx);
-	close(cmd->fd_in);
-	close(cmd->her_in);
-	close_fds(cmd);
 	dup2(tmp, 0);
 	close(tmp);
 	return (1);
