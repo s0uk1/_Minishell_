@@ -6,21 +6,11 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 10:37:19 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/10/01 19:33:14 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/10/02 11:28:23 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./minishell.h"
-
-void	ft_initialize2(t_data *data)
-{
-	g_vars.g_where_ami = 1;
-	data->lst_cmd = NULL;
-	data->lst_lexer = NULL;
-	data->her_doc = 0;
-	data->general.index = 0;
-	g_vars.g_exit_stat = 0;
-}
 
 void	ft_free_norme(t_data *data)
 {
@@ -40,20 +30,11 @@ void	ft_start(t_data *data)
 	ft_free_norme(data);
 }
 
-void	init_sig(void)
-{
-	// rl_catch_signals = 0;
-	signal(SIGINT, sig_handler);
-	signal(SIGQUIT, sig_handler);
-}
-
 int	ft_sub_main(t_data *data)
 {
 	while (42)
 	{
-		g_vars.g_heredoc = 1;
-		init_sig();
-		ft_initialize2(data);
+		init_main(data);
 		data->cmd = readline("minishell-1.0> ");
 		g_vars.g_where_ami = 0;
 		if (!data->cmd)
@@ -72,7 +53,7 @@ int	ft_sub_main(t_data *data)
 		}
 		data->general.old_error = g_vars.g_exit_stat;
 	}
-	// rl_clear_history();
+	rl_clear_history();
 	ft_free_env(data->lst_env);
 	return (0);
 }

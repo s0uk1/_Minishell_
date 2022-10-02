@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expanding_utils3.c                                 :+:      :+:    :+:   */
+/*   heredoc_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/02 11:30:58 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/10/02 11:31:00 by ssabbaji         ###   ########.fr       */
+/*   Created: 2022/10/02 10:55:33 by ssabbaji          #+#    #+#             */
+/*   Updated: 2022/10/02 11:26:43 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
-char	*ft_var_isnt(t_data *data, char *lexer, char *n_v)
+int	check_delim_idx(t_data *data, t_cmd *cmd)
 {
-	char	*temp;
+	if (cmd->prev)
+		data->general.index += cmd->prev->her_doc_num;
+	return (data->general.index);
+}
 
-	temp = ft_delete_var(data, lexer);
-	n_v = ft_strjoin(n_v, temp);
-	free(temp);
-	return (n_v);
+void	print_her_in(t_cmd *cmd, char *here_buff)
+{
+	ft_putstr_fd(here_buff, cmd->her_in);
+	ft_putstr_fd("\n", cmd->her_in);
 }

@@ -1,23 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expanding_utils3.c                                 :+:      :+:    :+:   */
+/*   init_main.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/02 11:30:58 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/10/02 11:31:00 by ssabbaji         ###   ########.fr       */
+/*   Created: 2022/10/02 11:28:02 by ssabbaji          #+#    #+#             */
+/*   Updated: 2022/10/02 11:30:46 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "./minishell.h"
 
-char	*ft_var_isnt(t_data *data, char *lexer, char *n_v)
+void	init_sig(void)
 {
-	char	*temp;
+	rl_catch_signals = 0;
+	signal(SIGINT, sig_handler);
+	signal(SIGQUIT, sig_handler);
+}
 
-	temp = ft_delete_var(data, lexer);
-	n_v = ft_strjoin(n_v, temp);
-	free(temp);
-	return (n_v);
+void	init_main(t_data *data)
+{
+	g_vars.g_heredoc = 1;
+	init_sig();
+	ft_initialize2(data);
+}
+
+void	ft_initialize2(t_data *data)
+{
+	g_vars.g_where_ami = 1;
+	data->lst_cmd = NULL;
+	data->lst_lexer = NULL;
+	data->her_doc = 0;
+	data->general.index = 0;
+	g_vars.g_exit_stat = 0;
 }

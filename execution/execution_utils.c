@@ -1,27 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals_handling.c                                 :+:      :+:    :+:   */
+/*   execution_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/04 13:44:37 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/10/02 10:52:23 by ssabbaji         ###   ########.fr       */
+/*   Created: 2022/10/02 10:39:20 by ssabbaji          #+#    #+#             */
+/*   Updated: 2022/10/02 10:52:12 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	sig_handler(int num)
+int	ft_statushandling(int status)
 {
-	if (num == SIGINT && g_vars.g_where_ami)
+	if (WIFSIGNALED(status))
 	{
-		write(1, "\n", 1);
-		rl_replace_line("", 0);
-		rl_on_new_line();
-		rl_redisplay();
+		if (WTERMSIG(status) == 3)
+			write(2, "Quit: 3\n", 8);
+		if (WTERMSIG(status) == 2)
+			write(2, "\n", 1);
+		return (128 + WTERMSIG(status));
 	}
-	if (num == SIGQUIT && g_vars.g_where_ami)
-		if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
-			perror("signal(): error");
+	else if (WIFEXITED(status))
+		return (WEXITSTATUS(status));
+	return (1);
+}
+
+int	terminate_pid(pid_t lastchild)
+{
+	int	status;
+
+	waitpid(lastchild, &status, 0);
+	while (wait(NULL) != -1)
+		;
+	return (ft_statushandling(status));
 }

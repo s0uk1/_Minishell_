@@ -13,7 +13,7 @@ LIBRARIESS        = ${LDFLAGS} -lreadline
 
 FLAGS = -Wall -Wextra -Werror -g 
 
-SRC = main.c ft_free.c ft_main.c \
+SRC = main.c ft_free.c ft_main.c init_main.c\
 
 ENV = ./env/ft_env.c ./env/ft_env_list.c\
 
@@ -48,11 +48,11 @@ UTILS= ./utils/ft_putstr_fd.c ./utils/ft_get_env.c ./utils/ft_itoa.c \
 	   ./utils/ft_strchr.c ./utils/ft_trim.c ./utils/ft_strdup.c ./utils/ft_strncpy.c\
 
 EXECUT= ./execution/execution.c ./execution/my_mess/cd_env.c\
-		./execution/my_mess/pipes.c ./execution/check_fork.c\
+		./execution/my_mess/pipes.c ./execution/check_fork.c ./execution/execution_utils.c\
 		./execution/close_all.c ./execution/my_mess/pwd.c ./execution/my_mess/cd_back.c\
 		./execution/signals_handling.c ./execution/my_mess/heredoc_exec.c\
 		./execution/my_mess/counting_funcs.c ./execution/my_mess/echo_utils.c\
-		./execution/my_mess/my_exec.c ./execution/my_mess/my_cd.c\
+		./execution/my_mess/my_exec.c ./execution/my_mess/my_cd.c ./execution/my_mess/heredoc_utils.c\
 		./execution/my_mess/my_env.c ./execution/my_mess/my_echo.c  ./execution/my_mess/my_exit.c\
 		
 

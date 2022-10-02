@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:37:28 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/30 16:40:46 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/10/02 11:29:33 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ typedef struct s_data
 }					t_data;
 
 //--------------------execution soukaina--------------------//
-int					ft_statushundling(int status);
+int					ft_statushandling(int status);
 int					ft_builtins(t_data *data);
 int					my_exit(t_cmd *lst_cmd, int old_error);
 int					my_pwd(t_data *data, t_cmd *lst_cmd);
@@ -153,6 +153,12 @@ int					go_back_minus(t_data *data);
 void				print_error(void);
 int					go_home(t_data *data, char *cwd);
 int					ft_check_name(t_data *data, char *name, char *value);
+int					terminate_pid(pid_t lastchild);
+int					check_delim_idx(t_data *data, t_cmd *cmd);
+void				print_her_in(t_cmd *cmd, char *here_buff);
+void				init_sig(void);
+void				init_main(t_data *data);
+void				ft_initialize2(t_data *data);
 //-----------------env--------------------------//
 void				ft_create_env_list(t_env **envi, char **env);
 void				ft_env(t_data *data);
@@ -192,7 +198,7 @@ char				*ft_delete_var(t_data *data, char *var);
 int					ft_len_before(char *var);
 int					ft_len_after(char *var);
 int					ft_len_var(char *var);
-char			*ft_var_isnt(t_data *data, char *lexer, char *n_v);
+char				*ft_var_isnt(t_data *data, char *lexer, char *n_v);
 int					ft_value_var(int i, char *value);
 int					ft_check_still_dollar(t_data *data);
 char				*ft_fix_norme(char *n_v, char *value, int i);

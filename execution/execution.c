@@ -6,43 +6,11 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:53:10 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/30 16:58:06 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/10/02 10:52:03 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-#define TERM_OWNER 130
-
-int	wait_p(pid_t *p, int *status)
-{
-	*p = wait(status);
-	return (*p);
-}
-
-int	ft_statushundling(int status)
-{
-	if (WIFSIGNALED(status))
-	{
-		if (WTERMSIG(status) == 3)
-			write(2, "Quit: 3\n", 8);
-		if (WTERMSIG(status) == 2)
-			write(2, "\n", 1);
-		return (128 + WTERMSIG(status));
-	}
-	else if (WIFEXITED(status))
-		return (WEXITSTATUS(status));
-	return (1);
-}
-
-int	terminate_pid(pid_t lastchild)
-{
-	int	status;
-
-	waitpid(lastchild, &status, 0);
-	while (wait(NULL) != -1)
-		;
-	return (ft_statushundling(status));
-}
 
 int	dup_and_close(t_data *data, t_cmd *cmd)
 {
@@ -60,16 +28,13 @@ int	dup_and_close(t_data *data, t_cmd *cmd)
 	return (g_vars.g_exit_stat);
 }
 
-int	execution(t_data *data)
+int	execution(t_data *data, t_cmd *cmd)
 {
-	t_cmd	*cmd;
 	int		pid;
 	int		fork_c;
 
-	cmd = data->lst_cmd;
 	fork_c = 0;
 	pid = 1;
-	data->general.count = c_lstcmd(data);
 	while (cmd)
 	{
 		g_vars.g_exit_stat = check_nonfork(data, cmd);
@@ -92,13 +57,16 @@ int	execution(t_data *data)
 
 int	pre_execution(t_data *data)
 {
-	int	pid;
+	t_cmd	*cmd;
+	int		pid;
 
 	pid = 0;
+	data->general.count = c_lstcmd(data);
 	if (data->lst_cmd)
 	{
+		cmd = data->lst_cmd;
 		data->pipes = initialize_pipes(data);
-		if (execution(data) == HEREDOC_EXE)
+		if (execution(data, cmd) == HEREDOC_EXE)
 			g_vars.g_exit_stat = 1;
 	}
 	return (0);
