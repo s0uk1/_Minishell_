@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 10:37:19 by yabtaour          #+#    #+#             */
-/*   Updated: 2022/10/02 11:28:23 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/10/02 16:22:19 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ int	ft_sub_main(t_data *data)
 		init_main(data);
 		data->cmd = readline("minishell-1.0> ");
 		g_vars.g_where_ami = 0;
-		if (!data->cmd)
-			break ;
 		if (data->cmd && data->cmd[0] != '\0')
 		{
 			ft_lexer(data);
@@ -51,6 +49,8 @@ int	ft_sub_main(t_data *data)
 			}
 			ft_start(data);
 		}
+		if (!data->cmd)
+			break ;
 		data->general.old_error = g_vars.g_exit_stat;
 	}
 	rl_clear_history();

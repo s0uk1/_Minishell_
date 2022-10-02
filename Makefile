@@ -73,6 +73,8 @@ clean:
 
 fclean: clean
 	rm -rf ${NAME}
+mee:
+	make && make clean && clear
 
 re: fclean all
 

@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:37:28 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/10/02 11:29:33 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/10/02 14:31:44 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ typedef struct s_gvar
 	int	g_where_ami;
 	int	g_exit_stat;
 	int	g_heredoc;
+	int	g_continue_exe;
+	int	g_pid;
 }	t_gvar;
 
 t_gvar	g_vars;
