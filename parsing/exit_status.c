@@ -24,42 +24,48 @@ char	*ft_allocate(char *exit, char *value)
 	return (new);
 }
 
-char	*ft_new_value(t_data *data, char *lexer)
+void	ft_mamak(t_data *data, t_uwu *uwu)
 {
-	char	*new;
-	int		i;
-	int		j;
-	char	*temp;
-
-	data->flag_d = 0;
-	data->flag_s = 0;
-	i = 0;
-	j = 0;
-	temp = ft_itoa(data->general.old_error);
-	new = ft_allocate(temp, lexer);
-	while (lexer[i])
+	while (uwu->lexer[uwu->i])
 	{
-		if (lexer[i] == '"' && data->flag_s == 0)
+		if (uwu->lexer[uwu->i] == '"' && data->flag_s == 0)
 			data->flag_d = ft_change_flag(data->flag_d);
-		if (lexer[i] == '\'' && data->flag_d == 0)
+		if (uwu->lexer[uwu->i] == '\'' && data->flag_d == 0)
 			data->flag_s = ft_change_flag(data->flag_s);
-		if (data->flag_s == 0 && lexer[i] == '$' && lexer[i + 1] == '?')
+		if (data->flag_s == 0 && uwu->lexer[uwu->i] == '$'
+			&& uwu->lexer[uwu->i + 1] == '?')
 		{
-			new[j] = '\0';
-			new = ft_strjoin(new, temp);
-			j += ft_strlen(temp);
-			i += 2;
+			uwu->new[uwu->j] = '\0';
+			uwu->new = ft_strjoin(uwu->new, uwu->temp);
+			uwu->j += ft_strlen(uwu->temp);
+			uwu->i += 2;
 		}
 		else
 		{
-			new[j] = lexer[i];
-			j++;
-			i++;
+			uwu->new[uwu->j] = uwu->lexer[uwu->i];
+			uwu->j++;
+			uwu->i++;
 		}
 	}
-	free(temp);
-	new[j] = '\0';
-	return (new);
+}
+
+char	*ft_new_value(t_data *data, char *lexer)
+{
+	t_uwu	uwu;
+
+	uwu.i = 0;
+	uwu.j = 0;
+	uwu.temp = NULL;
+	uwu.new = NULL;
+	uwu.lexer = lexer;
+	data->flag_d = 0;
+	data->flag_s = 0;
+	uwu.temp = ft_itoa(data->general.old_error);
+	uwu.new = ft_allocate(uwu.temp, lexer);
+	ft_mamak(data, &uwu);
+	free(uwu.temp);
+	uwu.new[uwu.j] = '\0';
+	return (uwu.new);
 }
 
 char	*ft_change_value(t_data *data, char *value)

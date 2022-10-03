@@ -89,6 +89,15 @@ typedef struct s_cmd
 	struct s_cmd	*prev;
 }					t_cmd;
 
+typedef struct s_uwu
+{
+	char	*lexer;
+	char	*new;
+	char	*temp;
+	int		i;
+	int		j;
+}		t_uwu;
+
 typedef struct s_data
 {
 	int				exit_stat;
