@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:37:28 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/10/02 14:31:44 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:16:26 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,7 @@ void				print_her_in(t_cmd *cmd, char *here_buff);
 void				init_sig(void);
 void				init_main(t_data *data);
 void				ft_initialize2(t_data *data);
+int					check_path(t_env *lst_env);
 //-----------------env--------------------------//
 void				ft_create_env_list(t_env **envi, char **env);
 void				ft_env(t_data *data);

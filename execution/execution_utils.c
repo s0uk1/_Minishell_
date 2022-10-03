@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 10:39:20 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/10/02 16:30:24 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:29:52 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,15 @@ int	terminate_pid(pid_t lastchild)
 	while (wait(NULL) != -1)
 		;
 	return (ft_statushandling(status));
+}
+
+int	check_path(t_env *lst_env)
+{
+	while (lst_env && lst_env->name)
+	{
+		if (!ft_strcmp(lst_env->name, "PATH"))
+			return (1);
+		lst_env = lst_env->next;
+	}
+	return (0);
 }

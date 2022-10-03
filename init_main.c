@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 11:28:02 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/10/02 11:30:46 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/10/03 11:09:50 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_sig(void)
 {
-	// rl_catch_signals = 0;
+	rl_catch_signals = 0;
 	signal(SIGINT, sig_handler);
 	signal(SIGQUIT, sig_handler);
 }
