@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:50:24 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/10/03 15:04:25 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/10/05 11:04:38 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,10 @@ int	check_fork(int *pid, t_data *data)
 	{
 		*pid = fork();
 		if (*pid < 0)
+		{
 			perror("fork() error");
+			exit(1);
+		}
 		i++;
 	}
 	return (i);
