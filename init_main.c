@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 11:28:02 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/10/03 11:09:50 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/10/06 16:36:34 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	init_main(t_data *data)
 	g_vars.g_heredoc = 1;
 	init_sig();
 	ft_initialize2(data);
+	g_vars.g_where_ami = 1;
 }
 
 void	ft_initialize2(t_data *data)
