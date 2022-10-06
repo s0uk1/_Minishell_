@@ -66,7 +66,7 @@ OBJ = ${FILES:.c=.o}
 all: ${NAME}
 
 ${NAME}: ${OBJ}
-	$(CC) ${LIBRARIESS} $(OBJ) -o ${NAME} -fsanitize=address
+	$(CC) ${LIBRARIESS} $(OBJ) -o ${NAME} 
 
 clean:
 	rm -rf $(OBJ)
@@ -77,4 +77,3 @@ fclean: clean
 bonus: ${NAME}
 
 re: fclean all
-
