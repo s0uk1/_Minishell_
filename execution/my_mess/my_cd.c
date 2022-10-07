@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 15:42:55 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/10/07 10:35:29 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/10/07 12:31:00 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ void	find_dir(t_data *data, char *pwd, char *upd)
 
 int	catch_error(t_data *data)
 {
-	char *old_pwd;
-	
+	char	*old_pwd;
+
 	old_pwd = custom_getenv("PWD", data->lst_env);
 	print_error();
 	g_vars.g_exit_stat = go_home(data, old_pwd);
