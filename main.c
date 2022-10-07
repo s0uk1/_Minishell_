@@ -6,31 +6,11 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 13:29:59 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/09/25 17:31:27 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/10/07 10:23:02 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// int	ft_export_arg_2(t_data *data, char	**env)
-// {
-// 	int		i;
-// 	char	*name;
-// 	char	*value;
-
-// 	i = 1;
-// 	name = NULL;
-// 	value = NULL;
-// 	while (env[i])
-// 	{
-// 		name = ft_get_name_exp(env[i]);
-// 		value = ft_get_value_exp(env[i]);
-// 		if (!ft_check_name(data, name, value))
-// 			break ;
-// 		i++;
-// 	}
-// 	return (0);
-// }
 
 int	ft_initialize1(t_data *data, int argc, char **env)
 {
