@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 13:15:29 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/10/05 11:16:17 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/10/07 14:29:39 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,17 @@ void	check_delims(t_data *data, t_cmd *cmd, int idx)
 	{
 		here_buff = readline("> ");
 		if (here_buff == NULL)
-			exit(1);
+		{
+			free(here_buff);
+			break ;
+		}
 		if (here_buff[0] != '\0' && !ft_strcmp(data->eof[idx], here_buff))
 		{
 			i++;
 			idx++;
 		}
 		else
-		{
 			print_her_in(cmd, here_buff);
-			free(here_buff);
-		}
 	}
 	dup2(cmd->her_in, STDIN_FILENO);
 }

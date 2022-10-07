@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 10:55:33 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/10/02 14:10:37 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/10/07 14:27:35 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,5 @@ void	print_her_in(t_cmd *cmd, char *here_buff)
 {
 	ft_putstr_fd(here_buff, cmd->her_in);
 	ft_putstr_fd("\n", cmd->her_in);
+	free(here_buff);
 }

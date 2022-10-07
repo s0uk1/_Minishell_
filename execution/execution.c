@@ -6,7 +6,7 @@
 /*   By: ssabbaji <ssabbaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:53:10 by ssabbaji          #+#    #+#             */
-/*   Updated: 2022/10/03 15:02:21 by ssabbaji         ###   ########.fr       */
+/*   Updated: 2022/10/07 13:18:48 by ssabbaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,10 @@ int	execution(t_data *data, t_cmd *cmd)
 		if (g_vars.g_heredoc == 0)
 			return (HEREDOC_EXE);
 		fork_c += check_fork(&pid, data);
+		signal(SIGINT, SIG_IGN);
 		if (pid == 0 && cmd->fd_in != -69)
 		{
+			signal(SIGINT, SIG_DFL);
 			g_vars.g_where_ami = 0;
 			g_vars.g_exit_stat = dup_and_close(data, cmd);
 			exit(g_vars.g_exit_stat);
